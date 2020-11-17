@@ -7,5 +7,4 @@ if __name__ == "__main__":
 	options = utils.arg_parse_options()
 	cube = c.Cube(options.mix)
 	utils.shuffle_cube(options.mix, cube)
-	#move.move_B(cube, True)
 	print(options.mix)
