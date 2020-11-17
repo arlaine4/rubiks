@@ -33,6 +33,9 @@ def	select_move_function_to_call(move_id, cube):
 	elif "B" in move_id:
 		for loop in range(repeat):
 			cube = move.move_B(cube, False) if "'" in move_id else move.move_B(cube, True)
+	elif "L" in move_id:
+		for loop in range(repeat):
+			cube = move.move_L(cube, False) if "'" in move_id else move.move.L(cube, True)
 	return cube.cube
 
 def	shuffle_cube(mix, c):
