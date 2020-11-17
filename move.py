@@ -6,6 +6,12 @@ from copy import deepcopy
 # if the order is F R U B L D
 #                 0 1 2 3 4 5
 
+
+###
+### Need to verify ta everthing work perfectly but it seems to be clean
+### The only possible error I see atm is an inverted rotation of the targeted face for the move (in move_U it will be the U face) 
+###
+
 def print_cube(c): 
     list_move = ['F', 'R', 'U', 'B', 'L', 'D']
     for i in range(len(c.cube)):
@@ -247,5 +253,52 @@ def move_U(c, clockwise):
         c.cube[1][0][1] = tmp[0][1]
         c.cube[1][0][2] = tmp[0][2]
     print("AFTER MOVE_U")
+    print_cube(c)
+    return(c)
+
+def move_D(c, clockwise):
+    c.cube[5][0][0] = 9
+    print_cube(c)
+    # D rotate clockwise
+    if clockwise:
+        c.cube[5] = np.rot90(c.cube[5], k=1, axes=(0, 1))
+        tmp = deepcopy(c.cube[0])
+        # R to F
+        c.cube[0][2][0] = c.cube[1][2][0]
+        c.cube[0][2][1] = c.cube[1][2][1]
+        c.cube[0][2][2] = c.cube[1][2][2]
+        # B to R
+        c.cube[1][2][0] = c.cube[3][2][0]
+        c.cube[1][2][1] = c.cube[3][2][1] 
+        c.cube[1][2][2] = c.cube[3][2][2]
+        # L to B
+        c.cube[3][2][0] = c.cube[4][2][0]
+        c.cube[3][2][1] = c.cube[4][2][1]
+        c.cube[3][2][2] = c.cube[4][2][2]
+        # F to L
+        c.cube[4][2][0] = tmp[2][0]
+        c.cube[4][2][1] = tmp[2][1]
+        c.cube[4][2][2] = tmp[2][2]
+    # D rotate counter-clockwise
+    else:
+        c.cube[5] = np.rot90(c.cube[5], k=1, axes=(1, 0))
+        tmp = deepcopy(c.cube[0])
+        # L to F
+        c.cube[0][2][0] = c.cube[4][2][0]
+        c.cube[0][2][1] = c.cube[4][2][1]
+        c.cube[0][2][2] = c.cube[4][2][2]
+        # B to L
+        c.cube[4][2][0] = c.cube[3][2][0]
+        c.cube[4][2][1] = c.cube[3][2][1] 
+        c.cube[4][2][2] = c.cube[3][2][2]
+        # R to B
+        c.cube[3][2][0] = c.cube[1][2][0]
+        c.cube[3][2][1] = c.cube[1][2][1]
+        c.cube[3][2][2] = c.cube[1][2][2]
+        # R to L
+        c.cube[1][2][0] = tmp[2][0]
+        c.cube[1][2][1] = tmp[2][1]
+        c.cube[1][2][2] = tmp[2][2]
+    print("AFTER MOVE_D")
     print_cube(c)
     return(c)
