@@ -7,6 +7,11 @@ from copy import deepcopy
 #                 0 1 2 3 4 5
 
 
+# cube array colors reprensentation :
+# Faces :	0		1		2		3		4		5
+#		   Blue		red   yellow  green    orange   white
+#		  front	   right    up     back     left	 down
+
 ###
 ### Need to verify ta everthing work perfectly but it seems to be clean
 ### The only possible error I see atm is an inverted rotation of the targeted face for the move (in move_U it will be the U face) 
