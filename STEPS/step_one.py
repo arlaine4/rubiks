@@ -81,7 +81,7 @@ def case_two(c, color):
 			move.move_R(c, True)
 			move.move_R(c, True)
 			return c, True
-		if c.cube[2][0][1] == 5 and c.cube[1][0][1] == color:
+		if c.cube[2][0][1] == 5 and c.cube[3][0][1] == color:
 			move.move_U(c, True)
 			move.move_R(c, True)
 			move.move_R(c, True)
