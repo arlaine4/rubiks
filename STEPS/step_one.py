@@ -5,13 +5,20 @@ import utils
 
 def	step_one(c):
 	color_prio = [0, 4, 3, 1]
-	check = False
 	for color in color_prio:
+		check = False
+		if already_valid(c, color):
+			continue
 		c, check = case_one(c, color)
+		if check:
+			continue
+		c, check = case_two(c, color)
 		if check:
 			continue
 	return c
 
+def case_two(c, color):
+	return c, False
 def case_one(c, color):
 	if color == 0:
 		if c.cube[1][1][0] == 5 and c.cube[0][1][2] == color:
@@ -58,6 +65,20 @@ def case_one(c, color):
 			move.move_R(c, True)
 			return c, True
 	return c, False
+
+def already_valid(c, color):
+	if color == 0:
+		if c.cube[5][0][1] == 5 and c.cube[0][2][1] == color:
+			return True
+	if color == 4:
+		if c.cube[5][1][0] == 5 and c.cube[4][2][1] == color:
+			return True
+	if color == 3:
+		if c.cube[5][1][2] == 5 and c.cube[3][2][1] == color:
+			return True
+	if color == 1:
+		if c.cube[5][2][1] == 5 and c.cube[1][2][1] == color:
+			return True
 
 def	check_valid_step_one(c):
 	well_placed = 0
