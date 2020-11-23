@@ -1,3 +1,5 @@
+import sys
+sys.path.append('..')
 import move
 import utils
 
@@ -13,7 +15,7 @@ def	check_step_two(c):
 			if c.cube[5][i][j] == 5:
 				well_placed += 1
 	if well_placed != 9: #Temporaire
-		print("Face blanche pas finie") #temporaire
+		print("Face blanche pas finie dans step TWO") #temporaire
 	#---------------------------------------------
 
 	#---------------------------------------------

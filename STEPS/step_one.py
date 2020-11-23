@@ -18,7 +18,8 @@ def	check_valid_step_one(c):
 		well_placed += 1
 	if c.cube[5][1][2] == 5:
 		well_placed += 1
-
+	if well_placed != 5: #Temporaire
+		print("White cross pas finie dans step ONE") #Temporaire
 	#--------------------------------------------
 
 	#--------------------------------------------
