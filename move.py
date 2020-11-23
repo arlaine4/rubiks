@@ -17,15 +17,7 @@ from copy import deepcopy
 ### The only possible error I see atm is an inverted rotation of the targeted face for the move (in move_U it will be the U face) 
 ###
 
-def print_cube(c): 
-    list_move = ['F', 'R', 'U', 'B', 'L', 'D']
-    for i in range(len(c.cube)):
-        print(list_move[i], ":")
-        print(c.cube[i])
-
 def move_F(c, clockwise):
-    c.cube[0][0][0] = 9
-    print_cube(c)
     # F rotate clockwise
     if clockwise:
         c.cube[0] = np.rot90(c.cube[0], k=1, axes=(1, 0))
@@ -66,14 +58,9 @@ def move_F(c, clockwise):
         c.cube[2][2][0] = tmp[0][0]
         c.cube[2][2][1] = tmp[1][0]
         c.cube[2][2][2] = tmp[2][0]
-
-    print("AFTER MOVE_F")
-    print_cube(c)
     return(c)
 
 def move_R(c, clockwise):
-    c.cube[1][0][0] = 9
-    print_cube(c)
     # R rotate clockwise
     if clockwise:
         c.cube[1] = np.rot90(c.cube[1], k=1, axes=(1, 0))
@@ -114,14 +101,9 @@ def move_R(c, clockwise):
         c.cube[3][2][0] = tmp[0][2]
         c.cube[3][1][0] = tmp[1][2]
         c.cube[3][0][0] = tmp[2][2]
-
-    print("AFTER MOVE_R")
-    print_cube(c)
     return(c)
 
 def move_B(c, clockwise):
-    c.cube[3][0][0] = 9
-    print_cube(c)
     # B rotate clockwise
     if clockwise:
         c.cube[3] = np.rot90(c.cube[3], k=1, axes=(1, 0))
@@ -162,14 +144,9 @@ def move_B(c, clockwise):
         c.cube[2][0][0] = tmp[0][0]
         c.cube[2][0][1] = tmp[1][0]
         c.cube[2][0][2] = tmp[2][0]
-
-    print("AFTER MOVE_B")
-    print_cube(c)
     return(c)
 
 def move_L(c, clockwise):
-    c.cube[4][0][0] = 9
-    print_cube(c)
     # L rotate clockwise
     if clockwise:
         c.cube[4] = np.rot90(c.cube[4], k=1, axes=(1, 0))
@@ -210,13 +187,9 @@ def move_L(c, clockwise):
         c.cube[0][0][0] = tmp[0][0]
         c.cube[0][1][0] = tmp[1][0]
         c.cube[0][2][0] = tmp[2][0]
-    print("AFTER MOVE_L")
-    print_cube(c)
     return(c)
 
 def move_U(c, clockwise):
-    c.cube[2][0][0] = 9
-    print_cube(c)
     # U rotate clockwise
     if clockwise:
         c.cube[2] = np.rot90(c.cube[2], k=1, axes=(1, 0))
@@ -257,13 +230,9 @@ def move_U(c, clockwise):
         c.cube[1][0][0] = tmp[0][0]
         c.cube[1][0][1] = tmp[0][1]
         c.cube[1][0][2] = tmp[0][2]
-    print("AFTER MOVE_U")
-    print_cube(c)
     return(c)
 
 def move_D(c, clockwise):
-    c.cube[5][0][0] = 9
-    print_cube(c)
     # D rotate clockwise
     if clockwise:
         c.cube[5] = np.rot90(c.cube[5], k=1, axes=(0, 1))
@@ -304,6 +273,4 @@ def move_D(c, clockwise):
         c.cube[1][2][0] = tmp[2][0]
         c.cube[1][2][1] = tmp[2][1]
         c.cube[1][2][2] = tmp[2][2]
-    print("AFTER MOVE_D")
-    print_cube(c)
     return(c)
