@@ -4,7 +4,27 @@ import move
 import utils
 
 def	step_one(c):
+	color_prio = [0, 4, 3, 1]
+	check = False
+	for color in color_prio:
+		c, check = case_one(c, color)
+		if check:
+			continue
 	return c
+
+def case_one(c, color):
+	if color == 0:
+		if c.cube[1][1][0] == 5 and c.cube[0][1][2] == color:
+			move.move_F(c, True)
+			return c, True
+		if c.cube[4][1][2] == 5 and c.cube[0][1][0] == color:
+			move.move_F(c, False)
+			return c, True
+		if c.cube[2][2][1] == 5 and c.cube[0][0][1] == color:
+			move.move_F(c, True)
+			move.move_F(c, True)
+			return c, True
+	return c, False
 
 def	check_valid_step_one(c):
 	well_placed = 0
@@ -18,7 +38,8 @@ def	check_valid_step_one(c):
 		well_placed += 1
 	if c.cube[5][1][2] == 5:
 		well_placed += 1
-
+	if well_placed != 5: #Temporaire
+			print("White cross pas finie dans step ONE") #Temporaire
 	#--------------------------------------------
 
 	#--------------------------------------------
