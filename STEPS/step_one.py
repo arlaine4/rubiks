@@ -24,6 +24,39 @@ def case_one(c, color):
 			move.move_F(c, True)
 			move.move_F(c, True)
 			return c, True
+	if color == 4:
+		if c.cube[4][1][2] == color and c.cube[0][1][0] == 5:
+			move.move_L(c, True)
+			return c, True
+		if c.cube[3][1][2] == 5 and c.cube[4][1][0] == color:
+			move.move_L(c, False)
+			return c, True
+		if c.cube[2][1][0] == 5 and c.cube[4][0][1] == color:
+			move.move_L(c, True)
+			move.move_L(c, True)
+			return c, True
+	if color == 3:
+		if c.cube[3][1][2] == color and c.cube[4][1][0] == 5:
+			move.move_B(c, True)
+			return c, True
+		if c.cube[1][1][2] == 5 and c.cube[3][1][0] == color:
+			move.move_B(c, False)
+			return c, True
+		if c.cube[2][0][1] == 5 and c.cube[3][0][1] == color:
+			move.move_B(c, True)
+			move.move_B(c, True)
+			return c, True
+	if color == 1:
+		if c.cube[1][1][2] == color and c.cube[3][1][0] == 5:
+			move.move_R(c, True)
+			return c, True
+		if c.cube[0][1][2] == 5 and c.cube[1][1][0] == color:
+			move.move_R(c, False)
+			return c, True
+		if c.cube[2][1][2] == 5 and c.cube[1][0][1] == color:
+			move.move_R(c, True)
+			move.move_R(c, True)
+			return c, True
 	return c, False
 
 def	check_valid_step_one(c):
