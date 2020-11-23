@@ -1,5 +1,7 @@
-from ... import move
-from ... import utils
+import sys
+sys.path.append('..')
+import move
+import utils
 
 def	step_one(c):
 	return c
@@ -12,9 +14,11 @@ def	check_valid_step_one(c):
 	for j in range(3):
 		if c.cube[5][j][1] == 5:
 			well_placed += 1
-	for k in range(3):
-		if c.cube[5][1][k] == 5:
-			well_placed += 1
+	if c.cube[5][1][0] == 5:
+		well_placed += 1
+	if c.cube[5][1][2] == 5:
+		well_placed += 1
+
 	#--------------------------------------------
 
 	#--------------------------------------------
