@@ -107,23 +107,23 @@ def move_B(c, clockwise):
     # B rotate clockwise
     if clockwise:
         c.cube[3] = np.rot90(c.cube[3], k=1, axes=(1, 0))
-        tmp = deepcopy(c.cube[5][0])
+        tmp = deepcopy(c.cube[5])
         # L to D
         c.cube[5][2][2] = c.cube[4][0][0]
         c.cube[5][2][1] = c.cube[4][1][0]
         c.cube[5][2][0] = c.cube[4][2][0]
         # U to L
-        c.cube[4][0][0] = c.cube[2][2][0]
-        c.cube[4][1][0] = c.cube[2][2][1]
-        c.cube[4][2][0] = c.cube[2][2][2]
+        c.cube[4][0][0] = c.cube[2][0][0]
+        c.cube[4][1][0] = c.cube[2][0][1]
+        c.cube[4][2][0] = c.cube[2][0][2]
         # R to U
         c.cube[2][0][2] = c.cube[1][0][2]
         c.cube[2][0][1] = c.cube[1][1][2]
         c.cube[2][0][0] = c.cube[1][2][2]
         # D to R
-        c.cube[1][0][2] = tmp[0]
-        c.cube[1][1][2] = tmp[1]
-        c.cube[1][2][2] = tmp[2]
+        c.cube[1][0][2] = tmp[2][2]
+        c.cube[1][1][2] = tmp[2][1]
+        c.cube[1][2][2] = tmp[2][0]
     # B rotate counter-clockwise
     else:
         c.cube[3] = np.rot90(c.cube[3], k=1, axes=(0, 1))
