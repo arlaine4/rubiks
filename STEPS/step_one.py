@@ -8,7 +8,10 @@ def	step_one(c):
 	for color in color_prio:
 		check = False
 		if already_valid(c, color):
+			print("Valid color :", color)
 			continue
+		print("ici : ", check)
+		print("color : ", color)
 		c, check = case_one(c, color)
 		if check:
 			continue
@@ -19,6 +22,7 @@ def	step_one(c):
 
 def case_two(c, color):
 	return c, False
+
 def case_one(c, color):
 	if color == 0:
 		if c.cube[1][1][0] == 5 and c.cube[0][1][2] == color:
@@ -74,10 +78,10 @@ def already_valid(c, color):
 		if c.cube[5][1][0] == 5 and c.cube[4][2][1] == color:
 			return True
 	if color == 3:
-		if c.cube[5][1][2] == 5 and c.cube[3][2][1] == color:
+		if c.cube[5][2][1] == 5 and c.cube[3][2][1] == color:
 			return True
 	if color == 1:
-		if c.cube[5][2][1] == 5 and c.cube[1][2][1] == color:
+		if c.cube[5][1][2] == 5 and c.cube[1][2][1] == color:
 			return True
 
 def	check_valid_step_one(c):
