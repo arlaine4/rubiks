@@ -59,3 +59,11 @@ def	shuffle_cube(mix, c):
 	for i in range(len(moves)):
 		c.cube = select_move_function_to_call(moves[i], c)
 	return c
+
+def	check_face_rows(face, id_face, rows_to_check):
+	well_placed = 0
+	for i in range(rows_to_check):
+		for j in range(3):
+			if face[i][j] == id_face:
+				well_placed += 1
+	return well_placed
