@@ -60,6 +60,8 @@ def	shuffle_cube(mix, c):
 		c.cube = select_move_function_to_call(moves[i], c)
 	return c
 
+
+#TO MOVE IN CUBE.PY
 def	check_face_rows(face, id_face, rows_to_check):
 	well_placed = 0
 	for i in range(rows_to_check):
