@@ -14,17 +14,17 @@ def	load_inital_solved_cube():
 
 def	return_color(case):
 	if case == 0:
-		return 34
+		return "34"
 	elif case == 1:
-		return 31
+		return "31"
 	elif case == 2:
 		return "33"
 	elif case == 3:
-		return 32
+		return "32"
 	elif case == 4:
-		return 208
+		return "38;5;208"
 	elif case == 5:
-		return 231
+		return "39"
 
 def	print_cube(c, colors=True):
 	if not colors:
@@ -42,7 +42,7 @@ def	print_cube(c, colors=True):
 			for j in range(3):
 				for k in range(3):
 					color = return_color(c.cube[i][j][k])
-					cc[i][j][k] = "\033[" + str(color) + "m"
+					cc[i][j][k] = "\033[" + color + "m"
 		print("       "+cc[2][0][0]+'# '+cc[2][0][1]+'# '+cc[2][0][2]+'#')
 		print("       "+cc[2][1][0]+'# '+cc[2][1][1]+'# '+cc[2][1][2]+'#')
 		print("       "+cc[2][2][0]+'# '+cc[2][2][1]+'# '+cc[2][2][2]+'#', end='\n\n')
