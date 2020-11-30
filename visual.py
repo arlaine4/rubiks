@@ -259,7 +259,14 @@ surfaces = (
 	(51, 20, 5, 9),
 	(50, 51, 9, 8),
 	# Down
-	(3, 39, 52, 47),
+	(3, 39, 52, 46),
+	(39, 38, 53, 52),
+	(38, 0, 29, 53),
+	(53, 29, 28, 55),
+	(55, 28, 4, 19),
+	(54, 55, 19, 18),
+	(46, 54, 18, 6),
+	(46, 52, 54, 47),
 	)
 
 colors = (
@@ -297,6 +304,7 @@ def	main_visual(c, mix):
 	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 	gluPerspective(90, (display[0]/display[1]), 0.1, 50.0)
 	glTranslatef(0, 0, -8)
+	glEnable(GL_DEPTH_TEST)
 	turn = -1
 	x = 1
 	y = 1
