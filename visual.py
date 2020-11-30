@@ -236,7 +236,8 @@ surfaces = (
 	(40, 2, 34, 42),
 	(42, 34, 37, 44),
 	(43, 42, 44, 45),
-	(45, 44, 46, 47),
+	(45, 44, 46, 47), #
+	(46, 52, 54, 47), #
 	(44, 37, 3, 46),
 	(14, 45, 47, 6),
 	(10, 43, 45, 14),
@@ -250,14 +251,24 @@ surfaces = (
 	#(43, 10, 14, 45), #43 10 14 45
 	#(45, 14, 6, 47),
 	# Up
-	(2, 31, 38, 40),
+	(2, 31, 48, 40),
 	(40, 48, 50, 41),
-	(41, 50, 8, 7),
-	(31, 30, 49, 48),
-	(48, 49, 51, 50),
+	(30, 1, 21, 49), #30 1 56 4    #31 1 21 499
 	(49, 21, 20, 51),
 	(51, 20, 5, 9),
 	(50, 51, 9, 8),
+	(41, 50, 8, 7),
+	(31, 30, 49, 48),
+	(48, 49, 51, 50),
+	# OLD
+	#(2, 31, 38, 40),
+	#(40, 48, 50, 41),
+	#(41, 50, 8, 7),
+	#(31, 30, 49, 48),
+	#(48, 49, 51, 50),
+	#(49, 21, 20, 51),
+	#(51, 20, 5, 9),
+	#(50, 51, 9, 8),
 	# Down
 	(3, 39, 52, 46),
 	(39, 38, 53, 52),
@@ -266,7 +277,8 @@ surfaces = (
 	(55, 28, 4, 19),
 	(54, 55, 19, 18),
 	(46, 54, 18, 6),
-	(46, 52, 54, 47),
+	#(46, 52, 54, 47),
+	(52, 53, 55, 54),
 	)
 
 colors = (
@@ -279,6 +291,8 @@ colors = (
 	)
 
 def Cube():
+	#----------------------------------------
+	# Remplissage de surfaces + couleurs
 	glBegin(GL_QUADS)
 	black = (0, 0, 0)
 	i = 0
@@ -291,11 +305,16 @@ def Cube():
 		else:
 			i = 0
 	glEnd()
+	#----------------------------------------
+
+	#----------------------------------------
+	# Tracage des contours des cubes
 	glBegin(GL_LINES)
 	for edge in edges:
 		for vertex in edge:
 			glColor3fv(black)
 			glVertex3fv(verticies[vertex])
+	#----------------------------------------
 	glEnd()
 
 def	main_visual(c, mix):
@@ -304,6 +323,7 @@ def	main_visual(c, mix):
 	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 	gluPerspective(90, (display[0]/display[1]), 0.1, 50.0)
 	glTranslatef(0, 0, -8)
+	opaque = 1
 	glEnable(GL_DEPTH_TEST)
 	turn = -1
 	x = 1
@@ -317,6 +337,8 @@ def	main_visual(c, mix):
 				if event.key == pygame.K_ESCAPE:
 					pygame.quit()
 					quit()
+				if event.key == pygame.K_o:
+					opaque *= -1
 				if event.key == pygame.K_SPACE:
 					turn *= -1
 				if event.key == pygame.K_LEFT:
@@ -328,6 +350,10 @@ def	main_visual(c, mix):
 				if event.key == pygame.K_DOWN:
 					y = -3
 				#turn *= -1
+		if opaque < 0:
+			glDisable(GL_DEPTH_TEST)
+		if opaque > 0:
+			glEnable(GL_DEPTH_TEST)
 		if turn > 0:
 			glRotatef(1, x, y, 1)
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
