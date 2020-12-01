@@ -2,6 +2,9 @@ import pygame
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
+import utils
+import time
+from cube import print_cube
 
 verticies = (
 	#basic corners
@@ -173,6 +176,7 @@ edges = (
 	(41, 43),
 	(40, 42),
 	(7, 10),
+	(43, 42), #
 	(10, 14),
 	(10, 43),
 	(10, 11),
@@ -213,6 +217,7 @@ edges = (
 	(47, 6),
 	(6, 18),
 	(54, 18),
+	(54, 55),
 	(55, 19),
 	(55, 28),
 	(55, 53),
@@ -246,89 +251,6 @@ edges = (
 	(8, 11),
 	(9, 12),
 	)
-
-"""surfaces = (
-	# Front
-	(7, 8, 11, 10),
-	(8, 9, 12, 11),
-	(11, 12, 16, 15),
-	(10, 11, 15, 14),
-	(14, 15, 18, 6),
-	(9, 5, 13, 12),
-	(12, 13, 17, 16),
-	(16, 17, 4, 19),
-	(15, 16, 19, 18),
-	# Right
-	(5, 20, 22, 13),
-	(20, 21, 23, 22),
-	(13, 22, 25, 17),
-	(17, 25, 28, 4),
-	(25, 26, 29, 28),
-	(22, 23, 26, 25),
-	(20, 21, 23, 22),
-	(26, 27, 0, 29),
-	(23, 24, 27, 26),
-	(21, 1, 24, 23),
-	# Back
-	(1, 30, 32, 24),
-	(30, 31, 33, 32),
-	(31, 2, 34, 33),
-	(24, 32, 35, 27),
-	(27, 35, 38, 0),
-	(35, 36, 39, 38),
-	(36, 37, 3, 39),
-	(32, 33, 36, 35),
-	(33, 34, 37, 36),
-	# Left
-	(7, 41, 43, 10),
-	(41, 40, 42, 43),
-	(40, 2, 34, 42),
-	(42, 34, 37, 44),
-	(43, 42, 44, 45),
-	(45, 44, 46, 47), #
-	(46, 52, 54, 47), #
-	(44, 37, 3, 46),
-	(14, 45, 47, 6),
-	(10, 43, 45, 14),
-	#(2, 40, 42, 34), #OLD
-	#(34, 42, 44, 37),
-	#(37, 44, 46, 3),
-	#(40, 41, 43, 42),
-	#(42, 43, 45, 44),
-	#(44, 45, 47, 46),
-	#(41, 7, 10, 43), #41 7 10 43
-	#(43, 10, 14, 45), #43 10 14 45
-	#(45, 14, 6, 47),
-	# Up
-	(2, 31, 48, 40),
-	(40, 48, 50, 41),
-	(30, 1, 21, 49), #30 1 56 4    #31 1 21 499
-	(49, 21, 20, 51),
-	(51, 20, 5, 9),
-	(50, 51, 9, 8),
-	(41, 50, 8, 7),
-	(31, 30, 49, 48),
-	(48, 49, 51, 50),
-	# OLD
-	#(2, 31, 38, 40),
-	#(40, 48, 50, 41),
-	#(41, 50, 8, 7),
-	#(31, 30, 49, 48),
-	#(48, 49, 51, 50),
-	#(49, 21, 20, 51),
-	#(51, 20, 5, 9),
-	#(50, 51, 9, 8),
-	# Down
-	(3, 39, 52, 46),
-	(39, 38, 53, 52),
-	(38, 0, 29, 53),
-	(53, 29, 28, 55),
-	(55, 28, 4, 19),
-	(54, 55, 19, 18),
-	(46, 54, 18, 6),
-	#(46, 52, 54, 47),
-	(52, 53, 55, 54),
-	)"""
 
 surfaces = (
 	#Front
@@ -394,29 +316,44 @@ surfaces = (
 	)
 
 colors = (
-	(1, 0, 0), #red
 	(0, 0, 1), #blue
-	(1, 1, 1), #white
-	(1, 0.5, 0), #orange
+	(1, 0, 0), #red
+	(1, 1, 0), #yellow
 	(0, 1, 0), #green
-	(1, 1, 0) #yellow
+	(1, 0.5, 0), #orange
+	(1, 1, 1), #white
 	)
 
 black = (0, 0, 0)
 
-def Cube():
+def	get_color_index(cube, index_surface):
+	i = 0
+	j = 0
+	k = 0
+	while (i + 1) * 9 <= index_surface:
+		i += 1
+	while (i * 9) + ((j + 1) * 3) <= index_surface:
+		j += 1
+	while (i * 9) + (j * 3) + (k + 1) <= index_surface:
+			k += 1
+	return cube[i][j][k]
+
+def Cube(cube):
 	#----------------------------------------
 	# Remplissage de surfaces + couleurs
 	glBegin(GL_QUADS)
 	i = 0
+	j = 0
 	for surface in surfaces:
+		i = get_color_index(cube, j)
 		glColor3fv(colors[i])
 		for vertex in surface:
 			glVertex3fv(verticies[vertex])
-		if i < 5:
-			i += 1
-		else:
-			i = 0
+		j += 1
+		#if i < 5:
+			#i += 1
+		#else:
+			#i = 0
 	glEnd()
 	#----------------------------------------
 
@@ -441,6 +378,20 @@ def	main_visual(c, mix):
 	turn = -1
 	x = 1
 	y = 1
+	#shuffle
+	Cube(c.cube)
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+	pygame.display.flip()
+	pygame.time.wait(1000)
+	moves = mix.split(' ')
+	for i in range(len(moves)):
+		c.cube = utils.select_move_function_to_call(moves[i], c)
+		#print_cube(c)
+		Cube(c.cube)
+		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+		#glBufferSubData(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT, DOUBLEBUF|OPENGL)
+		pygame.display.flip()
+		pygame.time.wait(10)
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -470,6 +421,6 @@ def	main_visual(c, mix):
 		if turn > 0:
 			glRotatef(1, x, y, 1)
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-		Cube()
+		Cube(c.cube)
 		pygame.display.flip()
 		pygame.time.wait(7)

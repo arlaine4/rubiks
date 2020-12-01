@@ -3,6 +3,12 @@ import cube
 import move
 import sys
 
+import visual as visu
+import pygame
+from pygame.locals import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
+
 def arg_parse_options():
 	"""Parsing arguments"""
 	parser = argparse.ArgumentParser()

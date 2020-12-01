@@ -13,4 +13,3 @@ if __name__ == "__main__":
 	else:
 		utils.shuffle_cube(options.mix, cube)
 		cube = solve.process_steps(cube)
-	print(options.mix)
