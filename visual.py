@@ -273,7 +273,7 @@ surfaces = (
 	(25, 26, 29, 28),
 	(17, 25, 28, 4),
 	(23, 24, 27, 26),
-	#Back
+	#Back UP
 	(2, 31, 33, 34),
 	(31, 30, 32, 33),
 	(30, 1, 56, 32),
@@ -283,7 +283,7 @@ surfaces = (
 	(37, 36, 39, 3),
 	(36, 35, 38, 39),
 	(35, 57, 0, 38),
-	#Left
+	#Left #BACK
 	(7, 41, 43, 10),
 	(41, 40, 42, 43),
 	(40, 2, 34, 42),
@@ -293,7 +293,7 @@ surfaces = (
 	(14, 45, 47, 6),
 	(45, 44, 46, 47),
 	(44, 37, 3, 46),
-	#Down
+	#Down #LEFT
 	(3, 39, 52, 46),
 	(39, 38, 53, 52),
 	(38, 0, 29, 53),
@@ -303,7 +303,7 @@ surfaces = (
 	(47, 54, 18, 6),
 	(54, 55, 19, 18),
 	(55, 28, 4, 19),
-	#Up
+	#Up #DOWN
 	(2, 31, 48, 40),
 	(31, 30, 49, 48),
 	(30, 1, 21, 49),
@@ -378,20 +378,20 @@ def	main_visual(c, mix):
 	turn = -1
 	x = 1
 	y = 1
-	#shuffle
-	Cube(c.cube)
-	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+	"""glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 	pygame.display.flip()
 	pygame.time.wait(1000)
 	moves = mix.split(' ')
 	for i in range(len(moves)):
 		c.cube = utils.select_move_function_to_call(moves[i], c)
-		# print_cube(c)
+		print_cube(c)
 		Cube(c.cube)
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 		#glBufferSubData(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT, DOUBLEBUF|OPENGL)
 		pygame.display.flip()
-		pygame.time.wait(10)
+		pygame.time.wait(10)"""
+	moves = mix.split(' ')
+	i = 0
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -413,6 +413,13 @@ def	main_visual(c, mix):
 					y = 3
 				if event.key == pygame.K_DOWN:
 					y = -3
+				if event.key == pygame.K_t and i < len(moves):
+					c.cube = utils.select_move_function_to_call(moves[i], c)
+					i += 1
+					glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+					Cube(c.cube)
+					pygame.display.flip()
+					pygame.time.wait(1000)
 				#turn *= -1
 		if opaque < 0:
 			glDisable(GL_DEPTH_TEST)
