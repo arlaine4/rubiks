@@ -318,10 +318,10 @@ surfaces = (
 colors = (
 	(0, 0, 1), #blue
 	(1, 0, 0), #red
-	(1, 1, 0), #yellow
 	(0, 1, 0), #green
 	(1, 0.5, 0), #orange
 	(1, 1, 1), #white
+	(1, 1, 0), #yellow
 	)
 
 black = (0, 0, 0)
@@ -386,7 +386,7 @@ def	main_visual(c, mix):
 	moves = mix.split(' ')
 	for i in range(len(moves)):
 		c.cube = utils.select_move_function_to_call(moves[i], c)
-		#print_cube(c)
+		# print_cube(c)
 		Cube(c.cube)
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 		#glBufferSubData(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT, DOUBLEBUF|OPENGL)
