@@ -350,19 +350,16 @@ def Cube(cube):
 		for vertex in surface:
 			glVertex3fv(verticies[vertex])
 		j += 1
-		#if i < 5:
-			#i += 1
-		#else:
-			#i = 0
 	glEnd()
 	#----------------------------------------
 
 	#----------------------------------------
 	# Tracage des contours des cubes
+	glLineWidth(8.0)
 	glBegin(GL_LINES)
+	glColor3fv(black)
 	for edge in edges:
 		for vertex in edge:
-			glColor3fv(black)
 			glVertex3fv(verticies[vertex])
 	#----------------------------------------
 	glEnd()
@@ -370,6 +367,9 @@ def Cube(cube):
 def	main_visual(c, mix):
 	pygame.init()
 	display = (800, 600)
+	pygame.time.Clock()
+	clock = pygame.time.Clock()
+	clock.tick(120)
 	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 	gluPerspective(100, (display[0]/display[1]), 0.1, 30.0)
 	glTranslatef(0, 0, -8)
@@ -404,20 +404,32 @@ def	main_visual(c, mix):
 					y = 3
 				if event.key == pygame.K_DOWN:
 					y = -3
-				if event.key == pygame.K_t and i < len(moves):
-					c.cube = utils.select_move_function_to_call(moves[i], c)
-					i += 1
-					glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-					Cube(c.cube)
-					pygame.display.flip()
-					pygame.time.wait(1000)
-				#turn *= -1
+				if event.key == pygame.K_s and i < len(moves):
+					while i < len(moves):
+						c.cube = utils.select_move_function_to_call(moves[i], c)
+						i += 1
+						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+						Cube(c.cube)
+						pygame.display.flip()
+						pygame.time.wait(100)
+						if opaque < 0:
+							glDisable(GL_DEPTH_TEST)
+						if opaque > 0:
+							glEnable(GL_DEPTH_TEST)
+						if turn > 0:
+							glRotatef(1, x, y, 1)
+						clock.tick(120)
+						pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
+						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+						Cube(c.cube)
 		if opaque < 0:
 			glDisable(GL_DEPTH_TEST)
 		if opaque > 0:
 			glEnable(GL_DEPTH_TEST)
 		if turn > 0:
 			glRotatef(1, x, y, 1)
+		clock.tick(120)
+		pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 		Cube(c.cube)
 		pygame.display.flip()
