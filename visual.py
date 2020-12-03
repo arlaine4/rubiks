@@ -371,27 +371,18 @@ def	main_visual(c, mix):
 	pygame.init()
 	display = (800, 600)
 	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
-	gluPerspective(90, (display[0]/display[1]), 0.1, 50.0)
+	gluPerspective(100, (display[0]/display[1]), 0.1, 30.0)
 	glTranslatef(0, 0, -8)
-	opaque = 1
+	glRotate(50, 25, 25, 10)
 	glEnable(GL_DEPTH_TEST)
+
+	opaque = 1
 	turn = -1
 	x = 1
 	y = 1
-	"""glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-	pygame.display.flip()
-	pygame.time.wait(1000)
-	moves = mix.split(' ')
-	for i in range(len(moves)):
-		c.cube = utils.select_move_function_to_call(moves[i], c)
-		print_cube(c)
-		Cube(c.cube)
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-		#glBufferSubData(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT, DOUBLEBUF|OPENGL)
-		pygame.display.flip()
-		pygame.time.wait(10)"""
 	moves = mix.split(' ')
 	i = 0
+
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
