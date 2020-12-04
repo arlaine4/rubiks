@@ -20,6 +20,30 @@ def get_corners_pos(c, corners):
 	return corners
 
 def get_edges_pos(c, edges):
+	if c.cube[2][1][2] == 2 and c.cube[1][0][1] == 1:
+		edges["UR"] = True
+	if c.cube[2][2][1] == 2 and c.cube[0][0][1] == 0:
+		edges["UF"] = True
+	if c.cube[2][1][0] == 2 and c.cube[4][0][1] == 4:
+		edges["UL"] = True
+	if c.cube[2][0][1] == 2 and c.cube[3][0][1] == 3:
+		edges["UB"] = True
+	if c.cube[5][1][2] == 5 and c.cube[1][2][1] == 1:
+		edges["DR"] = True
+	if c.cube[5][0][1] == 5 and c.cube[0][2][1] == 0:
+		edges["DF"] = True
+	if c.cube[5][1][0] == 5 and c.cube[4][2][1] == 4:
+		edges["DL"] = True
+	if c.cube[5][2][1] == 5 and c.cube[3][2][1] == 3:
+		edges["DB"] = True
+	if c.cube[0][1][2] == 0 and c.cube[1][1][0] == 1:
+		edges["FR"] = True
+	if c.cube[0][1][0] == 0 and c.cube[4][1][2] == 4:
+		edges["FL"] = True
+	if c.cube[3][1][2] == 3 and c.cube[4][1][0] == 4:
+		edges["BL"] = True
+	if c.cube[3][1][0] == 3 and c.cube[1][1][2] == 1:
+		edges["BR"] = True
 	return edges
 
 def convert(c):
