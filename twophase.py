@@ -1,6 +1,6 @@
-# Source :
-# http://kociemba.org/math/twophase.htm
-# https://github.com/Minipeps/TwoPhase-Cuber
+import twophase_enum as tpe
+import twophase_convert as tpc
 
 def phase_one(c):
-    return c
+	tpc.convert(c)
+	return c
