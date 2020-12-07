@@ -49,17 +49,17 @@ def get_edges_pos(c, edges):
 	return edges
 
 def c(n, k):
-    if n < k:
-        return 0
-    if k > n // 2:
-        k = n - k
-    s, i, j = 1, n, 1
-    while i != n - k:
-        s *= i
-        s //= j
-        i -= 1
-        j += 1
-    return s
+	if n < k:
+		return 0
+	if k > n // 2:
+		k = n - k
+	s, i, j = 1, n, 1
+	while i != n - k:
+		s *= i
+		s //= j
+		i -= 1
+		j += 1
+	return s
 
 def get_k(old_c, tmp):
 	current = old_c
@@ -82,8 +82,8 @@ def get_k(old_c, tmp):
 			current = 3
 		if not tmp[current]:
 			k += 1
-		if current == old_c:
-			return(k)
+		return k
+	return 0
 
 def get_UDSlice_coordinate(edges):
 	enum = {0 : "UR", 1 : "UF", 2 : "UL", 3 : "UB", 4 : "DR", 5 : "DF", 6 : "DL", 7 : "DB", 8 : "FR", 9 : "FL", 10 : "BL", 11 : "BR"}
@@ -91,29 +91,29 @@ def get_UDSlice_coordinate(edges):
 	UDSlice = 0
 	for i in range(len(edges)):
 		k = 0
-		tmp.clear
+		tmp.clear()
 		if i >= 0 and i < 4:
 			tmp.append(edges[enum[0]])
 			tmp.append(edges[enum[1]])
 			tmp.append(edges[enum[2]])
 			tmp.append(edges[enum[3]])
 			k = get_k(i, tmp)
-			UDSlice += C(i, k)
+			UDSlice += c(i, k)
 		elif i >= 4 and i < 8:
 			tmp.append(edges[enum[4]])
 			tmp.append(edges[enum[5]])
 			tmp.append(edges[enum[6]])
 			tmp.append(edges[enum[7]])
-			k = get_k(i, tmp)
-			UDSlice += C(i, k)
+			k = get_k(i - 4, tmp)
+			UDSlice += c(i, k)
 		elif i >= 8 and i <= 11:
 			tmp.append(edges[enum[8]])
 			tmp.append(edges[enum[9]])
 			tmp.append(edges[enum[10]])
 			tmp.append(edges[enum[11]])
-			k = get_k(i, tmp)
-			UDSlice += C(i, k)
-	return 0
+			k = get_k(i - 8, tmp)
+			UDSlice += c(i, k)
+	return UDSlice
 
 def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
@@ -123,3 +123,4 @@ def convert(c):
 	edges = get_edges_pos(c, edges) # 12 edges
 	print(edges)
 	UDSlice = get_UDSlice_coordinate(edges)
+	print("UDSlice: ", UDSlice)
