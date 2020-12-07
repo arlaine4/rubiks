@@ -355,7 +355,7 @@ def Cube(cube):
 
 	#----------------------------------------
 	# Tracage des contours des cubes
-	glLineWidth(8.0)
+	glLineWidth(6.0)
 	glBegin(GL_LINES)
 	glColor3fv(black)
 	for edge in edges:
