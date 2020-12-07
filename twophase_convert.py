@@ -1,4 +1,6 @@
 import cube as c
+import twophase as tp
+import twophase_enum as tpe
 
 def get_corners_pos(c, corners):
 	if c.cube[0][0][2] == 0 and c.cube[1][0][0] == 1 and c.cube[2][2][2] == 2:
@@ -46,7 +48,71 @@ def get_edges_pos(c, edges):
 		edges["BR"] = True
 	return edges
 
-def get_UDSlice_coordinate(corners, edges):
+def c(n, k):
+    if n < k:
+        return 0
+    if k > n // 2:
+        k = n - k
+    s, i, j = 1, n, 1
+    while i != n - k:
+        s *= i
+        s //= j
+        i -= 1
+        j += 1
+    return s
+
+def get_k(old_c, tmp):
+	current = old_c
+	k = 0
+	if tmp[current]:
+		current -= 1
+		if current < 0:
+			current = 3
+		if not tmp[current]:
+			k += 1
+		else:
+			return 0
+		current -= 1
+		if current < 0:
+			current = 3
+		if not tmp[current]:
+			k += 1
+		current -= 1
+		if current < 0:
+			current = 3
+		if not tmp[current]:
+			k += 1
+		if current == old_c:
+			return(k)
+
+def get_UDSlice_coordinate(edges):
+	enum = {0 : "UR", 1 : "UF", 2 : "UL", 3 : "UB", 4 : "DR", 5 : "DF", 6 : "DL", 7 : "DB", 8 : "FR", 9 : "FL", 10 : "BL", 11 : "BR"}
+	tmp = []
+	UDSlice = 0
+	for i in range(len(edges)):
+		k = 0
+		tmp.clear
+		if i >= 0 and i < 4:
+			tmp.append(edges[enum[0]])
+			tmp.append(edges[enum[1]])
+			tmp.append(edges[enum[2]])
+			tmp.append(edges[enum[3]])
+			k = get_k(i, tmp)
+			UDSlice += C(i, k)
+		elif i >= 4 and i < 8:
+			tmp.append(edges[enum[4]])
+			tmp.append(edges[enum[5]])
+			tmp.append(edges[enum[6]])
+			tmp.append(edges[enum[7]])
+			k = get_k(i, tmp)
+			UDSlice += C(i, k)
+		elif i >= 8 and i <= 11:
+			tmp.append(edges[enum[8]])
+			tmp.append(edges[enum[9]])
+			tmp.append(edges[enum[10]])
+			tmp.append(edges[enum[11]])
+			k = get_k(i, tmp)
+			UDSlice += C(i, k)
 	return 0
 
 def convert(c):
@@ -56,4 +122,4 @@ def convert(c):
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges = get_edges_pos(c, edges) # 12 edges
 	print(edges)
-	UDSliceC = get_UDSlice_coordinate(corners, edges)
+	UDSlice = get_UDSlice_coordinate(edges)
