@@ -51,9 +51,9 @@ def get_UDSlice_coordinate(corners, edges):
 
 def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
-	corners = get_corners_pos(c, corners)
+	corners = get_corners_pos(c, corners) # 8 corners
 	print(corners)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
-	edges = get_edges_pos(c, edges)
+	edges = get_edges_pos(c, edges) # 12 edges
 	print(edges)
 	UDSliceC = get_UDSlice_coordinate(corners, edges)
