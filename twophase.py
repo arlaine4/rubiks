@@ -1,6 +1,25 @@
 import cube as c
 import twophase_enum as tpe
 
+def sort_corners_names(corners_pos, key, pos):
+	if "U" in pos and "R" in pos and "F" in pos:
+		corners_pos[key] = "URF"
+	if "U" in pos and "F" in pos and "L" in pos:
+		corners_pos[key] = "UFL"
+	if "U" in pos and "L" in pos and "B" in pos:
+		corners_pos[key] = "ULB"
+	if "U" in pos and "B" in pos and "R" in pos:
+		corners_pos[key] = "UBR"
+	if "D" in pos and "F" in pos and "R" in pos:
+		corners_pos[key] = "DFR"
+	if "D" in pos and "L" in pos and "F" in pos:
+		corners_pos[key] = "DLF"
+	if "D" in pos and "B" in pos and "L" in pos:
+		corners_pos[key] = "DBL"
+	if "D" in pos and "R" in pos and "B" in pos:
+		corners_pos[key] = "DRB"
+	return corners_pos
+
 def get_corners_pos(c, corners):
 	corners_pos = {}
 	if c.cube[0][0][2] == 0 and c.cube[1][0][0] == 1 and c.cube[2][2][2] == 2:
@@ -20,21 +39,21 @@ def get_corners_pos(c, corners):
 	if c.cube[5][2][2] == 5 and c.cube[1][2][2] == 1 and c.cube[3][2][0] == 3:
 		corners["DRB"] = True
 	corners_pos["URF"] = str(tpe.intFace(c.cube[0][0][2])) + str(tpe.intFace(c.cube[1][0][0])) + str(tpe.intFace(c.cube[2][2][2]))
-	corners_pos["URF"] = corners_pos["URF"].replace("intFace.", "")
 	corners_pos["UFL"] = str(tpe.intFace(c.cube[2][2][0])) + str(tpe.intFace(c.cube[0][0][0])) + str(tpe.intFace(c.cube[4][0][2]))
-	corners_pos["UFL"] = corners_pos["UFL"].replace("intFace.", "")
 	corners_pos["ULB"] = str(tpe.intFace(c.cube[2][0][0])) + str(tpe.intFace(c.cube[4][0][0])) + str(tpe.intFace(c.cube[3][0][2]))
-	corners_pos["ULB"] = corners_pos["ULB"].replace("intFace.", "")
 	corners_pos["UBR"] = str(tpe.intFace(c.cube[2][0][2])) + str(tpe.intFace(c.cube[3][0][0])) + str(tpe.intFace(c.cube[1][0][2]))
-	corners_pos["UBR"] = corners_pos["UBR"].replace("intFace.", "")
 	corners_pos["DFR"] = str(tpe.intFace(c.cube[5][0][2])) + str(tpe.intFace(c.cube[0][2][2])) + str(tpe.intFace(c.cube[1][2][0]))
-	corners_pos["DFR"] = corners_pos["DFR"].replace("intFace.", "")
 	corners_pos["DLF"] = str(tpe.intFace(c.cube[5][0][0])) + str(tpe.intFace(c.cube[4][2][2])) + str(tpe.intFace(c.cube[0][2][0]))
-	corners_pos["DLF"] = corners_pos["DLF"].replace("intFace.", "")
 	corners_pos["DBL"] = str(tpe.intFace(c.cube[5][2][0])) + str(tpe.intFace(c.cube[3][2][2])) + str(tpe.intFace(c.cube[4][2][0]))
-	corners_pos["DBL"] = corners_pos["DBL"].replace("intFace.", "")
 	corners_pos["DRB"] = str(tpe.intFace(c.cube[5][2][2])) + str(tpe.intFace(c.cube[1][2][2])) + str(tpe.intFace(c.cube[3][2][0]))
-	corners_pos["DRB"] = corners_pos["DRB"].replace("intFace.", "")
+	corners_pos = sort_corners_names(corners_pos, "URF", corners_pos["URF"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "UFL", corners_pos["UFL"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "ULB", corners_pos["ULB"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "UBR", corners_pos["UBR"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "DFR", corners_pos["DFR"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "DLF", corners_pos["DLF"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "DBL", corners_pos["DBL"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "DRB", corners_pos["DRB"].replace("intFace.", ""))
 	return corners, corners_pos
 
 def get_edges_pos(c, edges):
@@ -130,11 +149,21 @@ def get_UDSlice_coordinate(edges):
 			UDSlice += c(i, k)
 	return UDSlice
 
+def get_o(key, value):
+	if key == value:
+		return 0
+	elif key[0] == value[0]:
+		return 1
+	elif key != value:
+		return 2
+
 def get_corners_coord(corners, corners_pos):
-# 	s = 0
-# 	for elem in corners.keys():
-# 		s += (3*s) + 
-	return 0
+	s = 0
+	p = len(corners_pos)
+	for key in corners_pos:
+		s += s + get_o(key, corners_pos[key]) * 3^p
+		p -= 1
+	return s
 
 def get_edges_coord(corners):
 	return 0
@@ -143,8 +172,7 @@ def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
 	corners_coord = get_corners_coord(corners, corners_pos)
-	print(corners_pos)
-	print(corners)
+	print(corners_coord)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges = get_edges_pos(c, edges) # 12 edges
 	edges_coord = get_edges_coord(edges)
