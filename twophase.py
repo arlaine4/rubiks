@@ -2,6 +2,7 @@ import cube as c
 import twophase_enum as tpe
 
 def get_corners_pos(c, corners):
+	corners_pos = {}
 	if c.cube[0][0][2] == 0 and c.cube[1][0][0] == 1 and c.cube[2][2][2] == 2:
 		corners["URF"] = True
 	if c.cube[2][2][0] == 2 and c.cube[0][0][0] == 0 and c.cube[4][0][2] == 4:
@@ -18,7 +19,15 @@ def get_corners_pos(c, corners):
 		corners["DBL"] = True
 	if c.cube[5][2][2] == 5 and c.cube[1][2][2] == 1 and c.cube[3][2][0] == 3:
 		corners["DRB"] = True
-	return corners
+	corners_pos["URF"] = str(tpe.intFace(c.cube[0][0][2])) + str(tpe.intFace(c.cube[1][0][0])) + str(tpe.intFace(c.cube[2][2][2]))
+	corners_pos["UFL"] = str(tpe.intFace(c.cube[2][2][0])) + str(tpe.intFace(c.cube[0][0][0])) + str(tpe.intFace(c.cube[4][0][2]))
+	corners_pos["ULB"] = str(tpe.intFace(c.cube[2][0][0])) + str(tpe.intFace(c.cube[4][0][0])) + str(tpe.intFace(c.cube[3][0][2]))
+	corners_pos["UBR"] = str(tpe.intFace(c.cube[2][0][2])) + str(tpe.intFace(c.cube[3][0][0])) + str(tpe.intFace(c.cube[1][0][2]))
+	corners_pos["DFR"] = str(tpe.intFace(c.cube[5][0][2])) + str(tpe.intFace(c.cube[0][2][2])) + str(tpe.intFace(c.cube[1][2][0]))
+	corners_pos["DLF"] = str(tpe.intFace(c.cube[5][0][0])) + str(tpe.intFace(c.cube[4][2][2])) + str(tpe.intFace(c.cube[0][2][0]))
+	corners_pos["DBL"] = str(tpe.intFace(c.cube[5][2][0])) + str(tpe.intFace(c.cube[3][2][2])) + str(tpe.intFace(c.cube[4][2][0]))
+	corners_pos["DRB"] = str(tpe.intFace(c.cube[5][2][2])) + str(tpe.intFace(c.cube[1][2][2])) + str(tpe.intFace(c.cube[3][2][0]))
+	return corners, corners_pos
 
 def get_edges_pos(c, edges):
 	if c.cube[2][1][2] == 2 and c.cube[1][0][1] == 1:
@@ -113,7 +122,10 @@ def get_UDSlice_coordinate(edges):
 			UDSlice += c(i, k)
 	return UDSlice
 
-def get_corners_coord(corners):
+def get_corners_coord(corners, corners_pos):
+# 	s = 0
+# 	for elem in corners.keys():
+# 		s += (3*s) + 
 	return 0
 
 def get_edges_coord(corners):
@@ -121,8 +133,9 @@ def get_edges_coord(corners):
 
 def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
-	corners = get_corners_pos(c, corners) # 8 corners
-	corners_coord = get_corners_coord(corners)
+	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
+	corners_coord = get_corners_coord(corners, corners_pos)
+	print(corners_pos)
 	print(corners)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges = get_edges_pos(c, edges) # 12 edges
@@ -133,5 +146,6 @@ def convert(c):
 	return [corners_coord, edges_coord, UDSlice]
 
 def phase_one(c):
-	convert(c)
+	coord = convert(c)
+
 	return c

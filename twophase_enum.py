@@ -1,5 +1,14 @@
 from enum import IntEnum
 
+class intFace(IntEnum):
+	"""The names of the corner positions of the cube. Corner URF e.g. has an U(p), a R(ight) and a F(ront) facelet."""
+	F = 0
+	R = 1
+	U = 2
+	B = 3
+	L = 4
+	D = 5
+
 class Corner(IntEnum):
 	"""The names of the corner positions of the cube. Corner URF e.g. has an U(p), a R(ight) and a F(ront) facelet."""
 	URF = 0
