@@ -20,13 +20,21 @@ def get_corners_pos(c, corners):
 	if c.cube[5][2][2] == 5 and c.cube[1][2][2] == 1 and c.cube[3][2][0] == 3:
 		corners["DRB"] = True
 	corners_pos["URF"] = str(tpe.intFace(c.cube[0][0][2])) + str(tpe.intFace(c.cube[1][0][0])) + str(tpe.intFace(c.cube[2][2][2]))
+	corners_pos["URF"] = corners_pos["URF"].replace("intFace.", "")
 	corners_pos["UFL"] = str(tpe.intFace(c.cube[2][2][0])) + str(tpe.intFace(c.cube[0][0][0])) + str(tpe.intFace(c.cube[4][0][2]))
+	corners_pos["UFL"] = corners_pos["UFL"].replace("intFace.", "")
 	corners_pos["ULB"] = str(tpe.intFace(c.cube[2][0][0])) + str(tpe.intFace(c.cube[4][0][0])) + str(tpe.intFace(c.cube[3][0][2]))
+	corners_pos["ULB"] = corners_pos["ULB"].replace("intFace.", "")
 	corners_pos["UBR"] = str(tpe.intFace(c.cube[2][0][2])) + str(tpe.intFace(c.cube[3][0][0])) + str(tpe.intFace(c.cube[1][0][2]))
+	corners_pos["UBR"] = corners_pos["UBR"].replace("intFace.", "")
 	corners_pos["DFR"] = str(tpe.intFace(c.cube[5][0][2])) + str(tpe.intFace(c.cube[0][2][2])) + str(tpe.intFace(c.cube[1][2][0]))
+	corners_pos["DFR"] = corners_pos["DFR"].replace("intFace.", "")
 	corners_pos["DLF"] = str(tpe.intFace(c.cube[5][0][0])) + str(tpe.intFace(c.cube[4][2][2])) + str(tpe.intFace(c.cube[0][2][0]))
+	corners_pos["DLF"] = corners_pos["DLF"].replace("intFace.", "")
 	corners_pos["DBL"] = str(tpe.intFace(c.cube[5][2][0])) + str(tpe.intFace(c.cube[3][2][2])) + str(tpe.intFace(c.cube[4][2][0]))
+	corners_pos["DBL"] = corners_pos["DBL"].replace("intFace.", "")
 	corners_pos["DRB"] = str(tpe.intFace(c.cube[5][2][2])) + str(tpe.intFace(c.cube[1][2][2])) + str(tpe.intFace(c.cube[3][2][0]))
+	corners_pos["DRB"] = corners_pos["DRB"].replace("intFace.", "")
 	return corners, corners_pos
 
 def get_edges_pos(c, edges):
