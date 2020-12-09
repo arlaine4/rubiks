@@ -159,9 +159,12 @@ def get_o(key, value):
 
 def get_corners_coord(corners, corners_pos):
 	s = 0
-	p = len(corners_pos)
+	p = 6
 	for key in corners_pos:
-		s += s + get_o(key, corners_pos[key]) * 3^p
+		o = get_o(key, corners_pos[key])
+		if key == "DRB":
+			break
+		s += (o*3**p)
 		p -= 1
 	return s
 
