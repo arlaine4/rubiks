@@ -113,15 +113,24 @@ def get_UDSlice_coordinate(edges):
 			UDSlice += c(i, k)
 	return UDSlice
 
+def get_corners_coord(corners):
+	return 0
+
+def get_edges_coord(corners):
+	return 0
+
 def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners = get_corners_pos(c, corners) # 8 corners
+	corners_coord = get_corners_coord(corners)
 	print(corners)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges = get_edges_pos(c, edges) # 12 edges
+	edges_coord = get_edges_coord(edges)
 	print(edges)
 	UDSlice = get_UDSlice_coordinate(edges)
 	print("UDSlice: ", UDSlice)
+	return [corners_coord, edges_coord, UDSlice]
 
 def phase_one(c):
 	convert(c)
