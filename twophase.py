@@ -228,15 +228,15 @@ def get_o_binary(key, value):
 def get_edges_coord(edges_pos):
 	s = 0
 	p = 11
-	print("Binary edges coord :", end="")
+	# print("Binary edges coord :", end="")
 	for key in edges_pos:
 		o = get_o_binary(key, edges_pos[key])
-		print(o, end="")
+		# print(o, end="")
 		if key == "BR":
 			break
 		s += (o*2**p)
 		p -= 1
-	print()
+	# print()
 	return int(s/2)
 
 def phase_one(c):
@@ -247,15 +247,15 @@ def phase_one(c):
 	edges, edges_pos = get_edges_pos(c, edges) # 12 edges
 	edges_coord = get_edges_coord(edges_pos)
 	UDSlice = get_UDSlice_coordinate(edges)
-	print("Coners coordinate :", corners_coord)
+	print("Corners coordinate :", corners_coord)
 	print("Edges coordinate :", edges_coord)
 	print("UDSlice: ", UDSlice)
-	return [corners_coord, edges_coord, UDSlice]
+	return [corners_coord, edges_coord, UDSlice], [corners_pos, edges_pos]
 
-def phase_two(coord)
+def phase_two(coord):
 	return 0
 
 def phase_main(c):
-	coord = phase_one(c)
+	coord, pos = phase_one(c)
 	phase_two(coord)
 	return c
