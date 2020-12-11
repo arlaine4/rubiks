@@ -6,5 +6,5 @@ import twophase as tp
 
 def	process_steps(cube):
 	c.print_cube(cube)
-	tp.phase_one(cube)
+	tp.phase_main(cube)
 	return cube

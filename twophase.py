@@ -239,7 +239,7 @@ def get_edges_coord(edges_pos):
 	print()
 	return int(s/2)
 
-def convert(c):
+def phase_one(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
 	corners_coord = get_corners_coord(corners_pos)
@@ -252,7 +252,10 @@ def convert(c):
 	print("UDSlice: ", UDSlice)
 	return [corners_coord, edges_coord, UDSlice]
 
-def phase_one(c):
-	coord = convert(c)
+def phase_two(coord)
+	return 0
 
+def phase_main(c):
+	coord = phase_one(c)
+	phase_two(coord)
 	return c
