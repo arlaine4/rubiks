@@ -228,6 +228,7 @@ def get_o_binary(key, value):
 def get_edges_coord(edges_pos):
 	s = 0
 	p = 11
+	print("Binary edges coord :", end="")
 	for key in edges_pos:
 		o = get_o_binary(key, edges_pos[key])
 		print(o, end="")
@@ -242,12 +243,12 @@ def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
 	corners_coord = get_corners_coord(corners_pos)
-	print(corners_coord)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges, edges_pos = get_edges_pos(c, edges) # 12 edges
 	edges_coord = get_edges_coord(edges_pos)
-	print(edges_coord)
 	UDSlice = get_UDSlice_coordinate(edges)
+	print("Coners coordinate :", corners_coord)
+	print("Edges coordinate :", edges_coord)
 	print("UDSlice: ", UDSlice)
 	return [corners_coord, edges_coord, UDSlice]
 
