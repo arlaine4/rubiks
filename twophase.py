@@ -222,8 +222,8 @@ def get_corners_coord(corners_pos):
 
 def get_o_binary(key, value):
 	if key == value:
-		return 1
-	return 0
+		return 0
+	return 1
 
 def get_edges_coord(edges_pos):
 	s = 0
