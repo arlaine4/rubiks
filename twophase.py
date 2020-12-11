@@ -151,26 +151,24 @@ def c(n, k):
 def get_k(old_c, tmp):
 	current = old_c
 	k = 0
-	if tmp[current]:
-		current -= 1
-		if current < 0:
-			current = 3
-		if not tmp[current]:
-			k += 1
-		else:
-			return 0
-		current -= 1
-		if current < 0:
-			current = 3
-		if not tmp[current]:
-			k += 1
-		current -= 1
-		if current < 0:
-			current = 3
-		if not tmp[current]:
-			k += 1
-		return k
-	return 0
+	current -= 1
+	if current < 0:
+		current = 3
+	if not tmp[current]:
+		k += 1
+	else:
+		return 0
+	current -= 1
+	if current < 0:
+		current = 3
+	if not tmp[current]:
+		k += 1
+	current -= 1
+	if current < 0:
+		current = 3
+	if not tmp[current]:
+		k += 1
+	return k
 
 def get_UDSlice_coordinate(edges):
 	tmp = []
@@ -211,14 +209,14 @@ def get_o_ternary(key, value):
 
 def get_corners_coord(corners_pos):
 	s = 0
-	p = 6
+	p = 7
 	for key in corners_pos:
 		o = get_o_ternary(key, corners_pos[key])
 		if key == "DRB":
 			break
-		s += (o*3**p)
+		s += o*(3**p)
 		p -= 1
-	return s
+	return int(s/3)
 
 def get_o_binary(key, value):
 	if key == value:
@@ -247,15 +245,21 @@ def phase_one(c):
 	edges, edges_pos = get_edges_pos(c, edges) # 12 edges
 	edges_coord = get_edges_coord(edges_pos)
 	UDSlice = get_UDSlice_coordinate(edges)
-	print("Corners coordinate :", corners_coord)
 	print("Edges coordinate :", edges_coord)
+	print("Corners coordinate :", corners_coord)
 	print("UDSlice: ", UDSlice)
 	return [corners_coord, edges_coord, UDSlice], [corners_pos, edges_pos]
 
-def phase_two(coord):
+def phase_two(coord, pos):
 	return 0
 
 def phase_main(c):
 	coord, pos = phase_one(c)
-	phase_two(coord)
+	phase_two(coord, pos)
 	return c
+
+# python3 main.py "B R' L R' F' F F2 L' L2 U' F' B2 L' F2 F' R' U L' F' R2 D B' D B' B' L D2 U U2 U"
+# The output is supposed to be :
+# Edge orientation coordinate: 754
+# Corner orientation coordinate: 1054
+# UD-Slice combination coordinate: 135
