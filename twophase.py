@@ -201,7 +201,7 @@ def get_UDSlice_coordinate(edges):
 			UDSlice += c(i, k)
 	return UDSlice
 
-def get_o(key, value):
+def get_o_ternary(key, value):
 	if key == value:
 		return 0
 	elif key[0] == value[0]:
@@ -213,23 +213,30 @@ def get_corners_coord(corners_pos):
 	s = 0
 	p = 6
 	for key in corners_pos:
-		o = get_o(key, corners_pos[key])
+		o = get_o_ternary(key, corners_pos[key])
 		if key == "DRB":
 			break
 		s += (o*3**p)
 		p -= 1
 	return s
 
+def get_o_binary(key, value):
+	if key == value:
+		return 1
+	return 0
+
 def get_edges_coord(edges_pos):
 	s = 0
-	p = 6
+	p = 11
 	for key in edges_pos:
-		o = get_o(key, edges_pos[key])
+		o = get_o_binary(key, edges_pos[key])
+		print(o, end="")
 		if key == "BR":
 			break
 		s += (o*2**p)
 		p -= 1
-	return s
+	print()
+	return int(s/2)
 
 def convert(c):
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
