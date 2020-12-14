@@ -2,6 +2,7 @@ import cube as c
 import twophase_enum as tpe
 
 def sort_corners_names(corners_pos, key, pos):
+	pos = pos.replace("intFace.", "")
 	if "U" in pos and "R" in pos and "F" in pos:
 		corners_pos[key] = "URF"
 	if "U" in pos and "F" in pos and "L" in pos:
@@ -38,22 +39,14 @@ def get_corners_pos(c, corners):
 		corners["DBL"] = True
 	if c.cube[5][2][2] == 5 and c.cube[1][2][2] == 1 and c.cube[3][2][0] == 3:
 		corners["DRB"] = True
-	corners_pos["URF"] = str(tpe.intFace(c.cube[0][0][2])) + str(tpe.intFace(c.cube[1][0][0])) + str(tpe.intFace(c.cube[2][2][2]))
-	corners_pos["UFL"] = str(tpe.intFace(c.cube[2][2][0])) + str(tpe.intFace(c.cube[0][0][0])) + str(tpe.intFace(c.cube[4][0][2]))
-	corners_pos["ULB"] = str(tpe.intFace(c.cube[2][0][0])) + str(tpe.intFace(c.cube[4][0][0])) + str(tpe.intFace(c.cube[3][0][2]))
-	corners_pos["UBR"] = str(tpe.intFace(c.cube[2][0][2])) + str(tpe.intFace(c.cube[3][0][0])) + str(tpe.intFace(c.cube[1][0][2]))
-	corners_pos["DFR"] = str(tpe.intFace(c.cube[5][0][2])) + str(tpe.intFace(c.cube[0][2][2])) + str(tpe.intFace(c.cube[1][2][0]))
-	corners_pos["DLF"] = str(tpe.intFace(c.cube[5][0][0])) + str(tpe.intFace(c.cube[4][2][2])) + str(tpe.intFace(c.cube[0][2][0]))
-	corners_pos["DBL"] = str(tpe.intFace(c.cube[5][2][0])) + str(tpe.intFace(c.cube[3][2][2])) + str(tpe.intFace(c.cube[4][2][0]))
-	corners_pos["DRB"] = str(tpe.intFace(c.cube[5][2][2])) + str(tpe.intFace(c.cube[1][2][2])) + str(tpe.intFace(c.cube[3][2][0]))
-	corners_pos = sort_corners_names(corners_pos, "URF", corners_pos["URF"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "UFL", corners_pos["UFL"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "ULB", corners_pos["ULB"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "UBR", corners_pos["UBR"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "DFR", corners_pos["DFR"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "DLF", corners_pos["DLF"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "DBL", corners_pos["DBL"].replace("intFace.", ""))
-	corners_pos = sort_corners_names(corners_pos, "DRB", corners_pos["DRB"].replace("intFace.", ""))
+	corners_pos = sort_corners_names(corners_pos, "URF", str(tpe.intFace(c.cube[0][0][2])) + str(tpe.intFace(c.cube[1][0][0])) + str(tpe.intFace(c.cube[2][2][2])))
+	corners_pos = sort_corners_names(corners_pos, "UFL", str(tpe.intFace(c.cube[2][2][0])) + str(tpe.intFace(c.cube[0][0][0])) + str(tpe.intFace(c.cube[4][0][2])))
+	corners_pos = sort_corners_names(corners_pos, "ULB", str(tpe.intFace(c.cube[2][0][0])) + str(tpe.intFace(c.cube[4][0][0])) + str(tpe.intFace(c.cube[3][0][2])))
+	corners_pos = sort_corners_names(corners_pos, "UBR", str(tpe.intFace(c.cube[2][0][2])) + str(tpe.intFace(c.cube[3][0][0])) + str(tpe.intFace(c.cube[1][0][2])))
+	corners_pos = sort_corners_names(corners_pos, "DFR", str(tpe.intFace(c.cube[5][0][2])) + str(tpe.intFace(c.cube[0][2][2])) + str(tpe.intFace(c.cube[1][2][0])))
+	corners_pos = sort_corners_names(corners_pos, "DLF", str(tpe.intFace(c.cube[5][0][0])) + str(tpe.intFace(c.cube[4][2][2])) + str(tpe.intFace(c.cube[0][2][0])))
+	corners_pos = sort_corners_names(corners_pos, "DBL", str(tpe.intFace(c.cube[5][2][0])) + str(tpe.intFace(c.cube[3][2][2])) + str(tpe.intFace(c.cube[4][2][0])))
+	corners_pos = sort_corners_names(corners_pos, "DRB", str(tpe.intFace(c.cube[5][2][2])) + str(tpe.intFace(c.cube[1][2][2])) + str(tpe.intFace(c.cube[3][2][0])))
 	return corners, corners_pos
 
 def sort_edges_names(edges_pos, key, pos):
@@ -199,6 +192,7 @@ def get_o_ternary(key, value):
 def get_corners_coord(corners_pos):
 	s = 0
 	p = 7
+	print(corners_pos)
 	for key in corners_pos:
 		o = get_o_ternary(key, corners_pos[key])
 		if key == "DRB":
