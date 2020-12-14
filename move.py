@@ -235,26 +235,6 @@ def move_U(c, clockwise):
 def move_D(c, clockwise):
     # D rotate clockwise
     if clockwise:
-        c.cube[5] = np.rot90(c.cube[5], k=1, axes=(0, 1))
-        tmp = deepcopy(c.cube[0])
-        # R to F
-        c.cube[0][2][0] = c.cube[1][2][0]
-        c.cube[0][2][1] = c.cube[1][2][1]
-        c.cube[0][2][2] = c.cube[1][2][2]
-        # B to R
-        c.cube[1][2][0] = c.cube[3][2][0]
-        c.cube[1][2][1] = c.cube[3][2][1] 
-        c.cube[1][2][2] = c.cube[3][2][2]
-        # L to B
-        c.cube[3][2][0] = c.cube[4][2][0]
-        c.cube[3][2][1] = c.cube[4][2][1]
-        c.cube[3][2][2] = c.cube[4][2][2]
-        # F to L
-        c.cube[4][2][0] = tmp[2][0]
-        c.cube[4][2][1] = tmp[2][1]
-        c.cube[4][2][2] = tmp[2][2]
-    # D rotate counter-clockwise
-    else:
         c.cube[5] = np.rot90(c.cube[5], k=1, axes=(1, 0))
         tmp = deepcopy(c.cube[0])
         # L to F
@@ -273,4 +253,24 @@ def move_D(c, clockwise):
         c.cube[1][2][0] = tmp[2][0]
         c.cube[1][2][1] = tmp[2][1]
         c.cube[1][2][2] = tmp[2][2]
+    # D rotate counter-clockwise
+    else:
+        c.cube[5] = np.rot90(c.cube[5], k=1, axes=(0, 1))
+        tmp = deepcopy(c.cube[0])
+        # R to F
+        c.cube[0][2][0] = c.cube[1][2][0]
+        c.cube[0][2][1] = c.cube[1][2][1]
+        c.cube[0][2][2] = c.cube[1][2][2]
+        # B to R
+        c.cube[1][2][0] = c.cube[3][2][0]
+        c.cube[1][2][1] = c.cube[3][2][1] 
+        c.cube[1][2][2] = c.cube[3][2][2]
+        # L to B
+        c.cube[3][2][0] = c.cube[4][2][0]
+        c.cube[3][2][1] = c.cube[4][2][1]
+        c.cube[3][2][2] = c.cube[4][2][2]
+        # F to L
+        c.cube[4][2][0] = tmp[2][0]
+        c.cube[4][2][1] = tmp[2][1]
+        c.cube[4][2][2] = tmp[2][2]
     return(c)
