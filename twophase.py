@@ -192,7 +192,7 @@ def get_o_ternary(key, value):
 def get_corners_coord(corners_pos):
 	s = 0
 	p = 7
-	print(corners_pos)
+	print("corners_coord good ? ", len(corners_pos) == 8)
 	for key in corners_pos:
 		o = get_o_ternary(key, corners_pos[key])
 		if key == "DRB":
@@ -210,7 +210,7 @@ def get_edges_coord(edges_pos):
 	s = 0
 	p = 11
 	# print("Binary edges coord :", end="")
-	print(edges_pos)
+	print("edges_coord good ? ", len(edges_pos) == 12)
 	for key in edges_pos:
 		o = get_o_binary(key, edges_pos[key])
 		print(o, end="")
@@ -242,6 +242,7 @@ def phase_main(c):
 	phase_two(coord, pos)
 	return c
 
+# Move screwed up after this scrumble           |
 # python3 main.py "B R' L R' F' F F2 L' L2 U' F' B2 L' F2 F' R' U L' F' R2 D B' D B' B' L D2 U U2 U"
 # The output is supposed to be :
 # Edge orientation coordinate: 754
