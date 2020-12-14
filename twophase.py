@@ -194,12 +194,15 @@ def get_corners_coord(corners_pos):
 	p = 7
 	print("corners_coord good ? ", len(corners_pos) == 8)
 	print(corners_pos)
+	print("Ternary coorners coord : ", end="")
 	for key in corners_pos:
 		o = get_o_ternary(key, corners_pos[key])
+		print(o, end="")
 		if key == "DRB":
 			break
-		s += o*(3**p)
+		s += (o*3**p)
 		p -= 1
+	print()
 	return int(s/3)
 
 def get_o_binary(key, value):
@@ -210,12 +213,12 @@ def get_o_binary(key, value):
 def get_edges_coord(edges_pos):
 	s = 0
 	p = 11
-	# print("Binary edges coord :", end="")
 	print("edges_coord good ? ", len(edges_pos) == 12)
 	print(edges_pos)
+	print("Binary edges coord : ", end="")
 	for key in edges_pos:
 		o = get_o_binary(key, edges_pos[key])
-		# print(o, end="")
+		print(o, end="")
 		if key == "BR":
 			break
 		s += (o*2**p)
