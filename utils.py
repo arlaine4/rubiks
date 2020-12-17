@@ -47,7 +47,7 @@ def	select_move_function_to_call(move_id, cube, pack):
 	#-----------------------------------------------------------------------------
 	# Petit parsing de check de validite de la string mix
 	for c in move_id:
-		if c.isdigit():
+		if c.isdigit() and c == "2":
 			repeat = int(c)
 		elif c not in lst_valid_elems:
 			print("{} is not a valid mix char, please enter a valid mix.".format(c))
@@ -65,57 +65,93 @@ def	select_move_function_to_call(move_id, cube, pack):
 	if "F" in move_id:
 		for loop in range(repeat):
 			cube = move.move_F(cube, False) if "'" in move_id else move.move_F(cube, True)
-			for key in corientation:
-				corientation[key] += coF[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoF[key] 
-				eorientation[key] %= 3
+			if not "'" in move_id:
+				corientation["UFL"] += 2
+				corientation["UFL"] %= 3
+				corientation["DFR"] += 2
+				corientation["DFR"] %= 3
+				corientation["DLF"] += 1
+				corientation["DLF"] %= 3
+				corientation["URF"] += 1
+				corientation["URF"] %= 3
+			else:
+				corientation["UFL"] += 1
+				corientation["UFL"] %= 3
+				corientation["DFR"] += 1
+				corientation["DFR"] %= 3
+				corientation["DLF"] += 2
+				corientation["DLF"] %= 3
+				corientation["URF"] += 2
+				corientation["URF"] %= 3
 	elif "R" in move_id:
 		for loop in range(repeat):
 			cube = move.move_R(cube, False) if "'" in move_id else move.move_R(cube, True)
-			for key in corientation:
-				corientation[key] += coR[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoR[key]
-				eorientation[key] %= 3
+			if not "'" in move_id:	
+				corientation["URF"] += 2
+				corientation["URF"] %= 3
+				corientation["DRB"] += 2
+				corientation["DRB"] %= 3
+				corientation["UBR"] += 1
+				corientation["UBR"] %= 3
+				corientation["DFR"] += 1
+				corientation["DFR"] %= 3
+			else:
+				corientation["URF"] += 1
+				corientation["URF"] %= 3
+				corientation["DRB"] += 1
+				corientation["DRB"] %= 3
+				corientation["UBR"] += 2
+				corientation["UBR"] %= 3
+				corientation["DFR"] += 2
+				corientation["DFR"] %= 3
 	elif "B" in move_id:
 		for loop in range(repeat):
 			cube = move.move_B(cube, False) if "'" in move_id else move.move_B(cube, True)
-			for key in corientation:
-				corientation[key] += coB[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoB[key]
-				eorientation[key] %= 3
+			if not "'" in move_id:	
+				corientation["UBR"] += 2
+				corientation["UBR"] %= 3
+				corientation["DBL"] += 2
+				corientation["DBL"] %= 3
+				corientation["ULB"] += 1
+				corientation["ULB"] %= 3
+				corientation["DRB"] += 1
+				corientation["DRB"] %= 3
+			else:
+				corientation["UBR"] += 1
+				corientation["UBR"] %= 3
+				corientation["DBL"] += 1
+				corientation["DBL"] %= 3
+				corientation["ULB"] += 2
+				corientation["ULB"] %= 3
+				corientation["DRB"] += 2
+				corientation["DRB"] %= 3
 	elif "L" in move_id:
 		for loop in range(repeat):
 			cube = move.move_L(cube, False) if "'" in move_id else move.move_L(cube, True)
-			for key in corientation:
-				corientation[key] += coL[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoL[key]
-				eorientation[key] %= 3
+			if not "'" in move_id:	
+				corientation["ULB"] += 2
+				corientation["ULB"] %= 3
+				corientation["DLF"] += 2
+				corientation["DLF"] %= 3
+				corientation["UFL"] += 1
+				corientation["UFL"] %= 3
+				corientation["DBL"] += 1
+				corientation["DBL"] %= 3
+			else:
+				corientation["ULB"] += 1
+				corientation["ULB"] %= 3
+				corientation["DLF"] += 1
+				corientation["DLF"] %= 3
+				corientation["UFL"] += 2
+				corientation["UFL"] %= 3
+				corientation["DBL"] += 2
+				corientation["DBL"] %= 3
 	elif "U" in move_id:
 		for loop in range(repeat):
 			cube = move.move_U(cube, False) if "'" in move_id else move.move_U(cube, True)
-			for key in corientation:
-				corientation[key] += coU[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoU[key]
-				eorientation[key] %= 3
 	elif "D" in move_id:
 		for loop in range(repeat):
 			cube = move.move_D(cube, False) if "'" in move_id else move.move_D(cube, True)
-			for key in corientation:
-				corientation[key] += coD[key]
-				corientation[key] %= 3
-			for key in eorientation:
-				eorientation[key] += eoD[key]
-				eorientation[key] %= 3
 	return cube.cube, [corientation, eorientation]
 
 def	shuffle_cube(mix, c, pack):
