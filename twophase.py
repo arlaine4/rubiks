@@ -215,8 +215,7 @@ def get_edges_coord(edges_pos, eoriantation):
 	return int(s/2)
 
 def phase_one(c, pack):
-	corientation = pack[0]
-	eoriantation = pack[1]
+	corientation, eoriantation = pack
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
 	corners_coord = get_corners_coord(corners_pos, corientation)
