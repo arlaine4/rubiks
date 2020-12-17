@@ -9,6 +9,26 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+
+# Up-move
+coU = {"URF" : 0, "UFL" : 0, "ULB" : 0, "UBR" : 0, "DFR" : 0, "DLF" : 0, "DBL" : 0, "DRB" : 0}
+eoU = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
+# Right-move
+coR = {"URF" : 2, "UFL" : 0, "ULB" : 0, "UBR" : 1, "DFR" : 1, "DLF" : 0, "DBL" : 0, "DRB" : 2}
+eoR = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
+# Front-move
+coF = {"URF" : 1, "UFL" : 2, "ULB" : 0, "UBR" : 0, "DFR" : 2, "DLF" : 1, "DBL" : 0, "DRB" : 0}
+eoF = {"UR" : 0, "UF" : 1, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 1, "DL" : 0, "DB" : 0, "FR" : 1, "FL" : 1, "BL" : 0, "BR" : 0}
+# Down-move
+coD = {"URF" : 0, "UFL" : 0, "ULB" : 0, "UBR" : 0, "DFR" : 0, "DLF" : 0, "DBL" : 0, "DRB" : 0}
+eoD = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
+# Left-move
+coL = {"URF" : 0, "UFL" : 1, "ULB" : 2, "UBR" : 0, "DFR" : 0, "DLF" : 2, "DBL" : 1, "DRB" : 0}
+eoL = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
+# Back-move
+coB = {"URF" : 0, "UFL" : 0, "ULB" : 1, "UBR" : 2, "DFR" : 0, "DLF" : 0, "DBL" : 2, "DRB" : 1}
+eoB = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 1, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 1, "FR" : 0, "FL" : 0, "BL" : 1, "BR" : 1}
+
 def arg_parse_options():
 	"""Parsing arguments"""
 	parser = argparse.ArgumentParser()
@@ -17,10 +37,13 @@ def arg_parse_options():
 	options = parser.parse_args()
 	return options
 
-def	select_move_function_to_call(move_id, cube):
+def	select_move_function_to_call(move_id, cube, pack):
 	repeat = 1 #nombre de repetitions du move
 	nb_letter = 0
 	lst_valid_elems = ['F', 'L', 'R', 'B', 'U', 'D', "'"]
+	# Unpack elem
+	corientation = pack[0]
+	eorientation = pack[1]
 	#-----------------------------------------------------------------------------
 	# Petit parsing de check de validite de la string mix
 	for c in move_id:
@@ -42,26 +65,62 @@ def	select_move_function_to_call(move_id, cube):
 	if "F" in move_id:
 		for loop in range(repeat):
 			cube = move.move_F(cube, False) if "'" in move_id else move.move_F(cube, True)
+			for key in corientation:
+				corientation[key] += coF[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoF[key] 
+				eorientation[key] %= 3
 	elif "R" in move_id:
 		for loop in range(repeat):
 			cube = move.move_R(cube, False) if "'" in move_id else move.move_R(cube, True)
+			for key in corientation:
+				corientation[key] += coR[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoR[key]
+				eorientation[key] %= 3
 	elif "B" in move_id:
 		for loop in range(repeat):
 			cube = move.move_B(cube, False) if "'" in move_id else move.move_B(cube, True)
+			for key in corientation:
+				corientation[key] += coB[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoB[key]
+				eorientation[key] %= 3
 	elif "L" in move_id:
 		for loop in range(repeat):
 			cube = move.move_L(cube, False) if "'" in move_id else move.move_L(cube, True)
+			for key in corientation:
+				corientation[key] += coL[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoL[key]
+				eorientation[key] %= 3
 	elif "U" in move_id:
 		for loop in range(repeat):
 			cube = move.move_U(cube, False) if "'" in move_id else move.move_U(cube, True)
+			for key in corientation:
+				corientation[key] += coU[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoU[key]
+				eorientation[key] %= 3
 	elif "D" in move_id:
 		for loop in range(repeat):
 			cube = move.move_D(cube, False) if "'" in move_id else move.move_D(cube, True)
-	return cube.cube
+			for key in corientation:
+				corientation[key] += coD[key]
+				corientation[key] %= 3
+			for key in eorientation:
+				eorientation[key] += eoD[key]
+				eorientation[key] %= 3
+	return cube.cube, [corientation, eorientation]
 
-def	shuffle_cube(mix, c):
+def	shuffle_cube(mix, c, pack):
 	c.main_walk = mix
 	moves = mix.split(' ')
 	for i in range(len(moves)):
-		c.cube = select_move_function_to_call(moves[i], c)
-	return c
+		c.cube, pack = select_move_function_to_call(moves[i], c, pack)
+	return c, pack

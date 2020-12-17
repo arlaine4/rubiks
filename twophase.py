@@ -181,22 +181,14 @@ def get_UDSlice_coordinate(edges):
 			UDSlice += c(i, k)
 	return UDSlice
 
-def get_o_ternary(key, value):
-	if key == value:
-		return 0
-	elif key[0] == value[0]:
-		return 1
-	elif key != value:
-		return 2
-
-def get_corners_coord(corners_pos):
+def get_corners_coord(corners_pos, corientation):
 	s = 0
 	p = 7
-	print("corners_coord good ? ", len(corners_pos) == 8)
+	# print("corners_coord good ? ", len(corners_pos) == 8)
 	print(corners_pos)
 	print("Ternary coorners coord : ", end="")
 	for key in corners_pos:
-		o = get_o_ternary(key, corners_pos[key])
+		o = corientation[key]
 		if key == "DRB":
 			break
 		print(o, end="")
@@ -205,19 +197,14 @@ def get_corners_coord(corners_pos):
 	print()
 	return int(s/3)
 
-def get_o_binary(key, value):
-	if key == value:
-		return 0
-	return 1
-
-def get_edges_coord(edges_pos):
+def get_edges_coord(edges_pos, eoriantation):
 	s = 0
 	p = 11
-	print("edges_coord good ? ", len(edges_pos) == 12)
+	# print("edges_coord good ? ", len(edges_pos) == 12)
 	print(edges_pos)
 	print("Binary edges coord : ", end="")
 	for key in edges_pos:
-		o = get_o_binary(key, edges_pos[key])
+		o = eoriantation[key]
 		if key == "BR":
 			break
 		print(o, end="")
@@ -227,13 +214,15 @@ def get_edges_coord(edges_pos):
 	print()
 	return int(s/2)
 
-def phase_one(c):
+def phase_one(c, pack):
+	corientation = pack[0]
+	eoriantation = pack[1]
 	corners = {"URF" : False, "UFL" : False, "ULB" : False, "UBR" : False, "DFR" : False, "DLF" : False, "DBL" : False, "DRB" : False}
 	corners, corners_pos = get_corners_pos(c, corners) # 8 corners
-	corners_coord = get_corners_coord(corners_pos)
+	corners_coord = get_corners_coord(corners_pos, corientation)
 	edges = {"UR" : False, "UF" : False, "UL" : False, "UB" : False, "DR" : False, "DF" : False, "DL" : False, "DB" : False, "FR" : False, "FL" : False, "BL" : False, "BR" : False}
 	edges, edges_pos = get_edges_pos(c, edges) # 12 edges
-	edges_coord = get_edges_coord(edges_pos)
+	edges_coord = get_edges_coord(edges_pos, eoriantation)
 	UDSlice = get_UDSlice_coordinate(edges)
 	print("Edges coordinate :", edges_coord)
 	print("Corners coordinate :", corners_coord)
@@ -243,8 +232,8 @@ def phase_one(c):
 def phase_two(coord, pos):
 	return 0
 
-def phase_main(c):
-	coord, pos = phase_one(c)
+def phase_main(c, pack):
+	coord, pos = phase_one(c, pack)
 	phase_two(coord, pos)
 	return c
 
