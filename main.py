@@ -2,7 +2,7 @@ import numpy as np
 import utils
 import cube as c
 import move
-import thislethwait as algo
+import hta as algo
 import visual as visu
 
 if __name__ == "__main__":

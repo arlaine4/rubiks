@@ -9,26 +9,6 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-
-# Up-move
-coU = {"URF" : 0, "UFL" : 0, "ULB" : 0, "UBR" : 0, "DFR" : 0, "DLF" : 0, "DBL" : 0, "DRB" : 0}
-eoU = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
-# Right-move
-coR = {"URF" : 2, "UFL" : 0, "ULB" : 0, "UBR" : 1, "DFR" : 1, "DLF" : 0, "DBL" : 0, "DRB" : 2}
-eoR = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
-# Front-move
-coF = {"URF" : 1, "UFL" : 2, "ULB" : 0, "UBR" : 0, "DFR" : 2, "DLF" : 1, "DBL" : 0, "DRB" : 0}
-eoF = {"UR" : 0, "UF" : 1, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 1, "DL" : 0, "DB" : 0, "FR" : 1, "FL" : 1, "BL" : 0, "BR" : 0}
-# Down-move
-coD = {"URF" : 0, "UFL" : 0, "ULB" : 0, "UBR" : 0, "DFR" : 0, "DLF" : 0, "DBL" : 0, "DRB" : 0}
-eoD = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
-# Left-move
-coL = {"URF" : 0, "UFL" : 1, "ULB" : 2, "UBR" : 0, "DFR" : 0, "DLF" : 2, "DBL" : 1, "DRB" : 0}
-eoL = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 0, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 0, "FR" : 0, "FL" : 0, "BL" : 0, "BR" : 0}
-# Back-move
-coB = {"URF" : 0, "UFL" : 0, "ULB" : 1, "UBR" : 2, "DFR" : 0, "DLF" : 0, "DBL" : 2, "DRB" : 1}
-eoB = {"UR" : 0, "UF" : 0, "UL" : 0, "UB" : 1, "DR" : 0, "DF" : 0, "DL" : 0, "DB" : 1, "FR" : 0, "FL" : 0, "BL" : 1, "BR" : 1}
-
 def arg_parse_options():
 	"""Parsing arguments"""
 	parser = argparse.ArgumentParser()
