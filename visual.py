@@ -364,7 +364,7 @@ def Cube(cube):
 	#----------------------------------------
 	glEnd()
 
-def	main_visual(c, mix, pack):
+def	main_visual(c, mix):
 	pygame.init()
 	display = (800, 600)
 	pygame.time.Clock()
@@ -406,7 +406,7 @@ def	main_visual(c, mix, pack):
 					y = -3
 				if event.key == pygame.K_s and i < len(moves):
 					while i < len(moves):
-						c.cube = utils.select_move_function_to_call(moves[i], c, pack)
+						c.cube = utils.select_move_function_to_call(moves[i], c)
 						i += 1
 						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 						Cube(c.cube)
