@@ -3,8 +3,6 @@ import utils
 import cube as c
 import move
 import hta
-=======
-import hta as algo
 import visual as visu
 
 if __name__ == "__main__":
