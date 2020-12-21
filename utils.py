@@ -59,6 +59,12 @@ def	select_move_function_to_call(move_id, cube):
 			cube = move.move_D(cube, False) if "'" in move_id else move.move_D(cube, True)
 	return cube.cube
 
+def	select_best_move_f_b(cube, pos):
+	move_lst = []
+	nb_mooves = 0
+	#Select best move(s) to place an edge in F or B face
+	#regarding his position
+
 def	shuffle_cube(mix, c):
 	c.main_walk = mix
 	moves = mix.split(' ')

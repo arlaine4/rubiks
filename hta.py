@@ -24,18 +24,26 @@ def	edge_orientation(cube):
 	print("Number of bad edges : {}".format(nb_bad_edges))
 	for elem in pos_bad_edges:
 		print(elem)
-	cube = edge_orientation_strategy(cube, nb_bad_edges)
+	cube = edge_orientation_strategy(cube, nb_bad_edges, pos_bad_edges)
 	return cube
 
-def	edge_orientation_strategy(cube, nb_bad_e):
+def	edge_orientation_strategy(cube, nb_bad_e, pos):
 	if nb_bad_e == 2: #F R U F R2
-		pass	
+		edge_o_two(cube, pos)
 	return cube		
 """	elif nb_bad_e == 4:
 	elif nb_bad_e == 6: #L2F2UF2DF2U2F2U'B2U2L'F'R2F2R'U'F'LFD
 	elif nb_bad_e == 8:
 	elif nb_bad_e == 10:
 	elif nb_bad_e == 12:"""
+
+def	edge_o_two(cube, pos):
+	lst_move = []
+	nb_mooves = []
+	for p in pos:
+		select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
+		lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
+	return cube
 
 def	edge_o_detection(cube):
 	#calcul en deux etapes du nb de edges mal orientees
