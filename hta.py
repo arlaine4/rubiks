@@ -41,7 +41,7 @@ def	edge_o_detection(cube):
 	bad_edges = 0
 	bad_edges += o_detection_u_d(cube)
 	bad_edges += o_detection_f_b(cube)
-	return bad_edges * 2
+	return bad_edges
 
 def	o_detection_u_d(c):
 	#detection Up et Down faces
