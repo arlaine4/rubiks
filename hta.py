@@ -28,38 +28,55 @@ def	edge_o_detection(cube):
 	#calcul en deux etapes du nb de edges mal orientees
 	bad_edges = 0
 	bad_edges += o_detection_u_d(cube)
-	print("UD bad edge : ", bad_edges)
 	bad_edges += o_detection_f_b(cube)
-	print("UD + FB bad edge : ", bad_edges)
+	print("Total bad edge : ", bad_edges)
 	return bad_edges
 
 def	o_detection_u_d(c):
 	#detection Up et Down faces
 	bad = 0
-	# Up
-	if c.cube[2][1][0] == 4 or c.cube[2][1][0] == 1:
+	if c.cube[2][0][1] == 4 or c.cube[2][0][1] == 1:
+		bad += 1
+	elif c.cube[2][1][0] == 4 or c.cube[2][1][0] == 1:
 		bad += 1
 	elif c.cube[2][1][2] == 4 or c.cube[2][1][2] == 1:
+		bad += 1
+	elif c.cube[2][2][1] == 4 or c.cube[2][2][1] == 1:
 		bad += 1
 	if c.cube[2][0][1] == 0 or c.cube[2][0][1] == 3:
 		if c.cube[3][0][1] == 2 or c.cube[3][0][1] == 5:
 			bad += 1
+	elif c.cube[2][1][0] == 0 or c.cube[2][1][0] == 3:
+		if c.cube[4][0][1] == 2 or c.cube[4][0][1] == 5:
+			bad += 1
+	elif c.cube[2][1][2] == 0 or c.cube[2][1][2] == 3:
+		if c.cube[1][0][1] == 2 or c.cube[1][0][1] == 5:
+			bad += 1
 	elif c.cube[2][2][1] == 0 or c.cube[2][2][1] == 3:
 		if c.cube[0][0][1] == 2 or c.cube[0][0][1] == 5:
 			bad += 1
-	print("Bad after up : ", bad)
 	# Down
-	if c.cube[5][1][0] == 4 or c.cube[5][1][0] == 1:
+	if c.cube[5][0][1] == 4 or c.cube[5][0][1] == 1:
+		bad += 1
+	elif c.cube[5][1][0] == 4 or c.cube[5][1][0] == 1:
 		bad += 1
 	elif c.cube[5][1][2] == 4 or c.cube[5][1][2] == 1:
+		bad += 1
+	elif c.cube[5][2][1] == 4 or c.cube[5][2][1] == 1:
 		bad += 1
 	if c.cube[5][0][1] == 0 or c.cube[5][0][1] == 3:
 		if c.cube[0][2][1] == 2 or c.cube[0][2][1] == 5:
 			bad += 1
+	elif c.cube[5][1][0] == 0 or c.cube[5][1][0] == 3:
+		if c.cube[4][2][1] == 2 or c.cube[4][2][1] == 5:
+			bad += 1
+	elif c.cube[5][1][2] == 0 or c.cube[5][1][2] == 3:
+		if c.cube[1][2][1] == 2 or c.cube[1][2][1] == 5:
+			bad += 1
 	elif c.cube[5][2][1] == 0 or c.cube[5][2][1] == 3:
 		if c.cube[3][2][1] == 2 or c.cube[3][2][1] == 5:
 			bad += 1
-	print("Bad after down : ", bad)
+	print("Bad after U_D : ", bad)
 	return bad
 
 def	o_detection_f_b(c):
@@ -70,24 +87,23 @@ def	o_detection_f_b(c):
 		bad += 1
 	elif c.cube[0][1][2] == 4 or c.cube[0][1][2] == 1:
 		bad += 1
-	if c.cube[0][0][1] == 0 or c.cube[0][0][1] == 3:
-		if c.cube[2][2][1] == 5 or c.cube[2][2][1] == 2:
+	if c.cube[0][1][0] == 0 or c.cube[0][1][0] == 3:
+		if c.cube[4][1][2] == 5 or c.cube[4][1][2] == 2:
 			bad += 1
-	elif c.cube[0][2][1] == 0 or c.cube[0][2][1] == 3:
-		if c.cube[5][0][1] == 2 or c.cube[5][0][1] == 5:
+	elif c.cube[0][1][2] == 0 or c.cube[0][1][2] == 3:
+		if c.cube[1][1][0] == 2 or c.cube[1][1][0] == 5:
 			bad += 1
-	print("Bad after front : ", bad)
 	# Back
 	if c.cube[3][1][0] == 4 or c.cube[3][1][0] == 1:
 		bad += 1
 	elif c.cube[3][1][2] == 4 or c.cube[3][1][2] == 1:
 		bad += 1
-	if c.cube[3][0][1] == 0 or c.cube[3][0][1] == 3:
-		if c.cube[2][0][1] == 5 or c.cube[2][0][1] == 2:
+	if c.cube[3][1][0] == 0 or c.cube[3][1][0] == 3:
+		if c.cube[1][1][2] == 5 or c.cube[1][1][2] == 2:
 			bad += 1
-	elif c.cube[3][2][1] == 0 or c.cube[3][2][1] == 3:
-		if c.cube[5][2][1] == 2 or c.cube[5][2][1] == 5:
+	elif c.cube[3][1][2] == 0 or c.cube[3][1][2] == 3:
+		if c.cube[4][1][0] == 2 or c.cube[4][1][0] == 5:
 			bad += 1
-	print("Bad after back : ", bad)
+	print("Bad after F_B : ", bad)
 	return bad
 #----------------------------------------------------#
