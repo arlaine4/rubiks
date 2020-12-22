@@ -31,6 +31,8 @@ def	edge_orientation_strategy(cube, nb_bad_e, pos):
 	print(utils.front_or_back(pos))
 	if nb_bad_e == 2: #F R U F R2
 		edge_o_two(cube, pos)
+	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
+		pass
 	return cube		
 
 def	edge_o_two(cube, pos):
@@ -98,6 +100,7 @@ def	o_detection_u_d(c):
 	if c.cube[5][2][1] == 0 or c.cube[5][2][1] == 3:
 		if c.cube[3][2][1] == 2 or c.cube[3][2][1] == 5:
 			bad += 1 ; pos.append([5, 2, 1])
+	#print("Bad after U_D : ", bad)
 	return bad, pos
 
 def	o_detection_f_b(c):
@@ -123,9 +126,9 @@ def	o_detection_f_b(c):
 	if c.cube[3][1][0] == 0 or c.cube[3][1][0] == 3:
 		if c.cube[1][1][2] == 5 or c.cube[1][1][2] == 2:
 			bad += 1 ; pos.append([1, 1, 2])
-
 	if c.cube[3][1][2] == 0 or c.cube[3][1][2] == 3:
 		if c.cube[4][1][0] == 2 or c.cube[4][1][0] == 5:
 			bad += 1 ; pos.append([4, 1, 0])
+	#print("Bad after F_B : ", bad)
 	return bad, pos
 #----------------------------------------------------#
