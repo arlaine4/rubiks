@@ -65,6 +65,35 @@ def	select_best_move_f_b(cube, pos):
 	#Select best move(s) to place an edge in F or B face
 	#regarding his position
 
+def front_or_back(positions):
+	f = 0
+	b = 0
+	for pos in positions:
+		# Front bad edges
+		if pos[0] == 0:
+			f += 1
+		if pos[0] == 4 and pos[1] == 1 and pos[2] == 2:
+			f += 1
+		if pos[0] == 1 and pos[1] == 1 and pos[2] == 0:
+			f += 1
+		if pos[0] == 5 and pos[1] == 0 and pos[2] == 1:
+			f += 1
+		if pos[0] == 2 and pos[1] == 2 and pos[2] == 1:
+			f += 1
+		# Back bad edges
+		if pos[0] == 3:
+			b += 1
+		if pos[0] == 4 and pos[1] == 1 and pos[2] == 0:
+			b += 1
+		if pos[0] == 1 and pos[1] == 1 and pos[2] == 2:
+			b += 1
+		if pos[0] == 5 and pos[1] == 2 and pos[2] == 1:
+			b += 1
+		if pos[0] == 2 and pos[1] == 0 and pos[2] == 1:
+			b += 1
+	print("F : {} | B : {}".format(f, b))
+	return "F" if f >= b else "B" 
+
 def	shuffle_cube(mix, c):
 	c.main_walk = mix
 	moves = mix.split(' ')

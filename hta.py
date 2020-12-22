@@ -28,6 +28,7 @@ def	edge_orientation(cube):
 	return cube
 
 def	edge_orientation_strategy(cube, nb_bad_e, pos):
+	print(utils.front_or_back(pos))
 	if nb_bad_e == 2: #F R U F R2
 		edge_o_two(cube, pos)
 	return cube		
@@ -58,70 +59,45 @@ def	o_detection_u_d(c):
 	pos = []
 	if c.cube[2][0][1] == 4 or c.cube[2][0][1] == 1:
 		bad += 1 ; pos.append([2, 0, 1])
-		print("2 0 1")
 	if c.cube[2][1][0] == 4 or c.cube[2][1][0] == 1:
 		bad += 1 ; pos.append([2, 1, 0])
-		print("2 1 0")
 	if c.cube[2][1][2] == 4 or c.cube[2][1][2] == 1:
 		bad += 1 ; pos.append([2, 1, 2])
-		print("2 1 2")
 	if c.cube[2][2][1] == 4 or c.cube[2][2][1] == 1:
 		bad += 1 ; pos.append([2, 2, 1])
-		print("2 2 1")
 	if c.cube[2][0][1] == 0 or c.cube[2][0][1] == 3:
-		print("2 0 1 before 3 0 1")
 		if c.cube[3][0][1] == 2 or c.cube[3][0][1] == 5:
 			bad += 1 ; pos.append([3, 0, 1])
-			print("3 0 1")
 	if c.cube[2][1][0] == 0 or c.cube[2][1][0] == 3:
-		print("2 1 0 before 4 0 1")
 		if c.cube[4][0][1] == 2 or c.cube[4][0][1] == 5:
 			bad += 1 ; pos.append([4, 0, 1])
-			print("4 0 1")
 	if c.cube[2][1][2] == 0 or c.cube[2][1][2] == 3:
-		print("2 1 2 before 1 0 1")
 		if c.cube[1][0][1] == 2 or c.cube[1][0][1] == 5:
 			bad += 1 ; pos.append([1, 0, 1])
-			print("1 0 1")
 	if c.cube[2][2][1] == 0 or c.cube[2][2][1] == 3:
-		print("2 2 1 before 0 0 1")
 		if c.cube[0][0][1] == 2 or c.cube[0][0][1] == 5:
 			bad += 1 ; pos.append([0, 0, 1])
-			print("0 0 1")
 	# Down
 	if c.cube[5][0][1] == 4 or c.cube[5][0][1] == 1:
 		bad += 1 ; pos.append([5, 0, 1])
-		print("5 0 1")
 	if c.cube[5][1][0] == 4 or c.cube[5][1][0] == 1:
 		bad += 1 ; pos.append([5, 1, 0])
-		print("5 1 0")
 	if c.cube[5][1][2] == 4 or c.cube[5][1][2] == 1:
 		bad += 1 ; pos.append([5, 1, 2])
-		print("5 1 2")
 	if c.cube[5][2][1] == 4 or c.cube[5][2][1] == 1:
 		bad += 1 ; pos.append([5, 2, 1])
-		print("5 2 1")
 	if c.cube[5][0][1] == 0 or c.cube[5][0][1] == 3:
-		print("5 0 1 before 0 2 1")
 		if c.cube[0][2][1] == 2 or c.cube[0][2][1] == 5:
 			bad += 1 ; pos.append([0, 2, 1])
-			print("0 2 1")
 	if c.cube[5][1][0] == 0 or c.cube[5][1][0] == 3:
-		print("5 1 0 before 4 2 1")
 		if c.cube[4][2][1] == 2 or c.cube[4][2][1] == 5:
 			bad += 1 ; pos.append([4, 2, 1])
-			print("4 2 1")
 	if c.cube[5][1][2] == 0 or c.cube[5][1][2] == 3:
-		print("5 1 2 before 1 2 1")
 		if c.cube[1][2][1] == 2 or c.cube[1][2][1] == 5:
 			bad += 1 ; pos.append([1, 2, 1])
-			print("1 2 1")
 	if c.cube[5][2][1] == 0 or c.cube[5][2][1] == 3:
-		print("5 2 1 before 3 2 1")
 		if c.cube[3][2][1] == 2 or c.cube[3][2][1] == 5:
 			bad += 1 ; pos.append([5, 2, 1])
-			print("3 2 1")
-	#print("Bad after U_D : ", bad)
 	return bad, pos
 
 def	o_detection_f_b(c):
@@ -131,37 +107,25 @@ def	o_detection_f_b(c):
 	# Front
 	if c.cube[0][1][0] == 4 or c.cube[0][1][0] == 1:
 		bad += 1 ; pos.append([0, 1, 0])
-		print("0 1 0")
 	if c.cube[0][1][2] == 4 or c.cube[0][1][2] == 1:
 		bad += 1 ; pos.append([0, 1, 2])
-		print("0 1 2")
 	if c.cube[0][1][0] == 0 or c.cube[0][1][0] == 3:
-		print("0 1 0 before 4 1 2")
 		if c.cube[4][1][2] == 5 or c.cube[4][1][2] == 2:
 			bad += 1 ; pos.append([4, 1, 2])
-			print("4 1 2")
 	if c.cube[0][1][2] == 0 or c.cube[0][1][2] == 3:
-		print("0 1 2 before 1 1 0")
 		if c.cube[1][1][0] == 2 or c.cube[1][1][0] == 5:
 			bad += 1 ; pos.append([1, 1, 0])
-			print("1 1 0")
 	# Back
 	if c.cube[3][1][0] == 4 or c.cube[3][1][0] == 1:
 		bad += 1 ; pos.append([3, 1, 0])
-		print("3 1 0")
 	if c.cube[3][1][2] == 4 or c.cube[3][1][2] == 1:
 		bad += 1 ; pos.append([3, 1, 2])
-		print("3 1 2")
 	if c.cube[3][1][0] == 0 or c.cube[3][1][0] == 3:
-		print("3 1 0 before 1 1 2")
 		if c.cube[1][1][2] == 5 or c.cube[1][1][2] == 2:
 			bad += 1 ; pos.append([1, 1, 2])
-			print("1 1 2")
+
 	if c.cube[3][1][2] == 0 or c.cube[3][1][2] == 3:
-		print("3 1 2 before 4 1 0")
 		if c.cube[4][1][0] == 2 or c.cube[4][1][0] == 5:
 			bad += 1 ; pos.append([4, 1, 0])
-			print("4 1 0")
-	#print("Bad after F_B : ", bad)
 	return bad, pos
 #----------------------------------------------------#
