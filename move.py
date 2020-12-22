@@ -167,7 +167,7 @@ def move_L(c, clockwise):
         c.cube[3][2][2] = tmp[0][0]
         c.cube[3][1][2] = tmp[1][0]
         c.cube[3][0][2] = tmp[2][0]
-    # R rotate counter-clockwise
+    # L rotate counter-clockwise
     else:
         c.cube[4] = np.rot90(c.cube[4], k=1, axes=(0, 1))
         tmp = deepcopy(c.cube[5])

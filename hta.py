@@ -1,5 +1,6 @@
 import cube as c
 import utils
+import move as m
 import visual as visu
 
 groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
@@ -28,7 +29,6 @@ def	edge_orientation(cube):
 	return cube
 
 def	edge_orientation_strategy(cube, nb_bad_e, pos):
-	print(utils.front_or_back(pos))
 	if nb_bad_e == 2: #F R U F R2
 		cube = edge_o_two(cube, pos)
 	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
@@ -47,9 +47,29 @@ def	edge_o_two(cube, pos):
 def	edge_o_four(cube, pos):
 	lst_move = []
 	nb_mooves = []
-	#for p in pos:
-		#select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
-		#lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
+	fb_prio = utils.front_or_back(pos)
+	print(fb_prio)
+	for p in pos:
+		if fb_prio == "F":
+			if not [0,1,0] in pos or not [4,1,2] in pos:
+				print("FL is clear")
+				if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+					m.move_L(cube, True)
+					lst_move.append("L")
+					print("L move")
+				if (p[0] == 4 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 0):
+					m.move_L(cube, False)
+					lst_move.append("L'")
+					print("L' move")
+				if (p[0] == 4 and p[1] == 1 and p[2] == 0) or (p[0] == 3 and p[1] == 1 and p[2] == 2):
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					print("L2 move")
+		# if fb_prio == "B":
+		# select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
+		# lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
+	c.print_cube(cube)
 	return cube
 
 def	edge_o_detection(cube):
