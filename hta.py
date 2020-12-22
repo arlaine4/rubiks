@@ -30,12 +30,21 @@ def	edge_orientation(cube):
 def	edge_orientation_strategy(cube, nb_bad_e, pos):
 	print(utils.front_or_back(pos))
 	if nb_bad_e == 2: #F R U F R2
-		edge_o_two(cube, pos)
+		cube = edge_o_two(cube, pos)
 	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
+		cube = edge_o_four(cube, pos)
 		pass
 	return cube		
 
 def	edge_o_two(cube, pos):
+	lst_move = []
+	nb_mooves = []
+	#for p in pos:
+		#select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
+		#lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
+	return cube
+
+def	edge_o_four(cube, pos):
 	lst_move = []
 	nb_mooves = []
 	#for p in pos:
