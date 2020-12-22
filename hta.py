@@ -31,18 +31,13 @@ def	edge_orientation_strategy(cube, nb_bad_e, pos):
 	if nb_bad_e == 2: #F R U F R2
 		edge_o_two(cube, pos)
 	return cube		
-"""	elif nb_bad_e == 4:
-	elif nb_bad_e == 6: #L2F2UF2DF2U2F2U'B2U2L'F'R2F2R'U'F'LFD
-	elif nb_bad_e == 8:
-	elif nb_bad_e == 10:
-	elif nb_bad_e == 12:"""
 
 def	edge_o_two(cube, pos):
 	lst_move = []
 	nb_mooves = []
-	for p in pos:
-		select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
-		lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
+	#for p in pos:
+		#select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
+		#lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
 	return cube
 
 def	edge_o_detection(cube):
@@ -54,10 +49,7 @@ def	edge_o_detection(cube):
 	pos = []
 	bad_edges_u_d, pos_u_d = o_detection_u_d(cube)
 	bad_edges_f_b, pos_f_b = o_detection_f_b(cube)
-	for i in range(len(pos_u_d)):
-		pos.append(pos_u_d[i])
-	for i in range(len(pos_f_b)):
-		pos.append(pos_f_b[i])
+	pos = pos_u_d + pos_f_b
 	return (bad_edges_u_d + bad_edges_f_b), pos 
 
 def	o_detection_u_d(c):
