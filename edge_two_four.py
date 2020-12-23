@@ -26,17 +26,18 @@ def	edge_o_four(cube, pos):
 					continue # ?
 			#--------------------------------------------------#
 			# 				bad edge sur left
-			elif [0,1,0] not in pos or [4,1,2] not in pos:
-				print("FL is clear")
-				if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+				if [0,1,0] not in pos or [4,1,2] not in pos:
 					m.move_L(cube, True)
 					lst_move.append("L")
 					print("L")
-				if (p[0] == 4 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 4 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 0):
+				if [0,1,0] not in pos or [4,1,2] not in pos:
 					m.move_L(cube, False)
 					lst_move.append("L'")
 					print("L'")
-				if (p[0] == 4 and p[1] == 1 and p[2] == 0) or (p[0] == 3 and p[1] == 1 and p[2] == 2):
+			if (p[0] == 4 and p[1] == 1 and p[2] == 0) or (p[0] == 3 and p[1] == 1 and p[2] == 2):
+				if [0,1,0] not in pos or [4,1,2] not in pos:
 					m.move_L(cube, True)
 					m.move_L(cube, True)
 					lst_move.append("L2")
@@ -46,17 +47,18 @@ def	edge_o_four(cube, pos):
 
 			#--------------------------------------------------#
 			# 				bad edge sur right
-			elif [0, 1, 2] not in pos or [1, 1, 0] not in pos:
-				print("FR is clear")
-				if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+			if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+				if [0, 1, 2] not in pos or [1, 1, 0] not in pos:
 					m.move_R(cube, True)
 					lst_move.append("R")
 					print("R")
-				if (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 2):
+			if (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 2):
+				if [0, 1, 2] not in pos or [1, 1, 0] not in pos:
 					m.move_R(cube, False)
 					lst_move.append("R'")
 					print("R'")
-				if (p[0] == 1 and p[1] == 1 and p[2] == 2) or (p[0] == 3 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 1 and p[1] == 1 and p[2] == 2) or (p[0] == 3 and p[1] == 1 and p[2] == 0):
+				if [0, 1, 2] not in pos or [1, 1, 0] not in pos:
 					m.move_R(cube, True)
 					m.move_R(cube, True)
 					lst_move.append("R2")
@@ -66,17 +68,18 @@ def	edge_o_four(cube, pos):
 
 			#--------------------------------------------------#
 			# 				bad edge sur up
-			elif [2, 2, 1] not in pos or [0, 0, 1] not in pos:
-				print("UF is clear")
-				if (p[0] == 2 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 0 and p[2] == 1):
+			if (p[0] == 2 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 0 and p[2] == 1):
+				if [2, 2, 1] not in pos or [0, 0, 1] not in pos:
 					m.move_U(cube, True)
 					lst_move.append("U")
 					print("U")
-				if (p[0] == 2 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 0 and p[1] == 1):
+			if (p[0] == 2 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 0 and p[1] == 1):
+				if [2, 2, 1] not in pos or [0, 0, 1] not in pos:
 					m.move_U(cube, False)
 					lst_move.append("U'")
 					print("U'")
-				if (p[0] == 2 and p[1] == 0 and p[2] == 1) or (p[0] == 3 and p[1] == 0 and p[2] == 1):
+			if (p[0] == 2 and p[1] == 0 and p[2] == 1) or (p[0] == 3 and p[1] == 0 and p[2] == 1):
+				if [2, 2, 1] not in pos or [0, 0, 1] not in pos:
 					m.move_U(cube, True)
 					m.move_U(cube, True)
 					lst_move.append("U2")
@@ -86,17 +89,18 @@ def	edge_o_four(cube, pos):
 	
 			#--------------------------------------------------#
 			# 				bad edge sur down
-			elif [5, 0, 1] not in pos or [0, 2, 1] not in pos:
-				print("DF is clear")
-				if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+			if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos or [0, 2, 1] not in pos:
 					m.move_D(cube, True)
 					lst_move.append("D")
 					print("D")
-				if (p[0] == 5 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 2 and p[2] == 1):
+			if (p[0] == 5 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos or [0, 2, 1] not in pos:
 					m.move_D(cube, False)
 					lst_move.append("D'")
 					print("D'")
-				if (p[0] == 5 and p[1] == 2 and p[2] == 1) or (p[0] == 3 and p[1] == 2 and p[2] == 1):
+			if (p[0] == 5 and p[1] == 2 and p[2] == 1) or (p[0] == 3 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos or [0, 2, 1] not in pos:
 					m.move_D(cube, True)
 					m.move_D(cube, True)
 					lst_move.append("D2")
@@ -113,17 +117,18 @@ def	edge_o_four(cube, pos):
 					continue
 			#--------------------------------------------------#
 			# 				bad edge sur left
-			if [3,1,2] not in pos or [4,1,0] not in pos:
-				print("FL is clear")
-				if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+			if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+				if [3,1,2] not in pos or [4,1,0] not in pos:
 					m.move_L(cube, True)
 					lst_move.append("L")
 					print("L")
-				if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+				if [3,1,2] not in pos or [4,1,0] not in pos:
 					m.move_L(cube, False)
 					lst_move.append("L'")
 					print("L'")
-				if (p[0] == 4 and p[1] == 1 and p[2] == 2) or (p[0] == 0 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 4 and p[1] == 1 and p[2] == 2) or (p[0] == 0 and p[1] == 1 and p[2] == 0):
+				if [3,1,2] not in pos or [4,1,0] not in pos:
 					m.move_L(cube, True)
 					m.move_L(cube, True)
 					lst_move.append("L2")
@@ -133,17 +138,18 @@ def	edge_o_four(cube, pos):
 
 			#--------------------------------------------------#
 			# 				bad edge sur right
-			elif [1, 1, 2] not in pos or [3, 1, 0] not in pos:
-				print("FR is clear")
-				if (p[0] == 2 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 0 and p[2] == 1):
+			if (p[0] == 2 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 0 and p[2] == 1):
+				if [1, 1, 2] not in pos or [3, 1, 0] not in pos:
 					m.move_R(cube, True)
 					lst_move.append("R")
 					print("R")
-				if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+			if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+				if [1, 1, 2] not in pos or [3, 1, 0] not in pos:
 					m.move_R(cube, False)
 					lst_move.append("R'")
 					print("R'")
-				if (p[0] == 0 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 0 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 1 and p[2] == 0):
+				if [1, 1, 2] not in pos or [3, 1, 0] not in pos:
 					m.move_R(cube, True)
 					m.move_R(cube, True)
 					lst_move.append("R2")
@@ -153,17 +159,18 @@ def	edge_o_four(cube, pos):
 
 			#--------------------------------------------------#
 			# 				bad edge sur up
-			elif [2, 0, 1] not in pos or [3, 0, 1] not in pos:
-				print("UF is clear")
-				if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+				if [2, 0, 1] not in pos or [3, 0, 1] not in pos:
 					m.move_U(cube, True)
 					lst_move.append("U")
 					print("U")
-				if (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[1] == 2):
+			if (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[1] == 2):
+				if [2, 0, 1] not in pos or [3, 0, 1] not in pos:
 					m.move_U(cube, False)
 					lst_move.append("U'")
 					print("U'")
-				if (p[0] == 2 and p[1] == 2 and p[2] == 1) or (p[0] == 0 and p[1] == 0 and p[2] == 1):
+			if (p[0] == 2 and p[1] == 2 and p[2] == 1) or (p[0] == 0 and p[1] == 0 and p[2] == 1):
+				if [2, 0, 1] not in pos or [3, 0, 1] not in pos:
 					m.move_U(cube, True)
 					m.move_U(cube, True)
 					lst_move.append("U2")
@@ -173,17 +180,18 @@ def	edge_o_four(cube, pos):
 	
 			#--------------------------------------------------#
 			# 				bad edge sur down
-			elif [5, 2, 1] not in pos or [3, 2, 1] not in pos:
-				print("DF is clear")
-				if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+			if (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+				if [5, 2, 1] not in pos or [3, 2, 1] not in pos:
 					m.move_D(cube, True)
 					lst_move.append("D")
 					print("D")
-				if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+			if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+				if [5, 2, 1] not in pos or [3, 2, 1] not in pos:
 					m.move_D(cube, False)
 					lst_move.append("D'")
 					print("D'")
-				if (p[0] == 0 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 0 and p[2] == 1):
+			if (p[0] == 0 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 0 and p[2] == 1):
+				if [5, 2, 1] not in pos or [3, 2, 1] not in pos:
 					m.move_D(cube, True)
 					m.move_D(cube, True)
 					lst_move.append("D2")
