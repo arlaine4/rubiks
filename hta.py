@@ -28,8 +28,9 @@ def	edge_orientation(cube):
 		print(elem)
 	cube = edge_orientation_strategy(cube, pos_bad_edges)
 	pos_bad_edges = edge_o_detection(cube)
-	c.print_cube(cube)
 	print("Number of bad edges \033[35mafter\033[0m: {}".format(len(pos_bad_edges)))
+	for elem in pos_bad_edges:
+		print(elem)
 	return cube
 
 def	edge_orientation_strategy(cube, pos):
