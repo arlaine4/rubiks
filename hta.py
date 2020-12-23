@@ -8,15 +8,15 @@ groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 	['U2', 'D2', 'L2', 'R2', 'F2', 'B2']]
 
 def	main_algo(cube):
-	cube = step_one(cube)
-	return cube
+	cube, lst_moves = step_one(cube)
+	return cube, lst_moves
 
 #----------------------------------------------------#
 # 			First step, edge orientation
 
 def	step_one(cube):
-	cube = edge_orientation(cube)
-	return cube
+	cube, lst_moves = edge_orientation(cube)
+	return cube, lst_moves
 
 def	edge_orientation(cube):
 	#Pour edge orientation on vas first compter le nb
@@ -26,20 +26,20 @@ def	edge_orientation(cube):
 	print("Number of bad edges \033[33mbefore\033[0m : {}".format(len(pos_bad_edges)))
 	for elem in pos_bad_edges:
 		print(elem)
-	cube = edge_orientation_strategy(cube, pos_bad_edges)
+	cube, lst_moves = edge_orientation_strategy(cube, pos_bad_edges)
 	pos_bad_edges = edge_o_detection(cube)
 	print("Number of bad edges \033[35mafter\033[0m: {}".format(len(pos_bad_edges)))
 	for elem in pos_bad_edges:
 		print(elem)
-	return cube
+	return cube, lst_moves
 
 def	edge_orientation_strategy(cube, pos):
 	nb_bad_e = len(pos)
 	if nb_bad_e == 2: #F R U F R2
-		cube = edge_t_f.edge_o_two(cube, pos)
+		cube, lst_moves = edge_t_f.edge_o_two(cube, pos)
 	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
-		cube = edge_t_f.edge_o_four(cube, pos)
-	return cube		
+		cube, lst_moves = edge_t_f.edge_o_four(cube, pos)
+	return cube, lst_moves
 
 def	edge_o_detection(cube):
 	#calcul en deux etapes du nb de edges mal orientees

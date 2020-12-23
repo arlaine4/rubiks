@@ -364,7 +364,7 @@ def Cube(cube):
 	#----------------------------------------
 	glEnd()
 
-def	main_visual(c, mix):
+def	main_visual(c, mix, lst_moves):
 	pygame.init()
 	display = (800, 600)
 	pygame.time.Clock()
@@ -382,7 +382,7 @@ def	main_visual(c, mix):
 	y = 1
 	moves = mix.split(' ')
 	i = 0
-
+	j = 0
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -411,21 +411,22 @@ def	main_visual(c, mix):
 						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 						Cube(c.cube)
 						pygame.display.flip()
-						pygame.time.wait(100)
-						if opaque < 0:
-							glDisable(GL_DEPTH_TEST)
-						if opaque > 0:
-							glEnable(GL_DEPTH_TEST)
-						if turn > 0:
-							glRotatef(1, x, y, 1)
+						pygame.time.wait(300)
 						clock.tick(120)
-						pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
 						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 						Cube(c.cube)
-		if opaque < 0:
-			glDisable(GL_DEPTH_TEST)
-		if opaque > 0:
-			glEnable(GL_DEPTH_TEST)
+				if event.key == pygame.K_r and j < len(lst_moves) and i == len(moves) - 1:
+					while j < len(lst_moves):
+						c.cube = utils.select_move_function_to_call(lst_moves[j], c)
+						j += 1
+						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+						Cube(c.cube)
+						pygame.display.flip()
+						pygame.time.wait(300)
+						clock.tick(120)
+						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+						Cube(c.cube)
+		opaque_on_off(False) if opaque < 0 else opaque_on_off(True)
 		if turn > 0:
 			glRotatef(1, x, y, 1)
 		clock.tick(120)
@@ -434,3 +435,6 @@ def	main_visual(c, mix):
 		Cube(c.cube)
 		pygame.display.flip()
 		pygame.time.wait(7)
+
+def	opaque_on_off(on_off):
+	glDisable(GL_DEPTH_TEST) if on_off is False else glEnable(GL_DEPTH_TEST)

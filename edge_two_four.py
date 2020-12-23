@@ -5,12 +5,12 @@ import utils
 import hta
 
 def	edge_o_two(cube, pos):
-	lst_move = []
+	lst_moves = []
 	nb_mooves = []
 	#for p in pos:
 		#select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
 		#lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
-	return cube
+	return cube, lst_moves
 
 def	edge_o_four(cube, pos):
 	lst_move = []
@@ -22,8 +22,7 @@ def	edge_o_four(cube, pos):
 				or (p[0] == 2 and p[1] == 2 and p[2] == 1) or \
 				(p[0] == 1 and p[1] == 1 and p[2] == 0) or \
 				(p[0] == 5 and p[1] == 0 and p[2] == 1)):
-					print("BONSOIR ", p)
-					continue # ?
+					continue
 			#--------------------------------------------------#
 			# 				bad edge sur left
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
@@ -145,7 +144,6 @@ def	edge_o_four(cube, pos):
 				or (p[0] == 2 and p[1] == 0 and p[2] == 1) or \
 				(p[0] == 1 and p[1] == 1 and p[2] == 2) or \
 				(p[0] == 5 and p[1] == 2 and p[2] == 1)):
-					print("BONSOIR ", p)
 					continue
 			#--------------------------------------------------#
 			# 				bad edge sur left
@@ -264,4 +262,4 @@ def	edge_o_four(cube, pos):
 	m.move_F(cube, True) if fb_prio == "F" else m.move_B(cube, True)
 	lst_move.append("F") if fb_prio == "F" else lst_move.append("B")
 	c.print_cube(cube)
-	return cube
+	return cube, lst_move
