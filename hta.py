@@ -2,6 +2,7 @@ import cube as c
 import utils
 import move as m
 import visual as visu
+import edge_two_four as edge_t_f
 
 groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 	['U2', 'D2', 'L2', 'R2', 'F2', 'B2']]
@@ -30,13 +31,13 @@ def	edge_orientation(cube):
 
 def	edge_orientation_strategy(cube, nb_bad_e, pos):
 	if nb_bad_e == 2: #F R U F R2
-		cube = edge_o_two(cube, pos)
+		cube = edge_t_f.edge_o_two(cube, pos)
 	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
-		cube = edge_o_four(cube, pos)
+		cube = edge_t_f.edge_o_four(cube, pos)
 		pass
 	return cube		
 
-def	edge_o_two(cube, pos):
+"""def	edge_o_two(cube, pos):
 	lst_move = []
 	nb_mooves = []
 	#for p in pos:
@@ -70,7 +71,7 @@ def	edge_o_four(cube, pos):
 		# select_move_lst, nb_moove = utils.select_best_move_f_b(cube, p)
 		# lst_move.append(select_move_lst) ; nb_mooves.append(nb_moove)
 	c.print_cube(cube)
-	return cube
+	return cube"""
 
 def	edge_o_detection(cube):
 	#calcul en deux etapes du nb de edges mal orientees
