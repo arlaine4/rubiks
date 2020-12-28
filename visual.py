@@ -383,6 +383,7 @@ def	main_visual(c, mix, lst_moves):
 	moves = mix.split(' ')
 	i = 0
 	j = 0
+	bool_shuffle = False
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -406,6 +407,7 @@ def	main_visual(c, mix, lst_moves):
 					y = -3
 				if event.key == pygame.K_s and i < len(moves):
 					while i < len(moves):
+						bool_shuffle = True
 						c.cube = utils.select_move_function_to_call(moves[i], c)
 						i += 1
 						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
@@ -415,7 +417,7 @@ def	main_visual(c, mix, lst_moves):
 						clock.tick(120)
 						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 						Cube(c.cube)
-				if event.key == pygame.K_r and j < len(lst_moves) and i == len(moves) - 1:
+				if event.key == pygame.K_r and j < len(lst_moves) and bool_shuffle is True:
 					while j < len(lst_moves):
 						c.cube = utils.select_move_function_to_call(lst_moves[j], c)
 						j += 1

@@ -35,6 +35,7 @@ def	edge_orientation(cube):
 
 def	edge_orientation_strategy(cube, pos):
 	nb_bad_e = len(pos)
+	lst_moves = None
 	if nb_bad_e == 2: #F R U F R2
 		cube, lst_moves = edge_t_f.edge_o_two(cube, pos)
 	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
