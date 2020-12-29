@@ -16,7 +16,7 @@ def	edge_o_four(cube, pos):
 	lst_move = []
 	nb_mooves = []
 	fb_prio = utils.front_or_back(pos)
-	for p in pos: 
+	for p in pos:
 		if fb_prio == "F":
 			if ((p[0] == 0) or (p[0] == 4 and p[1] == 1 and p[2] == 2) \
 				or (p[0] == 2 and p[1] == 2 and p[2] == 1) or \
@@ -467,7 +467,6 @@ def	edge_o_four(cube, pos):
 					print("D\nR'\nD'")
 				# ----------------------------------------------
 		pos = hta.edge_o_detection(cube)
-		c.print_cube(cube)
 	m.move_F(cube, True) if fb_prio == "F" else m.move_B(cube, True)
 	lst_move.append("F") if fb_prio == "F" else lst_move.append("B")
 	c.print_cube(cube)
