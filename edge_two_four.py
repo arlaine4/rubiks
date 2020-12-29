@@ -16,15 +16,24 @@ def	edge_o_four(cube, pos):
 	lst_move = []
 	nb_mooves = []
 	fb_prio = utils.front_or_back(pos)
-	for p in pos:
+	i = 0
+	max_ = 0
+	while len(pos) > 0:
 		if fb_prio == "F":
-			if ((p[0] == 0) or (p[0] == 4 and p[1] == 1 and p[2] == 2) \
-				or (p[0] == 2 and p[1] == 2 and p[2] == 1) or \
-				(p[0] == 1 and p[1] == 1 and p[2] == 0) or \
-				(p[0] == 5 and p[1] == 0 and p[2] == 1)):
-					continue
+			while i < len(pos):
+				if ((pos[i][0] == 0) or (pos[i][0] == 4 and pos[i][1] == 1 and pos[i][2] == 2) \
+					or (pos[i][0] == 2 and pos[i][1] == 2 and pos[i][2] == 1) or \
+					(pos[i][0] == 1 and pos[i][1] == 1 and pos[i][2] == 0) or \
+					(pos[i][0] == 5 and pos[i][1] == 0 and pos[i][2] == 1)):
+					i += 1
+				else:
+					p = pos[i]
+					i = 0
+					break
 			#--------------------------------------------------#
 			# 				bad edge sur left
+			if not p:
+				break
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
 				if [0,1,0] not in pos and [4,1,2] not in pos:
 					m.move_L(cube, True)
@@ -244,13 +253,20 @@ def	edge_o_four(cube, pos):
 			#--------------------------------------------------#
 	
 		elif fb_prio == "B":
-			if ((p[0] == 3) or (p[0] == 4 and p[1] == 1 and p[2] == 0) \
-				or (p[0] == 2 and p[1] == 0 and p[2] == 1) or \
-				(p[0] == 1 and p[1] == 1 and p[2] == 2) or \
-				(p[0] == 5 and p[1] == 2 and p[2] == 1)):
-					continue
+			while i < len(pos):
+				if ((pos[i][0] == 3) or (pos[i][0] == 4 and pos[i][1] == 1 and pos[i][2] == 0) \
+					or (pos[i][0] == 2 and pos[i][1] == 0 and pos[i][2] == 1) or \
+					(pos[i][0] == 1 and pos[i][1] == 1 and pos[i][2] == 2) or \
+					(pos[i][0] == 5 and pos[i][1] == 2 and pos[i][2] == 1)):
+					i += 1
+				else:
+					p = pos[i]
+					i = 0
+					break
 			#--------------------------------------------------#
 			# 				bad edge sur left
+			if not p:
+				break
 			if (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
 				if [3,1,2] not in pos and [4,1,0] not in pos:
 					m.move_L(cube, True)
@@ -458,6 +474,7 @@ def	edge_o_four(cube, pos):
 					lst_move.append("D")
 					print("D'\nL\nD")
 				elif [1,2,2] not in pos and [3,1,0] not in pos:
+					print(p)
 					m.move_D(cube, True)
 					m.move_R(cube, False)
 					m.move_D(cube, False)
@@ -466,7 +483,12 @@ def	edge_o_four(cube, pos):
 					lst_move.append("D'")
 					print("D\nR'\nD'")
 				# ----------------------------------------------
+		print(pos)
 		pos = hta.edge_o_detection(cube)
+		p.clear()
+		max_ += 1
+		if max_ >= 20:
+			break
 	m.move_F(cube, True) if fb_prio == "F" else m.move_B(cube, True)
 	lst_move.append("F") if fb_prio == "F" else lst_move.append("B")
 	c.print_cube(cube)
