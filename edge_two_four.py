@@ -33,6 +33,94 @@ def	edge_o_two(cube, pos, lst_move):
 				i = -2
 				break
 			i += 1
+		if i == 2:
+			p = pos[0]
+			#--------------------------------------------------#
+			# 				bad edge sur left
+			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
+				if [0,1,0] not in pos and [4,1,2] not in pos:
+					m.move_L(cube, True)
+					lst_move.append("L")
+					print("L")
+			elif (p[0] == 4 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 0):
+				if [0,1,0] not in pos and [4,1,2] not in pos:
+					m.move_L(cube, False)
+					lst_move.append("L'")
+					print("L'")
+			elif (p[0] == 4 and p[1] == 1 and p[2] == 0) or (p[0] == 3 and p[1] == 1 and p[2] == 2):
+				if [0,1,0] not in pos and [4,1,2] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					print("L2")
+			#
+			#--------------------------------------------------#
+
+			#--------------------------------------------------#
+			# 				bad edge sur right
+			elif (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
+				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
+					m.move_R(cube, True)
+					lst_move.append("R")
+					print("R")
+			elif (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 2):
+				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
+					m.move_R(cube, False)
+					lst_move.append("R'")
+					print("R'")
+			elif (p[0] == 1 and p[1] == 1 and p[2] == 2) or (p[0] == 3 and p[1] == 1 and p[2] == 0):
+				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					print("R2")
+				# ----------------------------------------------
+			#
+			#--------------------------------------------------#
+
+			#--------------------------------------------------#
+			# 				bad edge sur up
+			elif (p[0] == 2 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 0 and p[2] == 1):
+				if [2, 2, 1] not in pos and [0, 0, 1] not in pos:
+					m.move_U(cube, True)
+					lst_move.append("U")
+					print("U")
+			elif (p[0] == 2 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 0 and p[1] == 1):
+				if [2, 2, 1] not in pos and [0, 0, 1] not in pos:
+					m.move_U(cube, False)
+					lst_move.append("U'")
+					print("U'")
+			elif (p[0] == 2 and p[1] == 0 and p[2] == 1) or (p[0] == 3 and p[1] == 0 and p[2] == 1):
+				if [2, 2, 1] not in pos and [0, 0, 1] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					print("U2")
+				# ----------------------------------------------
+			#
+			#--------------------------------------------------#
+			#--------------------------------------------------#
+			# 				bad edge sur down
+			elif (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos and [0, 2, 1] not in pos:
+					m.move_D(cube, True)
+					lst_move.append("D")
+					print("D")
+			elif (p[0] == 5 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos and [0, 2, 1] not in pos:
+					m.move_D(cube, False)
+					lst_move.append("D'")
+					print("D'")
+			elif (p[0] == 5 and p[1] == 2 and p[2] == 1) or (p[0] == 3 and p[1] == 2 and p[2] == 1):
+				if [5, 0, 1] not in pos and [0, 2, 1] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					print("D2")
+			m.move_F(cube, True)
+			lst_move.append("F")
+			pos = hta.edge_o_detection(cube)
+			i = -1
 		if i == -1:
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
 				if [0,1,0] not in pos and [4,1,2] not in pos:

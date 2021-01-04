@@ -36,14 +36,14 @@ def	edge_orientation(cube):
 def	edge_orientation_strategy(cube, pos):
 	nb_bad_e = len(pos)
 	lst_move = []
-	if nb_bad_e == 2: #F R U F R2
+	if nb_bad_e == 2: # F R U F R2
 		cube, lst_move = edge_t_f.edge_o_two(cube, pos, lst_move)
-	elif nb_bad_e == 4: #F R U R B L2 B'  D R F
+	elif nb_bad_e == 4: # F R U R B L2 B'  D R F
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
-	elif nb_bad_e == 6:
+	elif nb_bad_e == 6: # R F2 B' D' L U2 L2 D2 B
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		cube, lst_move = edge_t_f.edge_o_two(cube, pos, lst_move)
-	elif nb_bad_e == 8:
+	elif nb_bad_e == 8: # R' D F2 R B' U F' D' F2
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	elif nb_bad_e == 10:
