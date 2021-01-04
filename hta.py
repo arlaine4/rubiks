@@ -41,24 +41,25 @@ def	edge_orientation_strategy(cube, pos):
 	elif nb_bad_e == 4: # F R U R B L2 B'  D R F
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	elif nb_bad_e == 6: # R F2 B' D' L U2 L2 D2 B
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		print("EDGE O FOUR: ", len(pos))
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
+		print("EDGE O TWO:\n", pos)
 		cube, lst_move = edge_t_f.edge_o_two(cube, pos, lst_move)
 	elif nb_bad_e == 8: # R' D F2 R B' U F' D' F2
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
-		# print("wtf : ", pos)
 		# cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	elif nb_bad_e == 10:
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
 		cube, lst_move = edge_t_f.edge_o_two(cube, pos, lst_move)
 	elif nb_bad_e == 12:
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
-		cube, lst_move = edge_t_f.edge_o_four(cube, pos[:4], lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	return cube, lst_move
