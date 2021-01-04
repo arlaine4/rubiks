@@ -49,7 +49,7 @@ def	edge_orientation_strategy(cube, pos):
 	elif nb_bad_e == 8: # R' D F2 R B' U F' D' F2
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
-		# cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
+		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	elif nb_bad_e == 10:
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 		pos = edge_o_detection(cube)
