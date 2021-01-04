@@ -559,7 +559,7 @@ def	edge_o_two(cube, pos, lst_move):
 			m.move_B(cube, True)
 			lst_move.append("B")
 		pos = hta.edge_o_detection(cube)
-		# p.clear()
+		p.clear()
 		max_ += 1
 		if max_ >= 20:
 			break
@@ -568,6 +568,7 @@ def	edge_o_two(cube, pos, lst_move):
 	return cube, lst_move
 
 def	edge_o_four(cube, pos, lst_move):
+	print(pos)
 	fb_prio = utils.front_or_back(pos)
 	i = 0
 	max_ = 0
@@ -587,6 +588,7 @@ def	edge_o_four(cube, pos, lst_move):
 			# 				bad edge sur left
 			if not p:
 				break
+			print(p)
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
 				if [0,1,0] not in pos and [4,1,2] not in pos:
 					m.move_L(cube, True)
@@ -652,6 +654,7 @@ def	edge_o_four(cube, pos, lst_move):
 					lst_move.append("U")
 					print("U")
 			elif (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 2):
+				print("ou est mon steak")
 				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
 					m.move_R(cube, False)
 					lst_move.append("R'")
@@ -1036,7 +1039,6 @@ def	edge_o_four(cube, pos, lst_move):
 					lst_move.append("D'")
 					print("D\nR'\nD'")
 				# ----------------------------------------------
-		print(pos)
 		pos = hta.edge_o_detection(cube)
 		p.clear()
 		max_ += 1
