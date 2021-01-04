@@ -65,7 +65,7 @@ def	select_best_move_f_b(cube, pos):
 	#Select best move(s) to place an edge in F or B face
 	#regarding his position
 
-def Do_I_move(positions, face):
+def Do_I_move(positions, face, nb = False):
 	x = 0
 	for pos in positions:
 		# Front bad edges
@@ -92,9 +92,12 @@ def Do_I_move(positions, face):
 				x += 1
 			if pos[0] == 2 and pos[1] == 0 and pos[2] == 1:
 				x += 1
-	if x == 4:
-		return True
-	return False
+	if nb == False:
+		if x == 4:
+			return True
+		return False
+	if nb == True:
+		return x
 
 def front_or_back(positions):
 	f = 0

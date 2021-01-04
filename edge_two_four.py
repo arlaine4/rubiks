@@ -33,6 +33,52 @@ def	edge_o_two(cube, pos, lst_move):
 				i = -2
 				break
 			i += 1
+		if fb_prio == 'F':
+			verif = utils.Do_I_move(pos, fb_prio, True)
+			if verif == 2:
+				if p[0] == 4 or (p[0] == 0 and p[1] == 1 and property[2] == 0):
+					m.move_L(cube, True)
+					lst_move.append("L")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 2 or (p[0] == 0 and p[1] == 0 and p[2] == 1):
+					m.move_U(cube, True)
+					lst_move.append("U")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 1 or (p[0] == 0 and p[1] == 1 and p[2] == 2):
+					m.move_R(cube, True)
+					lst_move.append("R")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 5 or (p[0] == 0 and p[1] == 2 and p[2] == 1):
+					m.move_D(cube, True)
+					lst_move.append("D")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+		elif fb_prio == 'B':
+			verif = utils.Do_I_move(pos, fb_prio, True)
+			if verif == 2:
+				if p[0] == 4 or (p[0] == 3 and p[1] == 1 and p[2] == 2):
+					m.move_L(cube, True)
+					lst_move.append("L")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 2 or (p[0] == 3 and p[1] == 0 and p[2] == 1):
+					m.move_U(cube, True)
+					lst_move.append("U")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 1 or (p[0] == 3 and p[1] == 1 and p[2] == 0):
+					m.move_R(cube, True)
+					lst_move.append("R")
+					pos = hta.edge_o_detection(cube)
+					i = 2
+				if p[0] == 5 or (p[0] == 3 and p[1] == 2 and p[2] == 1):
+					m.move_D(cube, True)
+					lst_move.append("D")
+					pos = hta.edge_o_detection(cube)
+					i = 2
 		if i == 2:
 			p = pos[0]
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
@@ -296,6 +342,7 @@ def	edge_o_two(cube, pos, lst_move):
 			m.move_F(cube, True)
 			lst_move.append("F")
 			pos = hta.edge_o_detection(cube)
+			p.clear()
 			for elem in pos:
 				if ((elem[0] == 0) or (elem[0] == 4 and elem[1] == 1 and elem[2] == 2) \
 					or (elem[0] == 2 and elem[1] == 2 and elem[2] == 1) or \
@@ -306,6 +353,8 @@ def	edge_o_two(cube, pos, lst_move):
 					p = elem
 					break
 			i = -1
+			if p:
+				print("GROS CON")
 		if i == -1:
 			print("ici mec:", p)
 			# 				bad edge sur left
