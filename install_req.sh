@@ -8,7 +8,7 @@ python3 -m venv virtual_env
 source virtual_env/bin/activate
 if [[ "$VIRTUAL_ENV" != "" ]]; then
 	echo "env created !"
-	pip install -r libs_required.txt
+	python3 -m pip install -U -r libs_required.txt
 else
 	echo "env is not working!"
 fi
