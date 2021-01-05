@@ -2,7 +2,7 @@ import cube as c
 import utils
 import move as m
 import visual as visu
-import edge_two_four as edge_t_f
+import edge_two_four_orientation as edge_t_f
 
 groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 	['U2', 'D2', 'L2', 'R2', 'F2', 'B2']]

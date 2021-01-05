@@ -371,7 +371,7 @@ def	main_visual(c, mix, lst_moves):
 	clock = pygame.time.Clock()
 	clock.tick(120)
 	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
-	gluPerspective(100, (display[0]/display[1]), 0.1, 30.0)
+	gluPerspective(90, (display[0]/display[1]), 0.1, 30)
 	glTranslatef(0, 0, -8)
 	glRotate(50, 25, 25, 10)
 	glEnable(GL_DEPTH_TEST)
