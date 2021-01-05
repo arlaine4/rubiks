@@ -3,12 +3,15 @@ import utils
 import move as m
 import visual as visu
 import edge_orientation as edge_t_f
+import edge_placement as edge_p
+import corners_orientation as corners
 
 groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 	['U2', 'D2', 'L2', 'R2', 'F2', 'B2']]
 
 def	main_algo(cube):
 	cube, lst_moves = edge_orientation(cube)
+        cube, lst_moves = placement_ud_edges(cube, lst_moves)
 	return cube, lst_moves
 
 #----------------------------------------------------#
@@ -29,6 +32,14 @@ def	edge_orientation(cube):
 	# for elem in pos_bad_edges:	# DEBUG
 	# 	print(elem)					# DEBUG
 	return cube, lst_moves
+
+def     placement_ud_edges(cube, lst_moves):
+        good_edges = []
+        bad_edges = []
+        good_edges = utils.check_good_edges_positions(cube)
+        bad_edges = utils.check_bad_edges_positions(cube)
+        cube, lst_moves = edge_p.edges_placement(cube, bad_edges, good_edges, lst_moves) 
+        return cube, lst_moves
 
 def	edge_orientation_strategy(cube, pos):
 	nb_bad_e = len(pos)

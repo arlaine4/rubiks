@@ -59,12 +59,6 @@ def	select_move_function_to_call(move_id, cube):
 			cube = move.move_D(cube, False) if "'" in move_id else move.move_D(cube, True)
 	return cube.cube
 
-def	select_best_move_f_b(cube, pos):
-	move_lst = []
-	nb_mooves = 0
-	#Select best move(s) to place an edge in F or B face
-	#regarding his position
-
 def Do_I_move(positions, face, nb = False):
 	x = 0
 	for pos in positions:
@@ -134,3 +128,57 @@ def	shuffle_cube(mix, c):
 	for i in range(len(moves)):
 		c.cube = select_move_function_to_call(moves[i], c)
 	return c
+
+def     check_bad_ud_edges_positions(cube):
+        pos = []
+        #-----------------------------------------#
+        #               Up Check                  #
+        #-----------------------------------------#
+        if cube[2][0][1] != 2:
+            pos.append([2, 0, 1])
+        if cube[2][1][0] != 2:
+            pos.append([2, 1, 0])
+        if cube[2][1][2] != 2:
+            pos.append([2, 1, 2])
+        if cube[2][2][1] != 2:
+            pos.append([2, 2, 1])
+        #-----------------------------------------#
+        #               Down Check                #
+        #-----------------------------------------#
+        if cube[5][0][1] != 5:
+            pos.append([5, 0, 1])
+        if cube[5][1][0] != 5:
+            pos.append([5, 1, 0])
+        if cube[5][1][2] != 5:
+            pos.append([5, 1, 2])
+        if cube[5][2][1] != 5:
+            pos.append([5, 2, 1])
+        return pos
+        
+
+def     check_good_ud_edges_positions(cube):
+        pos = []
+        #-----------------------------------------#
+        #               Up Check                  #
+        #-----------------------------------------#
+        if cube[2][0][1] == 2:
+            pos.append([2, 0, 1])
+        if cube[2][1][0] == 2:
+            pos.append([2, 1, 0])
+        if cube[2][1][2] == 2:
+            pos.append([2, 1, 2])
+        if cube[2][2][1] == 2:
+            pos.append([2, 2, 1])
+        #-----------------------------------------#
+        #               Down Check                #
+        #-----------------------------------------#
+        if cube[5][0][1] == 5:
+            pos.append([5, 0, 1])
+        if cube[5][1][0] == 5:
+            pos.append([5, 1, 0])
+        if cube[5][1][2] == 5:
+            pos.append([5, 1, 2])
+        if cube[5][2][1] == 5:
+            pos.append([5, 2, 1])
+        return pos
+        

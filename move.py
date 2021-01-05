@@ -9,8 +9,8 @@ from copy import deepcopy
 
 # cube array colors reprensentation :
 # Faces :	0		1		2		3		4		5
-#		   Blue		red   yellow  green    orange   white
-#		  front	   right    up     back     left	 down
+#		Blue		red             yellow          green           orange           white
+#		front	        right           up              back            left            down
 
 ###
 ### Need to verify ta everthing work perfectly but it seems to be clean
