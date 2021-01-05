@@ -356,8 +356,6 @@ def	edge_o_two(cube, pos, lst_move):
 			if p:
 				print("GROS CON")
 		if i == -1:
-			print("ici mec:", p)
-			# 				bad edge sur left
 			if (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
 				if [0,1,0] not in pos and [4,1,2] not in pos:
 					m.move_L(cube, True)
@@ -367,6 +365,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_U(cube, False)
 					lst_move.append("U'")
 					print("U'")
+				elif [0,1,2] not in pos and [1,1,0] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					m.move_R(cube, False)
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					lst_move.append("R'")
+					lst_move.append("U2")
+					print("U2\nR'\nU2")
+				elif [0,2,1] not in pos and [5,0,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("D")
+					lst_move.append("L2")
+					print("L2\nD\nL2")
 			elif (p[0] == 4 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 0):
 				if [0,1,0] not in pos and [4,1,2] not in pos:
 					m.move_L(cube, False)
@@ -376,6 +394,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, True)
 					lst_move.append("D")
 					print("D")
+				elif [0,1,2] not in pos and [1,1,0] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, True)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("R")
+					lst_move.append("D2")
+					print("D2\nR\nD2")
+				elif [0,0,1] not in pos and [2,2,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_U(cube, False)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("F'")
+					lst_move.append("L2")
+					print("L2\nF'\nL2")
 			elif (p[0] == 4 and p[1] == 1 and p[2] == 0) or (p[0] == 3 and p[1] == 1 and p[2] == 2):
 				if [0,1,0] not in pos and [4,1,2] not in pos:
 					m.move_L(cube, True)
@@ -390,7 +428,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_R(cube, True)
 					lst_move.append("R2")
 					print("B2\nR2")
-				# ----------------------------------------------
 				elif [0,0,1] not in pos and [2,2,1] not in pos:
 					m.move_L(cube, True)
 					m.move_U(cube, False)
@@ -407,7 +444,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("D")
 					lst_move.append("L")
 					print("L'\nD\nL")
-				# ----------------------------------------------
 			#
 			#--------------------------------------------------#
 
@@ -422,6 +458,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, False)
 					lst_move.append("D'")
 					print("D'")
+				elif [0,0,1] not in pos and [2,2,1] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, True)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("U")
+					lst_move.append("R2")
+					print("R2\nU\nR2")
+				elif [0,1,0] not in pos and [4,1,2] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, False)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("L'")
+					lst_move.append("D2")
+					print("D2\nL'\nD2")
 			elif (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 2):
 				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
 					m.move_R(cube, False)
@@ -435,14 +491,22 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_U(cube, True)
 					m.move_U(cube, True)
 					lst_move.append("U2")
-					print("U2")
 					m.move_L(cube, True)
 					lst_move.append("L")
-					print("L")
 					m.move_U(cube, True)
 					m.move_U(cube, True)
 					lst_move.append("U2")
-					print("U2")
+					print("U2\nL\nU2")
+				elif [0,2,1] not in pos and [5,0,1] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, False)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("L'")
+					lst_move.append("D2")
+					print("D2\nL'\nD2")
 			elif (p[0] == 1 and p[1] == 1 and p[2] == 2) or (p[0] == 3 and p[1] == 1 and p[2] == 0):
 				if [0, 1, 2] not in pos and [1, 1, 0] not in pos:
 					m.move_R(cube, True)
@@ -457,7 +521,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_L(cube, True)
 					lst_move.append("L2")
 					print("B2\L2")
-				# ----------------------------------------------
 				elif [0,0,1] not in pos and [2,2,1] not in pos:
 					m.move_R(cube, False)
 					m.move_U(cube, True)
@@ -474,7 +537,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("D'")
 					lst_move.append("R'")
 					print("R\nD'\nR'")
-				# ----------------------------------------------
 			#
 			#--------------------------------------------------#
 
@@ -544,6 +606,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_L(cube, False)
 					lst_move.append("L'")
 					print("L'")
+				elif [0,0,1] not in pos and [2,2,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_U(cube, False)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("U'")
+					lst_move.append("U2")
+					print("L2\nU'\nL2")
+				elif [0,1,2] not in pos and [1,1,0] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, True)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("R")
+					lst_move.append("D2")
+					print("D2\nR\nD2")
 			elif (p[0] == 5 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 2 and p[2] == 1):
 				if [5, 0, 1] not in pos and [0, 2, 1] not in pos:
 					m.move_D(cube, False)
@@ -553,6 +635,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_R(cube, True)
 					lst_move.append("R")
 					print("R")
+				elif [0,0,1] not in pos and [2,2,1] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, True)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("U")
+					lst_move.append("R2")
+					print("R2\nU\nR2")
+				elif [0,1,0] not in pos and [4,1,2] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, False)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("L'")
+					lst_move.append("D2")
+					print("D2\nL'\nD2")
 			elif (p[0] == 5 and p[1] == 2 and p[2] == 1) or (p[0] == 3 and p[1] == 2 and p[2] == 1):
 				if [5, 0, 1] not in pos and [0, 2, 1] not in pos:
 					m.move_D(cube, True)
@@ -567,7 +669,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, True)
 					lst_move.append("D2")
 					print("B2\nD2")
-				# ----------------------------------------------
 				elif [0,1,2] not in pos and [1,1,0] not in pos:
 					m.move_D(cube, False)
 					m.move_R(cube, True)
@@ -584,7 +685,8 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("L'")
 					lst_move.append("D'")
 					print("D\nL'\nD'")
-				# ----------------------------------------------	
+			#
+			#--------------------------------------------------#	
 			m.move_F(cube, True)
 			lst_move.append("F")
 		elif i == -2:
@@ -597,6 +699,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, False)
 					lst_move.append("D'")
 					print("D'")
+				elif [3,1,0] not in pos and [1,1,2] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, False)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("R'")
+					lst_move.append("D2")
+					print("D2\nR'\nD2")
+				elif [3,0,1] not in pos and [2,0,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_U(cube, True)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("U")
+					lst_move.append("L2")
+					print("L2\nU\nL2")
 			elif (p[0] == 4 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[2] == 0):
 				if [3,1,2] not in pos and [4,1,0] not in pos:
 					m.move_L(cube, False)
@@ -606,6 +728,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_U(cube, True)
 					lst_move.append("U")
 					print("U")
+				elif [3,1,0] not in pos and [1,1,2] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					lst_move.append("R")
+					lst_move.append("U2")
+					print("U2\nR\nU2")
+				elif [3,2,1] not in pos and [5,2,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_D(cube, False)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("D'")
+					lst_move.append("L2")
+					print("L2\nD'\nL2")
 			elif (p[0] == 4 and p[1] == 1 and p[2] == 2) or (p[0] == 0 and p[1] == 1 and p[2] == 0):
 				if [3,1,2] not in pos and [4,1,0] not in pos:
 					m.move_L(cube, True)
@@ -620,7 +762,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_R(cube, True)
 					lst_move.append("R2")
 					print("F2\nR2")
-				# ----------------------------------------------
 				elif [2,0,1] not in pos and [3,0,1] not in pos:
 					m.move_L(cube, False)
 					m.move_U(cube, True)
@@ -637,7 +778,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("D'")
 					lst_move.append("L'")
 					print("L\nD'\nL'")
-				# ----------------------------------------------
 			#
 			#--------------------------------------------------#
 
@@ -652,6 +792,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_U(cube, False)
 					lst_move.append("U'")
 					print("U'")
+				elif [3,1,2] not in pos and [4,1,0] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("D")
+					lst_move.append("R2")
+					print("R2\nD\nR2")
+				elif [3,2,1] not in pos and [5,2,1] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					m.move_L(cube, False)
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					lst_move.append("L'")
+					lst_move.append("U2")
+					print("U2\nL'\nU2")
 			elif (p[0] == 1 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 1 and p[2] == 2):
 				if [1, 1, 2] not in pos and [3, 1, 0] not in pos:
 					m.move_R(cube, False)
@@ -661,6 +821,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, True)
 					lst_move.append("D")
 					print("D")
+				elif [3,1,2] not in pos and [4,1,0] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, True)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("L")
+					lst_move.append("D2")
+					print("D2\nL\nD2")
+				elif [3,0,1] not in pos and [2,0,1] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, False)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("U'")
+					lst_move.append("R2")
+					print("R2\nU'\nR2")
 			elif (p[0] == 0 and p[1] == 1 and p[2] == 2) or (p[0] == 1 and p[1] == 1 and p[2] == 0):
 				if [1, 1, 2] not in pos and [3, 1, 0] not in pos:
 					m.move_R(cube, True)
@@ -675,7 +855,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_L(cube, True)
 					lst_move.append("L2")
 					print("F2\nL2")
-				# ----------------------------------------------
 				elif [2,0,1] not in pos and [3,0,1] not in pos:
 					m.move_R(cube, False)
 					m.move_U(cube, False)
@@ -692,7 +871,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("D")
 					lst_move.append("R'")
 					print("R\nD\nR'")
-				# ----------------------------------------------
 			#
 			#--------------------------------------------------#
 
@@ -707,6 +885,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_L(cube, False)
 					lst_move.append("L'")
 					print("L'")
+				elif [3,1,0] not in pos and [1,1,2] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					lst_move.append("R")
+					lst_move.append("U2")
+					print("U2\nR\nU2")
+				elif [3,2,1] not in pos and [5,2,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_D(cube, False)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("D'")
+					lst_move.append("L2")
+					print("L2\nD'\nL2")
 			elif (p[0] == 1 and p[1] == 0 and p[2] == 1) or (p[0] == 2 and p[1] == 1 and p[1] == 2):
 				if [2, 0, 1] not in pos and [3, 0, 1] not in pos:
 					m.move_U(cube, False)
@@ -716,6 +914,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_R(cube, True)
 					lst_move.append("R")
 					print("R")
+				elif [3,1,2] not in pos and [4,1,0] not in pos:
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					m.move_L(cube, False)
+					m.move_U(cube, True)
+					m.move_U(cube, True)
+					lst_move.append("U2")
+					lst_move.append("L'")
+					lst_move.append("U2")
+					print("U2\nL'\nU2")
+				elif [3,2,1] not in pos and [5,2,1] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("D")
+					lst_move.append("R2")
+					print("L2\nD\nL2")
 			elif (p[0] == 2 and p[1] == 2 and p[2] == 1) or (p[0] == 0 and p[1] == 0 and p[2] == 1):
 				if [2, 0, 1] not in pos and [3, 0, 1] not in pos:
 					m.move_U(cube, True)
@@ -730,7 +948,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_D(cube, True)
 					lst_move.append("D2")
 					print("F2\nD2")
-				# ----------------------------------------------
 				elif [4,1,0] not in pos and [3,1,2] not in pos:
 					m.move_U(cube, True)
 					m.move_L(cube, False)
@@ -747,7 +964,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("R")
 					lst_move.append("U")
 					print("U'\nR\nU")
-				# ----------------------------------------------
 			#
 			#--------------------------------------------------#
 	
@@ -762,6 +978,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_R(cube, False)
 					lst_move.append("R'")
 					print("R'")
+				elif [3,1,2] not in pos and [4,1,0] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_L(cube, True)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("L")
+					lst_move.append("D2")
+					print("D2\nL\nD2")
+				elif [3,0,1] not in pos and [2,0,1] not in pos:
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					m.move_U(cube, False)
+					m.move_R(cube, True)
+					m.move_R(cube, True)
+					lst_move.append("R2")
+					lst_move.append("U'")
+					lst_move.append("R2")
+					print("L2\nU'\nL2")
 			elif (p[0] == 5 and p[1] == 1 and p[2] == 0) or (p[0] == 4 and p[1] == 2 and p[2] == 1):
 				if [5, 2, 1] not in pos and [3, 2, 1] not in pos:
 					m.move_D(cube, False)
@@ -771,6 +1007,26 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_L(cube, False)
 					lst_move.append("L'")
 					print("L'")
+				elif [3,1,0] not in pos and [1,1,2] not in pos:
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					m.move_R(cube, False)
+					m.move_D(cube, True)
+					m.move_D(cube, True)
+					lst_move.append("D2")
+					lst_move.append("R'")
+					lst_move.append("D2")
+					print("D2\nR'\nD2")
+				elif [3,0,1] not in pos and [2,0,1] not in pos:
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					m.move_U(cube, True)
+					m.move_L(cube, True)
+					m.move_L(cube, True)
+					lst_move.append("L2")
+					lst_move.append("U")
+					lst_move.append("L2")
+					print("L2\nU\nL2")
 			elif (p[0] == 0 and p[1] == 2 and p[2] == 1) or (p[0] == 5 and p[1] == 0 and p[2] == 1):
 				if [5, 2, 1] not in pos and [3, 2, 1] not in pos:
 					m.move_D(cube, True)
@@ -785,7 +1041,6 @@ def	edge_o_two(cube, pos, lst_move):
 					m.move_U(cube, True)
 					lst_move.append("U2")
 					print("F2\nU2")
-				# ----------------------------------------------
 				elif [4,1,0] not in pos and [3,1,2] not in pos:
 					m.move_D(cube, False)
 					m.move_L(cube, True)
@@ -803,7 +1058,6 @@ def	edge_o_two(cube, pos, lst_move):
 					lst_move.append("R'")
 					lst_move.append("D'")
 					print("D\nR'\nD'")
-				# ----------------------------------------------
 			m.move_B(cube, True)
 			lst_move.append("B")
 		pos = hta.edge_o_detection(cube)

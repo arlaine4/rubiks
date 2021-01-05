@@ -38,7 +38,7 @@ def	edge_orientation_strategy(cube, pos):
 	lst_move = []
 	if nb_bad_e == 2: # F R U F R2
 		cube, lst_move = edge_t_f.edge_o_two(cube, pos, lst_move)
-	elif nb_bad_e == 4: # F R U R B L2 B'  D R F
+	elif nb_bad_e == 4: # F R U R B L2 B'
 		cube, lst_move = edge_t_f.edge_o_four(cube, pos, lst_move)
 	elif nb_bad_e == 6: # R F2 B' D' L U2 L2 D2 B # F2 U2 D B U' F2 U' R' L' D2 U2 F2 F2 B' L
 		print("EDGE O FOUR: ", len(pos))
