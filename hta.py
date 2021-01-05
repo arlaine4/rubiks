@@ -8,15 +8,11 @@ groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 	['U2', 'D2', 'L2', 'R2', 'F2', 'B2']]
 
 def	main_algo(cube):
-	cube, lst_moves = step_one(cube)
+	cube, lst_moves = edge_orientation(cube)
 	return cube, lst_moves
 
 #----------------------------------------------------#
 # 			First step, edge orientation
-
-def	step_one(cube):
-	cube, lst_moves = edge_orientation(cube)
-	return cube, lst_moves
 
 def	edge_orientation(cube):
 	#Pour edge orientation on vas first compter le nb
