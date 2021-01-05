@@ -1070,6 +1070,7 @@ def	edge_o_four(cube, pos, lst_move):
 	fb_prio = utils.front_or_back(pos)
 	i = 0
 	max_ = 0
+	p = []
 	while len(pos) > 0:
 		if fb_prio == "F":
 			while i < len(pos):
