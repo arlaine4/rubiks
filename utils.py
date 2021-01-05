@@ -125,7 +125,7 @@ def front_or_back(positions):
 			b += 1
 		if pos[0] == 2 and pos[1] == 0 and pos[2] == 1:
 			b += 1
-	print("F : {} | B : {}".format(f, b))
+	# print("F : {} | B : {}".format(f, b))
 	return "F" if f >= b else "B" 
 
 def	shuffle_cube(mix, c):
