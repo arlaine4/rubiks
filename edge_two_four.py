@@ -8,6 +8,7 @@ def	edge_o_two(cube, pos, lst_move):
 	fb_prio = utils.front_or_back(pos)
 	i = 0
 	max_ = 0
+	p = []
 	while len(pos) > 0:
 		while i < len(pos):
 			if ((pos[i][0] == 0) or (pos[i][0] == 4 and pos[i][1] == 1 and pos[i][2] == 2) \
