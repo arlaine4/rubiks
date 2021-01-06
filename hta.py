@@ -38,7 +38,7 @@ def     placement_ud_edges(cube, lst_moves):
         bad_edges = []
         good_edges = utils.check_good_ud_edges_positions(cube)
         bad_edges = utils.check_bad_ud_edges_positions(cube)
-        cube, lst_moves = edge_p.edges_placement(cube, bad_edges, good_edges, lst_moves) 
+        # cube, lst_moves = edge_p.edges_placement(cube, bad_edges, good_edges, lst_moves) 
         return cube, lst_moves
 
 def	edge_orientation_strategy(cube, pos):
