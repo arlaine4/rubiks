@@ -366,7 +366,7 @@ def Cube(cube):
 
 def	main_visual(c, mix, lst_moves):
 	pygame.init()
-	display = (800, 600)
+	display = (1200, 1000)
 	pygame.time.Clock()
 	clock = pygame.time.Clock()
 	clock.tick(120)

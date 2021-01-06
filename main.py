@@ -12,6 +12,6 @@ if __name__ == "__main__":
 	cube_before = copy.deepcopy(cube)
 	cube = utils.shuffle_cube(options.mix, cube)
 	cube, lst_moves = hta.main_algo(cube)
-	print("lst_moves for bad edges orientation : ", lst_moves, "\nnb of move for orientation steps : ", len(lst_moves))
+	#print("lst_moves for bad edges orientation : ", lst_moves, "\nnb of move for orientation steps : ", len(lst_moves))
 	if options.visu:
 		visu.main_visual(cube_before, options.mix, lst_moves)
