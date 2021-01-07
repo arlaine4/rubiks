@@ -157,10 +157,11 @@ def     check_bad_ud_edges_positions(c):
         
 
 def     check_good_ud_edges_positions(c):
-		pos = []
+		pos_up = []
+		pos_down = []
 		up_coord = [[2,0,1,3,0,1],[2,1,0,4,0,1],[2,2,1,0,0,1],[2,1,2,1,0,1]]
 		up_value = [[2,3],[2,4],[2,0],[2,1]]
-		up_check = [[[3],[4],[0],[1]],[[1],[3],[4],[0]],[[0],[1],[3],[4]],[[4],[0],[1],[3]]]
+		# up_check = [[[3],[4],[0],[1]],[[1],[3],[4],[0]],[[0],[1],[3],[4]],[[4],[0],[1],[3]]]
 		down_coord = [[5,0,1,0,2,1],[5,1,0,4,2,1],[5,2,1,3,2,1],[5,1,2,1,2,1]]
 		down_value = [[5,0],[5,4],[5,3],[5,1]]
 		triggered = 0
@@ -172,19 +173,19 @@ def     check_good_ud_edges_positions(c):
 				if c.cube[up_coord[i][0]][up_coord[i][1]][up_coord[i][2]] == up_value[j][0]\
 					and c.cube[up_coord[i][3]][up_coord[i][4]][up_coord[i][5]] == up_value[j][1]:
 					triggered += 1
-					pos.append(up_coord[i][3:])
+					pos_up.append(up_coord[i][3:])
 		print("c'est bon ou pas ? up", triggered)
 		triggered = 0
-		test = []
-		check = []
-		keep = []
-		for elem in up_coord:
-			test.append(elem[3:])
-		for elem in test:
-			if elem in pos:
-				check.append(c.cube[elem[0]][elem[1]][elem[2]])
-			else:
-				check.append(-1)
+		# test = []
+		# check = []
+		# keep = []
+		# for elem in up_coord:
+		# 	test.append(elem[3:])
+		# for elem in test:
+		# 	if elem in pos:
+		# 		check.append(c.cube[elem[0]][elem[1]][elem[2]])
+		# 	else:
+		# 		check.append(-1)
 		#-----------------------------------------#
 		#               Down Check                #
 		#-----------------------------------------#
@@ -193,9 +194,9 @@ def     check_good_ud_edges_positions(c):
 				if c.cube[down_coord[i][0]][down_coord[i][1]][down_coord[i][2]] == down_value[j][0]\
 					and c.cube[down_coord[i][3]][down_coord[i][4]][down_coord[i][5]] == down_value[j][1]:
 					triggered += 1
-					pos.append(down_coord[i][:3])
+					pos_down.append(down_coord[i][:3])
 		print("c'est bon ou pas ? down", triggered)
 		triggered = 0
-		print(pos)
-		return pos
+		print(pos_up, pos_down)
+		return pos_up, pos_down
 		

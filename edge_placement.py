@@ -4,7 +4,7 @@ import visual as visu
 import utils
 import hta
 
-def     edges_placement(cube, bad_edges, good_edges, lst_moves):
+def     edges_placement(cube, bad_edges, ggood_edges_up, good_edges_down, lst_moves):
         t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 0, 4, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 2, 1, 0, 1]]
         t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 0, 4, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 2, 1, 2, 1]]
         value_pos_up = [[2, 3], [2, 4], [2, 0], [2, 1]]
