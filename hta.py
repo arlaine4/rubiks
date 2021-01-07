@@ -11,7 +11,10 @@ groups = [['U', 'D', 'L', 'R', 'F2', 'B2'], ['U', 'D', 'L2', 'R2', 'F2', 'B2'],
 
 def	main_algo(cube):
         cube, lst_moves = edge_orientation(cube)
+        print("moves for edge orientation : ", len(lst_moves))
+        first_len = len(lst_moves) #TMP VAR FOR PRINT
         cube, lst_moves = placement_ud_edges(cube, lst_moves)
+        print("moves for edge placement : ", len(lst_moves))
         return cube, lst_moves
 
 #----------------------------------------------------#
@@ -38,7 +41,7 @@ def     placement_ud_edges(cube, lst_moves):
         bad_edges = []
         good_edges = utils.check_good_ud_edges_positions(cube)
         bad_edges = utils.check_bad_ud_edges_positions(cube)
-        # cube, lst_moves = edge_p.edges_placement(cube, bad_edges, good_edges, lst_moves) 
+        cube, lst_moves = edge_p.edges_placement(cube, bad_edges, good_edges, lst_moves) 
         return cube, lst_moves
 
 def	edge_orientation_strategy(cube, pos):
