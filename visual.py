@@ -430,7 +430,7 @@ def	main_visual(c, mix, lst_moves):
 						Cube(c.cube)
 		opaque_on_off(False) if opaque < 0 else opaque_on_off(True)
 		if turn > 0:
-			glRotatef(1, x, y, 1)
+			glRotatef(2, x, y, 1)
 		clock.tick(120)
 		pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
