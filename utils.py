@@ -201,17 +201,17 @@ def     check_good_ud_edges_positions(c):
 		return pos_up, pos_down
 
 def check_and_get_ud_slice_edge(cube, face, lst_moves):
-    #----------------------------------------------------------------------#
-    #                               Up                                     #
-    groups = [3, 1, 0, 4]
-    if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
-        lst_moves = m.move_L(cube, True)
-    elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2: #FR
-        lst_moves = m.move_R(cube, True)
-    elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2: #RB
-        lst_moves = m.move_R(cube, False)
-    elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2: #BL
-        lst_moves = m.move_L(cube, False)
-    #----------------------------------------------------------------------#
-    #                               Down                                   #
-    return lst_moves, cube
+	#----------------------------------------------------------------------#
+	#                               Up                                     #
+	groups = [3, 1, 0, 4]
+	if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
+		lst_moves = m.move_L(cube, True)
+	elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2: #FR
+		lst_moves = m.move_R(cube, True)
+	elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2: #RB
+		lst_moves = m.move_R(cube, False)
+	elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2: #BL
+		lst_moves = m.move_L(cube, False)
+	#----------------------------------------------------------------------#
+	#                               Down                                   #
+	return lst_moves, cube
