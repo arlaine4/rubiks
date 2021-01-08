@@ -205,12 +205,16 @@ def check_and_get_ud_slice_edge(cube, face, lst_moves):
     #                               Up                                     #
     groups = [3, 1, 0, 4]
     if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
+        print("FL")
         move.move_L(cube, True) ; lst_moves.append("L")
-    elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2: #FR
+    elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2 if face == "U" else 5: #FR
+        print("FR")
         move.move_R(cube, True) ; lst_moves.append("R")
-    elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2: #RB
+    elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2 if face == "U" else 5: #RB
+        print("RB")
         move.move_R(cube, False) ; lst_moves.append("R'")
-    elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2: #BL
+    elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2 if face == "U" else 5: #BL
+        print("BL")
         move.move_L(cube, False) ; lst_moves.append("L'")
     #----------------------------------------------------------------------#
     #                               Down                                   #
