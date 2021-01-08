@@ -200,7 +200,7 @@ def     check_good_ud_edges_positions(c):
 		print(pos_up, pos_down)
 		return pos_up, pos_down
 
-def check_and_get_ud_slice_edge(cube, face, edges_dispo, t_p_u, t_p_d):
+def check_and_get_ud_slice_edge(cube, face):
     lst_faces = [0, 1, 3, 4]
     for i in range(len(lst_faces)):
         #check si la value et pos de l'edge ud_slice correspond a une des edges sur la face U ou D

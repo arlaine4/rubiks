@@ -23,7 +23,7 @@ def		edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves)
 			lst_order_edges.append(good_edges_up[0])
 			lst_order_values.append([good_edges_up[0][0], cube.cube[good_edges_up[0][0]][good_edges_up[0][1]][good_edges_up[0][2]]])
 		elif len(good_edges_up) == 0:
-                        pos_starting_point, value__starting_point = utils.check_ud_slice_edge(cube, "U", bad_edges, t_p_u, t_p_d) #call avec bad_edges ou avec good_edges_down ?
+                        pos_starting_point, value__starting_point = utils.check_ud_slice_edge(cube, "U") #call avec bad_edges ou avec good_edges_down ?
 
 		print("order edges : ", lst_order_edges, "order values : ", lst_order_values)
 		return cube, lst_moves
