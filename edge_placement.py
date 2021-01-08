@@ -17,22 +17,19 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
 	#separer good edge en up et down
 	#-----------------------------------------------------------#
 	#                       Partie Up                           #
+
 	#--------------------------#
 	# Selection starting point #
 	if len(good_edges_up) > 0:
 			lst_order_edges.append(good_edges_up[0])
 			lst_order_values.append([good_edges_up[0][0], cube.cube[good_edges_up[0][0]][good_edges_up[0][1]][good_edges_up[0][2]]])
 	elif len(good_edges_up) == 0:
-			lst_moves, cube = utils.check_ud_slice_edge(cube, "U", lst_moves) #call avec bad_edges ou avec good_edges_down ?
+			lst_moves, cube = utils.check_and_get_ud_slice_edge(cube, "U", lst_moves) #call avec bad_edges ou avec good_edges_down ?
 	print("order edges : ", lst_order_edges, "order values : ", lst_order_values)
+        #-------------------------#
+        # Mise en place des edges #
 	return cube, lst_moves
-	"""if len(good_edges) > 0:
-		lst_order_edges.append(good_edges[0])
-		lst_order_values.append([good_edges[0][0], cube.cube[good_edges[0]][good_edges[1]][good_edges[2]]])
-		#check les good_edges suivantes si elles sont deja sur la bonne face et dans le bon ordre
-		#meme si elle sont pas a la bonne place
-		#si elle sont bonnes, append a order_edge et order_values
-	elif len(good_edges) == 0:
+	"""elif len(good_edges) == 0:
 		pass
 		#chercher edge en ud_slice, prendre la premiere que on trouve
 			#move un edge ud_slice sur la face up sur l'edge la plus proche, qui coute le moins de coups
