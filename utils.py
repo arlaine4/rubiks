@@ -1,6 +1,6 @@
 import argparse
 import cube
-import move
+import move as m
 import sys
 
 import visual as visu
@@ -200,10 +200,18 @@ def     check_good_ud_edges_positions(c):
 		print(pos_up, pos_down)
 		return pos_up, pos_down
 
-def check_and_get_ud_slice_edge(cube, face):
-    lst_faces = [0, 1, 3, 4]
-    for i in range(len(lst_faces)):
-        #check si la value et pos de l'edge ud_slice correspond a une des edges sur la face U ou D
-        #en fonction de la face donnee en parametre dans face -> type(str)
-        for k in range(2):
-            if cube.cube[i][1][k] ==  
+def check_and_get_ud_slice_edge(cube, face, lst_moves):
+    #----------------------------------------------------------------------#
+    #                               Up                                     #
+    groups = [3, 1, 0, 4]
+    if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
+        lst_moves = m.move_L(cube, True)
+    elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2: #FR
+        lst_moves = m.move_R(cube, True)
+    elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2: #RB
+        lst_moves = m.move_R(cube, False)
+    elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2: #BL
+        lst_moves = m.move_L(cube, False)
+    #----------------------------------------------------------------------#
+    #                               Down                                   #
+    return lst_moves, cube
