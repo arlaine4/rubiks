@@ -201,56 +201,56 @@ def     check_good_ud_edges_positions(c):
 		return pos_up, pos_down
 
 def check_and_get_ud_slice_edge(cube, face, lst_moves):
-    groups = [3, 1, 0, 4]
-    if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
-        move.move_L(cube, True if face == "U" else False)
-        lst_moves.append("L" if face == "U" else "L'")
-    elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2 if face == "U" else 5: #FR
-        move.move_R(cube, True if face == "U" else False)
-        lst_moves.append("R" if face == "U" else "R'")
-    elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2 if face == "U" else 5: #RB
-        move.move_R(cube, False if face == "U" else True)
-        lst_moves.append("R'" if face == "U" else "R")
-    elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2 if face == "U" else 5: #BL
-        move.move_L(cube, False if face == "U" else True)
-        lst_moves.append("L'" if face == "U" else "L")
-    else:
-        return lst_moves, cube, False
-    return lst_moves, cube, True
+	groups = [3, 1, 0, 4]
+	if cube.cube[4][1][2] in groups and cube.cube[0][1][0] == 2 if face == "U" else 5: #FL
+		move.move_L(cube, True if face == "U" else False)
+		lst_moves.append("L" if face == "U" else "L'")
+	elif cube.cube[1][1][0] in groups and cube.cube[0][1][2] == 2 if face == "U" else 5: #FR
+		move.move_R(cube, True if face == "U" else False)
+		lst_moves.append("R" if face == "U" else "R'")
+	elif cube.cube[1][1][2] in groups and cube.cube[3][1][0] == 2 if face == "U" else 5: #RB
+		move.move_R(cube, False if face == "U" else True)
+		lst_moves.append("R'" if face == "U" else "R")
+	elif cube.cube[4][1][0] in groups and cube.cube[3][1][2] == 2 if face == "U" else 5: #BL
+		move.move_L(cube, False if face == "U" else True)
+		lst_moves.append("L'" if face == "U" else "L")
+	else:
+		return lst_moves, cube, False
+	return lst_moves, cube, True
 
 def check_and_get_edge_opposite_face(cube, face, lst_moves):
-    if face == "U":
-        if cube.cube[0][2][1] in groups and cube.cube[5][0][1] == 2: #DF
-            move.move_F(cube, True)
-            move.move_F(cube, True)
-            lst_moves.append("F2")
-        elif cube.cube[1][2][1] in groups and cube.cube[5][1][2] == 2: #DR
-            move.move_R(cube, True)
-            move.move_R(cube, True)
-            lst_moves.append("R2")
-        elif cube.cube[3][2][1] in groups and cube.cube[5][2][1] == 2: #DB
-            move.move_B(cube, True)
-            move.move_B(cube, True)
-            lst_moves.append("B2")
-        elif cube.cube[4][2][1] in groups and cube.cube[5][1][0] == 2: #DL
-            move.move_L(cube, True)
-            move.move_L(cube, True)
-            lst_moves.append("L2")
-    elif face == "D":
-        if cube.cube[0][0][1] in groups and cube.cube[2][2][1] == 5: #UF
-            move.move_F(cube, True)
-            move.move_F(cube, True)
-            lst_moves.append("F2")
-        elif cube.cube[1][0][1] in groups and cube.cube[2][1][2] == 5: #UR
-            move.move_R(cube, True)
-            move.move_R(cube, True)
-            lst_moves.append("R2")
-        elif cube.cube[3][0][1] in groups and cube.cube[2][1][2] == 5: #UB
-            move.move_B(cube, True)
-            move.move_B(cube, True)
-            lst_moves.append("B2")
-        elif cube.cube[4][0][1] in groups and cube.cube[2][1][0] == 5: #UL
-            move.move_L(cube, True)
-            move.move_L(cube, True)
-            lst_moves.append("L2")
-    return lst_moves, cube
+	if face == "U":
+		if cube.cube[0][2][1] in groups and cube.cube[5][0][1] == 2: #DF
+			move.move_F(cube, True)
+			move.move_F(cube, True)
+			lst_moves.append("F2")
+		elif cube.cube[1][2][1] in groups and cube.cube[5][1][2] == 2: #DR
+			move.move_R(cube, True)
+			move.move_R(cube, True)
+			lst_moves.append("R2")
+		elif cube.cube[3][2][1] in groups and cube.cube[5][2][1] == 2: #DB
+			move.move_B(cube, True)
+			move.move_B(cube, True)
+			lst_moves.append("B2")
+		elif cube.cube[4][2][1] in groups and cube.cube[5][1][0] == 2: #DL
+			move.move_L(cube, True)
+			move.move_L(cube, True)
+			lst_moves.append("L2")
+	elif face == "D":
+		if cube.cube[0][0][1] in groups and cube.cube[2][2][1] == 5: #UF
+			move.move_F(cube, True)
+			move.move_F(cube, True)
+			lst_moves.append("F2")
+		elif cube.cube[1][0][1] in groups and cube.cube[2][1][2] == 5: #UR
+			move.move_R(cube, True)
+			move.move_R(cube, True)
+			lst_moves.append("R2")
+		elif cube.cube[3][0][1] in groups and cube.cube[2][1][2] == 5: #UB
+			move.move_B(cube, True)
+			move.move_B(cube, True)
+			lst_moves.append("B2")
+		elif cube.cube[4][0][1] in groups and cube.cube[2][1][0] == 5: #UL
+			move.move_L(cube, True)
+			move.move_L(cube, True)
+			lst_moves.append("L2")
+	return lst_moves, cube

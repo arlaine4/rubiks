@@ -5,16 +5,16 @@ import utils
 import hta
 
 def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
-        t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 0, 4, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 2, 1, 0, 1]]
-        t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 0, 4, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 2, 1, 2, 1]]
-        value_pos_up = [[2, 3], [2, 4], [2, 0], [2, 1]]
-        value_pos_down = [[5, 0], [5, 4], [5, 3], [5, 1]]
-        lst_order_edges = []
-        lst_order_values = []
-        id_current = 0
-        pos_starting_point = []
-        value_starting_point = []
-        found = False
+	t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 0, 4, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 2, 1, 0, 1]]
+	t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 0, 4, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 2, 1, 2, 1]]
+	value_pos_up = [[2, 3], [2, 4], [2, 0], [2, 1]]
+	value_pos_down = [[5, 0], [5, 4], [5, 3], [5, 1]]
+	lst_order_edges = []
+	lst_order_values = []
+	id_current = 0
+	pos_starting_point = []
+	value_starting_point = []
+	found = False
 	#separer good edge en up et down
 	#-----------------------------------------------------------#
 	#                       Partie Up                           #
@@ -26,11 +26,11 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
 			lst_order_values.append([good_edges_up[0][0], cube.cube[good_edges_up[0][0]][good_edges_up[0][1]][good_edges_up[0][2]]])
 	elif len(good_edges_up) == 0:
 			lst_moves, cube, found = utils.check_and_get_ud_slice_edge(cube, "U", lst_moves) #call avec bad_edges ou avec good_edges_down ?
-                        if found is False:
-                            lst_moves, cube = utils.check_and_get_edge_opposite_face(cube, "U", lst_moves)
+						if found is False:
+							lst_moves, cube = utils.check_and_get_edge_opposite_face(cube, "U", lst_moves)
 	print("order edges : ", lst_order_edges, "order values : ", lst_order_values)
-        #-------------------------#
-        # Mise en place des edges #
+		#-------------------------#
+		# Mise en place des edges #
 	return cube, lst_moves
 	"""elif len(good_edges) == 0:
 		pass
