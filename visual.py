@@ -422,9 +422,9 @@ def	main_visual(c, mix, lst_moves):
                                         y = 3
                                 if event.key == pygame.K_DOWN:
                                         y = -3
-                                if event.key == pygame.K_m and angle < 10:
+                                if event.key == pygame.K_m and speed < 10:
                                         speed += 1
-                                if event.key == pygame.K_l and angle > 1:
+                                if event.key == pygame.K_l and speed > 1:
                                         speed -= 1
                                 if event.key == pygame.K_s and i < len(moves):
                                         while i < len(moves):
@@ -449,6 +449,7 @@ def	main_visual(c, mix, lst_moves):
                                                 clock.tick(120)
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(c.cube)
+                opaque_on_off(True if opaque > 0 else False)
                 if turn > 0:
                     glRotatef(speed, x, y, 1)
                 clock.tick(120)
