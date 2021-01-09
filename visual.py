@@ -364,79 +364,100 @@ def Cube(cube):
 	#----------------------------------------
 	glEnd()
 
-def	main_visual(c, mix, lst_moves):
-	pygame.init()
-	display = (1200, 1000)
-	pygame.time.Clock()
-	clock = pygame.time.Clock()
-	clock.tick(120)
-	pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
-	gluPerspective(90, (display[0]/display[1]), 0.1, 30)
-	glTranslatef(0, 0, -8)
-	glRotate(50, 25, 25, 10)
-	glEnable(GL_DEPTH_TEST)
+def     drawText(position, textString):
+        font = pygame.font.Font(None, 32)
+        textSurface = font.render(textString, True, (255,255,255,255), (0,0,0,255))
+        textData = pygame.image.tostring(textSurface, "RGBA", True)     
+        glRasterPos3d(*position)     
+        glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
 
-	opaque = 1
-	turn = -1
-	x = 1
-	y = 1
-	moves = mix.split(' ')
-	i = 0
-	j = 0
-	bool_shuffle = False
-	while True:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				pygame.quit()
-				quit()
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_ESCAPE:
-					pygame.quit()
-					quit()
-				if event.key == pygame.K_o:
-					opaque *= -1
-				if event.key == pygame.K_SPACE:
-					turn *= -1
-				if event.key == pygame.K_LEFT:
-					x = -1
-				if event.key == pygame.K_RIGHT:
-					x = 1
-				if event.key == pygame.K_UP:
-					y = 3
-				if event.key == pygame.K_DOWN:
-					y = -3
-				if event.key == pygame.K_s and i < len(moves):
-					while i < len(moves):
-						bool_shuffle = True
-						c.cube = utils.select_move_function_to_call(moves[i], c)
-						i += 1
-						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-						Cube(c.cube)
-						pygame.display.flip()
-						pygame.time.wait(300)
-						clock.tick(120)
-						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-						Cube(c.cube)
-				if event.key == pygame.K_r and j < len(lst_moves) and bool_shuffle is True:
-					while j < len(lst_moves):
-						c.cube = utils.select_move_function_to_call(lst_moves[j], c)
-						j += 1
-						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-						Cube(c.cube)
-						pygame.display.flip()
-						pygame.time.wait(300)
-						clock.tick(120)
-						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-						Cube(c.cube)
-		opaque_on_off(False) if opaque < 0 else opaque_on_off(True)
-		if turn > 0:
-			glRotatef(2, x, y, 1)
-		clock.tick(120)
-		pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-		Cube(c.cube)
-		pygame.display.flip()
-		pygame.time.wait(7)
+def     print_help():
+        drawText((-3, 0, 0), " O = Opaque ON/OFF")
+        drawText((-3, 1, 0), " K = Turning cube ON/OFF")
+        drawText((-3, 2, 0), " Arrows = Rotation angles")
+        drawText((-3, 3, 0), " M = Rotation speed +")
+        drawText((-3, 4, 0), " L = Rotation speed -")
+        drawText((-3, 5, 0), " S = Shuffle cube")
+        drawText((-3, 6, 0), " R = Resolve cube")
+
+def	main_visual(c, mix, lst_moves):
+        pygame.init()
+        display = (1200, 1000)
+        pygame.time.Clock()
+        clock = pygame.time.Clock()
+        clock.tick(120)
+        pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
+        gluPerspective(100, (display[0]/display[1]), 0.1, 30)
+        glTranslatef(0, 0, -8)
+        glRotate(50, 25, 25, 10)
+        glEnable(GL_DEPTH_TEST)
+
+        opaque = 1
+        turn = -1
+        x = 1
+        y = 1
+        moves = mix.split(' ')
+        i = 0
+        j = 0
+        speed = 2
+        bool_shuffle = False
+        while True:
+                for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                                pygame.quit()
+                                quit()
+                        if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_ESCAPE:
+                                        pygame.quit()
+                                        quit()
+                                if event.key == pygame.K_o:
+                                        opaque *= -1
+                                if event.key == pygame.K_SPACE:
+                                        turn *= -1
+                                if event.key == pygame.K_LEFT:
+                                        x = -1
+                                if event.key == pygame.K_RIGHT:
+                                        x = 1
+                                if event.key == pygame.K_UP:
+                                        y = 3
+                                if event.key == pygame.K_DOWN:
+                                        y = -3
+                                if event.key == pygame.K_m and angle < 10:
+                                        speed += 1
+                                if event.key == pygame.K_l and angle > 1:
+                                        speed -= 1
+                                if event.key == pygame.K_s and i < len(moves):
+                                        while i < len(moves):
+                                                bool_shuffle = True
+                                                c.cube = utils.select_move_function_to_call(moves[i], c)
+                                                i += 1
+                                                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                                Cube(c.cube)
+                                                pygame.display.flip()
+                                                pygame.time.wait(300)
+                                                clock.tick(120)
+                                                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                                Cube(c.cube)
+                                if event.key == pygame.K_r and j < len(lst_moves) and bool_shuffle is True:
+                                        while j < len(lst_moves):
+                                                c.cube = utils.select_move_function_to_call(lst_moves[j], c)
+                                                j += 1
+                                                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                                Cube(c.cube)
+                                                pygame.display.flip()
+                                                pygame.time.wait(300)
+                                                clock.tick(120)
+                                                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                                Cube(c.cube)
+                if turn > 0:
+                    glRotatef(speed, x, y, 1)
+                clock.tick(120)
+                pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
+                glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                Cube(c.cube)
+                #print_help()
+                pygame.display.flip()
+                pygame.time.wait(7)
 
 def	opaque_on_off(on_off):
 	glDisable(GL_DEPTH_TEST) if on_off is False else glEnable(GL_DEPTH_TEST)
