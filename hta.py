@@ -21,6 +21,7 @@ def	main_algo(cube):
 # 			First step, edge orientation
 
 def	edge_orientation(cube):
+        """ Bonsoir je suis la docstring de edge_orientation"""
 	#Pour edge orientation on vas first compter le nb
 	#de edge qui sont mal orientees
 	pos_bad_edges = edge_o_detection(cube)
