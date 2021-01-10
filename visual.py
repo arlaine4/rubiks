@@ -339,30 +339,31 @@ def	get_color_index(cube, index_surface):
 	return cube[i][j][k]
 
 def Cube(cube):
-	#----------------------------------------
-	# Remplissage de surfaces + couleurs
-	glBegin(GL_QUADS)
-	i = 0
-	j = 0
-	for surface in surfaces:
-		i = get_color_index(cube, j)
-		glColor3fv(colors[i])
-		for vertex in surface:
-			glVertex3fv(verticies[vertex])
-		j += 1
-	glEnd()
-	#----------------------------------------
+        #----------------------------------------
+        # Remplissage de surfaces + couleurs
+        glBegin(GL_QUADS)
+        i = 0
+        j = 0
+        for surface in surfaces:
+                i = get_color_index(cube, j)
+                glColor3fv(colors[i])
+                for vertex in surface:
+                        glVertex3fv(verticies[vertex])
+                j += 1
+        glEnd()
+        #----------------------------------------
 
-	#----------------------------------------
-	# Tracage des contours des cubes
-	glLineWidth(6.0)
-	glBegin(GL_LINES)
-	glColor3fv(black)
-	for edge in edges:
-		for vertex in edge:
-			glVertex3fv(verticies[vertex])
-	#----------------------------------------
-	glEnd()
+        #----------------------------------------
+        # Tracage des contours des cubes
+        glEnable(GL_LINE_SMOOTH)
+        glLineWidth(6.0)
+        glBegin(GL_LINES)
+        glColor3fv(black)
+        for edge in edges:
+                for vertex in edge:
+                        glVertex3fv(verticies[vertex])
+        #----------------------------------------
+        glEnd()
 
 def     drawText(position, textString):
         font = pygame.font.Font(None, 32)
@@ -391,6 +392,7 @@ def	main_visual(c, mix, lst_moves):
         glTranslatef(0, 0, -8)
         glRotate(50, 25, 25, 10)
         glEnable(GL_DEPTH_TEST)
+        glEnable(GL_LINE_SMOOTH)
 
         opaque = 1
         turn = -1

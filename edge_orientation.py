@@ -1794,7 +1794,6 @@ def	edge_o_four(cube, pos, lst_move):
 					lst_move.append("D")
 					# print("D'\nL\nD")
 				elif [1,2,2] not in pos and [3,1,0] not in pos:
-					print(p)
 					m.move_D(cube, True)
 					m.move_R(cube, False)
 					m.move_D(cube, False)
