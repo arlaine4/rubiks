@@ -257,22 +257,53 @@ def check_and_get_edge_opposite_face(cube, face, lst_moves):
 
 def replace_tpu(lst_order, face):
     new_lst_order = []
+    new_value = []
     if face == "U":
         if lst_order == [1, 0, 1]:
             new_lst_order = [2, 1, 2]
+            new_value = [2, 1]
         elif lst_order == [0, 0, 1]:
             new_lst_order = [2, 2, 1]
+            new_value = [2, 0]
         elif lst_order == [4, 0, 1]:
             new_lst_order = [2, 1, 0]
+            new_value = [2, 4]
         elif lst_order == [3, 0, 1]:
             new_lst_order = [2, 0, 1]
+            new_value = [2, 3]
     elif face == "D":
         if lst_order == [1, 2, 1]:
             new_lst_order = [5, 1, 2]
+            new_value = [5, 1]
         elif lst_order == [3, 2, 1]:
             new_lst_order = [5, 2, 1]
+            new_value = [5, 3]
         elif lst_order == [4, 2, 1]:
             new_lst_order = [5, 1, 0]
+            new_value = [5, 4]
         elif lst_order == [0, 2, 1]:
             new_lst_order = [5, 0, 1]
-    return new_lst_order
+            new_value = [5, 0]
+    return new_lst_order, new_value
+
+def get_next_edge_placement_pos(order_edge, cube, face):
+    next_pos = None
+    if face == "U":
+        if order_edge == [2, 0, 1]:
+            next_pos = [2, 1, 2]
+        elif order_edge == [2, 1, 2]:
+            next_pos = [2, 2, 1]
+        elif order_edge == [2, 2, 1]:
+            next_pos = [2, 1, 0]
+        elif order_edge == [2, 1, 0]:
+            next_pos = [2, 0, 1]
+    elif face == "D":
+        if order_edge == [5, 0, 1]:
+            next_pos = [5, 1, 2]
+        elif order_edge == [5, 1, 2]:
+            next_pos = [5, 2, 1]
+        elif order_edge == [5, 2, 1]:
+            next_pos = [5, 1, 0]
+        elif order_edge == [5, 1, 0]:
+            next_pos = [5, 0, 1]
+    return next_pos

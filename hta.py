@@ -21,21 +21,20 @@ def	main_algo(cube):
 # 			First step, edge orientation
 
 def	edge_orientation(cube):
-        """ Bonsoir je suis la docstring de edge_orientation"""
-	#Pour edge orientation on vas first compter le nb
-	#de edge qui sont mal orientees
-	pos_bad_edges = edge_o_detection(cube)
-	print("Number of bad edges \033[33mbefore\033[0m : {}".format(len(pos_bad_edges)))
-	c.print_cube(cube)
-	# for elem in pos_bad_edges:	# DEBUG
-	# 	print(elem)					# DEBUG
-	cube, lst_moves = edge_orientation_strategy(cube, pos_bad_edges)
-	pos_bad_edges = edge_o_detection(cube)
-	print("Number of bad edges \033[35mafter\033[0m: {}".format(len(pos_bad_edges)))
-	c.print_cube(cube)
-	# for elem in pos_bad_edges:	# DEBUG
-	# 	print(elem)					# DEBUG
-	return cube, lst_moves
+        #Pour edge orientation on vas first compter le nb
+        #de edge qui sont mal orientees
+        pos_bad_edges = edge_o_detection(cube)
+        print("Number of bad edges \033[33mbefore\033[0m : {}".format(len(pos_bad_edges)))
+        c.print_cube(cube)
+        # for elem in pos_bad_edges:	# DEBUG
+        # 	print(elem)					# DEBUG
+        cube, lst_moves = edge_orientation_strategy(cube, pos_bad_edges)
+        pos_bad_edges = edge_o_detection(cube)
+        print("Number of bad edges \033[35mafter\033[0m: {}".format(len(pos_bad_edges)))
+        c.print_cube(cube)
+        # for elem in pos_bad_edges:	# DEBUG
+        # 	print(elem)					# DEBUG
+        return cube, lst_moves
 
 def     placement_ud_edges(cube, lst_moves):
         good_edges = []
