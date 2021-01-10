@@ -307,3 +307,22 @@ def get_next_edge_placement_pos(order_edge, cube, face):
         elif order_edge == [5, 1, 0]:
             next_pos = [5, 0, 1]
     return next_pos
+
+def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, bad_edges, bad_edges_value, index, next_pos, face):
+    new_order_edge = []
+    new_value_edge = []
+    t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 2, 4, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 0, 1, 0, 1]]
+    t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 2, 4, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 0, 1, 2, 1]]
+    values_up = [[2, 3], [2, 4], [2, 0], [2, 1]]
+    values_down = [[5, 0], [5, 4], [5, 3], [5, 1]]
+    print(bad_edges)
+    print(next_pos)
+    print(bad_edges_value)
+    print(lst_order_value)
+    if face == "U":
+        for i in range(len(bad_edges_value)):
+            if bad_edges_value[i] == lst_order_value:
+                print("this edge {} has {} value but needs to be placed at {}".format(bad_edges[i], bad_edges_value[i], next_pos))
+    elif face == "D":
+        pass
+    return cube, new_order_edge, new_value_edge
