@@ -41,6 +41,8 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
         while i < 4:
             tmp_value = None
             tmp_edge = None
+            if i == 3:
+                break
             cube, lst_moves, tmp_edge, tmp_value= utils.find_and_move_next_edge_placement(cube, lst_order_edges[i], lst_order_values[i], \
                 bad_edges, bad_edges_values, next_pos, "U", lst_moves)
             if tmp_edge in lst_order_edges and tmp_value in lst_order_values:
