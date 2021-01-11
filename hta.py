@@ -15,6 +15,7 @@ def	main_algo(cube):
         first_len = len(lst_moves) #TMP VAR FOR PRINT
         cube, lst_moves = placement_ud_edges(cube, lst_moves)
         print("moves for edge placement : ", len(lst_moves))
+        c.print_cube(cube)
         return cube, lst_moves
 
 #----------------------------------------------------#

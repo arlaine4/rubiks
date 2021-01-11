@@ -400,100 +400,272 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
 								new_value_edge = [cube.cube[i][j][k], tmp_value]
 	print("{} edge has the {} cubie values couple that we are looking for\n---> need to move it to {}".format(new_order_edge, new_value_edge, next_pos))
 	print("------------------------------------------------------------|")
-	# if new_order_edge[0] == 1 and next_pos[0] == 2: # right
-	# 	if new_order_edge[1] == 1 and new_order_edge[2] == 0:
-	# 			if next_pos[1] == 0:
-	# 				move.move_U(cube, False)
-	# 				move.move_R(cube, True)
-	# 				lst_moves.append("U'")
-	# 				lst_moves.append("R")
-	# 			if next_pos[1] == 2:
-	# 				move.move_U(cube, True)
-	# 				move.move_R(cube, True)
-	# 				lst_moves.append("U")
-	# 				lst_moves.append("R")
-	# 			if next_pos[1] == 1 and next_pos[2] == 0:
-	# 				move.move_R(cube, True)
-	# 				lst_moves.append("R")
-	# 			if next_pos[1] == 1 and next_pos[2] == 2:
-	# 	if new_order_edge[1] == 1 and new_order_edge[2] == 2:
-	# 			if next_pos[1] == 0:
-	# 			if next_pos[1] == 2:
-	# 			if next_pos[1] == 1 and next_pos[2] == 0:
-	if new_order_edge[0] == 2 and next_pos[0] == 2: # deja face up mais pas placer
-			if new_order_edge[1] == 0:
-				move.move_B(cube, True)
-				move.move_B(cube, True)
-				lst_moves.append("B2")
-				if next_pos[1] == 2:
-					move.move_U(cube, True)
-					move.move_U(cube, True)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
-					lst_moves.append("U2")
-					lst_moves.append("B2")
-				elif next_pos[1] == 1 and next_pos[2] == 0:
-					move.move_U(cube, True)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
-					lst_moves.append("U")
-					lst_moves.append("B2")
-				elif next_pos[1] == 1 and next_pos[2] == 2:
+	if new_order_edge[0] == 0 and next_pos[0] == 2: # front
+		if new_order_edge[1] == 1:
+			if next_pos[1] == 0:
+				if new_order_edge[2] == 0:
 					move.move_U(cube, False)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
+					move.move_L(cube, False)
 					lst_moves.append("U'")
-					lst_moves.append("B2")
-			elif new_order_edge[1] == 2:
-				move.move_F(cube, True)
-				move.move_F(cube, True)
-				lst_moves.append("F2")
+					lst_moves.append("L'")
+				if new_order_edge[2] == 2:
+					move.move_U(cube, True)
+					move.move_R(cube, True)
+					lst_moves.append("U")
+					lst_moves.append("R")
+			elif next_pos[1] == 2:
+				if new_order_edge[2] == 0:
+					move.move_U(cube, True)
+					move.move_L(cube, False)
+					lst_moves.append("U")
+					lst_moves.append("L'")
+				if new_order_edge[2] == 2:
+					move.move_U(cube, False)
+					move.move_R(cube, True)
+					lst_moves.append("U'")
+					lst_moves.append("R")
+			elif next_pos[1] == 1 and next_pos[2] == 0:
+				if new_order_edge[2] == 0:
+					move.move_L(cube, False)
+					lst_moves.append("L'")
+				if new_order_edge[2] == 2:
+					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_R(cube, True)
+					lst_moves.append("U2")
+					lst_moves.append("R")
+			elif next_pos[1] == 1 and next_pos[2] == 2:
+				if new_order_edge[2] == 0:
+					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_L(cube, False)
+					lst_moves.append("U2")
+					lst_moves.append("L'")
+				if new_order_edge[2] == 2:
+					move.move_R(cube, True)
+					lst_moves.append("R")
+	if new_order_edge[0] == 2 and next_pos[0] == 2: # deja face up mais pas placer
+		if new_order_edge[1] == 0:
+			move.move_B(cube, True)
+			move.move_B(cube, True)
+			lst_moves.append("B2")
+			if next_pos[1] == 2:
+				move.move_U(cube, True)
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U2")
+				lst_moves.append("B2")
+			elif next_pos[1] == 1 and next_pos[2] == 0:
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U")
+				lst_moves.append("B2")
+			elif next_pos[1] == 1 and next_pos[2] == 2:
+				move.move_U(cube, False)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U'")
+				lst_moves.append("B2")
+		elif new_order_edge[1] == 2:
+			move.move_F(cube, True)
+			move.move_F(cube, True)
+			lst_moves.append("F2")
+			if next_pos[1] == 0:
+				move.move_U(cube, True)
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U2")
+				lst_moves.append("B2")
+			elif next_pos[1] == 1 and next_pos[2] == 0:
+				move.move_U(cube, False)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U'")
+				lst_moves.append("B2")
+			elif next_pos[1] == 1 and next_pos[2] == 2:
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U")
+				lst_moves.append("B2")
+		elif new_order_edge[1] == 1 and new_order_edge[2] == 0:
+			move.move_L(cube, True)
+			move.move_L(cube, True)
+			lst_moves.append("L2")
+			if next_pos[1] == 1 and next_pos[2] == 2:
+				move.move_U(cube, True)
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U2")
+				lst_moves.append("B2")
+			elif next_pos[1] == 0:
+				move.move_U(cube, False)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U'")
+				lst_moves.append("B2")
+			elif next_pos[1] == 2:
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U")
+				lst_moves.append("B2")
+		elif new_order_edge[1] == 1 and new_order_edge[2] == 2:
+			move.move_R(cube, True)
+			move.move_R(cube, True)
+			lst_moves.append("R2")
+			if next_pos[1] == 1 and next_pos[2] == 0:
+				move.move_U(cube, True)
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U2")
+				lst_moves.append("B2")
+			elif next_pos[1] == 0:
+				move.move_U(cube, True)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U")
+				lst_moves.append("B2")
+			elif next_pos[1] == 2:
+				move.move_U(cube, False)
+				move.move_B(cube, True)
+				move.move_B(cube, True)
+				lst_moves.append("U'")
+				lst_moves.append("B2")
+	if new_order_edge[0] == 3 and next_pos[0] == 2: # back
+		if new_order_edge[1] == 1:
+			if next_pos[1] == 0:
+				if new_order_edge[2] == 0:
+					move.move_U(cube, True)
+					move.move_R(cube, False)
+					lst_moves.append("U")
+					lst_moves.append("R'")
+				elif new_order_edge[2] == 2:
+					move.move_U(cube, False)
+					move.move_L(cube, True)
+					lst_moves.append("U'")
+					lst_moves.append("L")
+			elif next_pos[1] == 2:
+				if new_order_edge[2] == 0:
+					move.move_U(cube, False)
+					move.move_R(cube, False)
+					lst_moves.append("U'")
+					lst_moves.append("R'")
+				elif new_order_edge[2] == 2:
+					move.move_U(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("U")
+					lst_moves.append("L")
+			elif next_pos[1] == 1 and next_pos[2] == 0:
+				if new_order_edge[2] == 0:
+					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_R(cube, False)
+					lst_moves.append("U2")
+					lst_moves.append("R'")
+				elif new_order_edge[2] == 2:
+					move.move_L(cube, True)
+					lst_moves.append("L")
+			elif next_pos[1] == 1 and next_pos[2] == 2:
+				if new_order_edge[2] == 0:
+					move.move_R(cube, False)
+					lst_moves.append("R'")
+				elif new_order_edge[2] == 2:
+					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("U2")
+					lst_moves.append("L")
+	if new_order_edge[0] == 5 and next_pos[0] == 2: # down
+			if new_order_edge[1] == 0:
 				if next_pos[1] == 0:
 					move.move_U(cube, True)
 					move.move_U(cube, True)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
+					move.move_F(cube, True)
+					move.move_F(cube, True)
 					lst_moves.append("U2")
-					lst_moves.append("B2")
+					lst_moves.append("F2")
+				elif next_pos[1] == 2:
+					move.move_F(cube, True)
+					move.move_F(cube, True)
+					lst_moves.append("F2")
 				elif next_pos[1] == 1 and next_pos[2] == 0:
 					move.move_U(cube, False)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
+					move.move_F(cube, True)
+					move.move_F(cube, True)
 					lst_moves.append("U'")
-					lst_moves.append("B2")
+					lst_moves.append("F2")
 				elif next_pos[1] == 1 and next_pos[2] == 2:
 					move.move_U(cube, True)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
+					move.move_F(cube, True)
+					move.move_F(cube, True)
 					lst_moves.append("U")
-					lst_moves.append("B2")
-			elif new_order_edge[1] == 1 and next_pos[2] == 0:
-				move.move_L(cube, True)
-				move.move_L(cube, True)
-				lst_moves.append("L2")
-				if next_pos[1] == 1 and next_pos[2] == 2:
-					move.move_U(cube, True)
-					move.move_U(cube, True)
+					lst_moves.append("F2")
+			elif new_order_edge[1] == 2:
+				if next_pos[1] == 0:
 					move.move_B(cube, True)
 					move.move_B(cube, True)
-					lst_moves.append("U2")
-					lst_moves.append("B2")
-				elif next_pos[1] == 0:
-					move.move_U(cube, False)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
-					lst_moves.append("U'")
 					lst_moves.append("B2")
 				elif next_pos[1] == 2:
 					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_B(cube, True)
+					move.move_B(cube, True)
+					lst_moves.append("U2")
+					lst_moves.append("B2")
+					move.move_U(cube, True)
 					move.move_B(cube, True)
 					move.move_B(cube, True)
 					lst_moves.append("U")
 					lst_moves.append("B2")
-			elif new_order_edge[1] == 1 and next_pos[2] == 2:
-				move.move_R(cube, True)
-				move.move_R(cube, True)
-				lst_moves.append("R2")
+				elif next_pos[1] == 1 and next_pos[2] == 2:
+					move.move_U(cube, False)
+					move.move_B(cube, True)
+					move.move_B(cube, True)
+					lst_moves.append("U'")
+					lst_moves.append("B2")
+			elif new_order_edge[1] == 1 and new_order_edge[2] == 0:
+				if next_pos[1] == 0:
+					move.move_U(cube, False)
+					move.move_L(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("U'")
+					lst_moves.append("L2")
+				elif next_pos[1] == 2:
+					move.move_U(cube, True)
+					move.move_L(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("U")
+					lst_moves.append("L2")
+				elif next_pos[1] == 1 and next_pos[2] == 0:
+					move.move_L(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("L2")
+				elif next_pos[1] == 1 and next_pos[2] == 2:
+					move.move_U(cube, True)
+					move.move_U(cube, True)
+					move.move_L(cube, True)
+					move.move_L(cube, True)
+					lst_moves.append("U2")
+					lst_moves.append("L2")
+			elif new_order_edge[1] == 1 and new_order_edge[2] == 2: # ici
+				if next_pos[1] == 0:
+					move.move_U(cube, True)
+					move.move_B(cube, True)
+					move.move_B(cube, True)
+					lst_moves.append("U")
+					lst_moves.append("B2")
+				elif next_pos[1] == 2:
+					move.move_U(cube, False)
+					move.move_B(cube, True)
+					move.move_B(cube, True)
+					lst_moves.append("U'")
+					lst_moves.append("B2")
 				if next_pos[1] == 1 and next_pos[2] == 0:
 					move.move_U(cube, True)
 					move.move_U(cube, True)
@@ -501,21 +673,11 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
 					move.move_B(cube, True)
 					lst_moves.append("U2")
 					lst_moves.append("B2")
-				elif next_pos[1] == 0:
-					move.move_U(cube, True)
+				if next_pos[1] == 1 and next_pos[2] == 2:
 					move.move_B(cube, True)
 					move.move_B(cube, True)
-					lst_moves.append("U")
 					lst_moves.append("B2")
-				elif next_pos[1] == 2:
-					move.move_U(cube, False)
-					move.move_B(cube, True)
-					move.move_B(cube, True)
-					lst_moves.append("U'")
-					lst_moves.append("B2")
-	# if new_order_edge[0] == 3 and next_pos[0] == 2: # back
-	# if new_order_edge[0] == 4 and next_pos[0] == 2: # left
-	# if new_order_edge[0] == 5 and next_pos[0] == 2: # down
+
 
 	# if face == "U":
 	# 	for i in range(len(bad_edges_value)):
