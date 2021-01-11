@@ -400,8 +400,26 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
 								new_value_edge = [cube.cube[i][j][k], tmp_value]
 	print("{} edge has the {} cubie values couple that we are looking for\n---> need to move it to {}".format(new_order_edge, new_value_edge, next_pos))
 	print("------------------------------------------------------------|")
-	# if new_order_edge[0] == 0 and next_pos[0] == 2: # front
 	# if new_order_edge[0] == 1 and next_pos[0] == 2: # right
+	# 	if new_order_edge[1] == 1 and new_order_edge[2] == 0:
+	# 			if next_pos[1] == 0:
+	# 				move.move_U(cube, False)
+	# 				move.move_R(cube, True)
+	# 				lst_moves.append("U'")
+	# 				lst_moves.append("R")
+	# 			if next_pos[1] == 2:
+	# 				move.move_U(cube, True)
+	# 				move.move_R(cube, True)
+	# 				lst_moves.append("U")
+	# 				lst_moves.append("R")
+	# 			if next_pos[1] == 1 and next_pos[2] == 0:
+	# 				move.move_R(cube, True)
+	# 				lst_moves.append("R")
+	# 			if next_pos[1] == 1 and next_pos[2] == 2:
+	# 	if new_order_edge[1] == 1 and new_order_edge[2] == 2:
+	# 			if next_pos[1] == 0:
+	# 			if next_pos[1] == 2:
+	# 			if next_pos[1] == 1 and next_pos[2] == 0:
 	if new_order_edge[0] == 2 and next_pos[0] == 2: # deja face up mais pas placer
 			if new_order_edge[1] == 0:
 				move.move_B(cube, True)
