@@ -4,7 +4,35 @@ import visual as visu
 import utils
 import hta
 
-def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
+def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
+        t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 2, 1, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 0, 4, 0, 1]]
+        t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 2, 1, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 0, 4, 2, 1]]
+        value_pos_up = [[2, 3], [2, 1], [2, 0], [2, 4]]
+        value_pos_down = [[5, 0], [5, 1], [5, 3], [5, 4]]
+        bad_edges_values = []
+        lst_order_edges = []
+        lst_order_values = []
+        next_pos = []
+        found = False
+        #-------------------------#
+        #           Up            #
+        #reverse order of good_edges_up
+        if len(good_edges_up) > 0:
+            for i in range(len(good_edges_up)):
+                lst_order_edges.append(good_edges_up[i])
+                lst_order_values.append([good_edges_up[i][0], cube.cube[good_edges_up[i][0]][good_edges_up[i][1]][good_edges_up[i][2]]])
+                lst_order_edges[i], lst_order_values[i] = utils.replace_tpu(lst_order_edges[i], "U")
+        elif len(good_edges_up) == 0:
+            lst_moves, cube, found = utils.check_and_get_ud_slice_edge(cube, "U", lst_moves)
+            if found is False:
+                lst_moves, cube = utils.check_and_get_edge_oppisite_face(cube, "U", lst_moves)
+        print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
+        next_pos = utils.get_next_edge_placement_pos(lst_order_edges[0], cube, "U")
+        print("next_pos : {}".format(next_pos))
+        return cube, lst_moves
+
+
+"""def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
         t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 2, 1, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 0, 4, 0, 1]]
         t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 2, 1, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 0, 4, 2, 1]]
         value_pos_up = [[2, 3], [2, 1], [2, 0], [2, 4]]
@@ -26,7 +54,6 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
                     i += 1
             lst_order_edges.append(good_edges_up[i])
             lst_order_values.append([good_edges_up[i][0], cube.cube[good_edges_up[i][0]][good_edges_up[i][1]][good_edges_up[i][2]]])
-
         elif len(good_edges_up) == 0:
             lst_moves, cube, found = utils.check_and_get_ud_slice_edge(cube, "U", lst_moves) #call avec bad_edges ou avec good_edges_down ?
             if found is False:
@@ -34,8 +61,9 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
         #                          #
         #--------------------------#
         
-
         lst_order_edges[0], lst_order_values[0] = utils.replace_tpu(lst_order_edges[0], "U") #update lst_order_values
+        print("lst_order : {}".format(lst_order_edges))
+        print("lst_value : {}".format(lst_order_values))
         next_pos = utils.get_next_edge_placement_pos(lst_order_edges[0], cube, "U") #recuperation position ideale pour next edge
         lst_order_edges.append([]) ; lst_order_values.append([])
 
@@ -62,4 +90,4 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
             #next_pos.clear()
             #next_pos.append(t_p_u[i])
             #break
-        return cube, lst_moves
+        return cube, lst_moves"""
