@@ -52,6 +52,7 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
             next_pos = utils.get_next_edge_placement_pos(lst_order_edges[len(lst_order_edges) - 1], cube, "U")
             print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
             print("next_pos : {}".format(next_pos))
+            c.print_cube(cube)
             i += 1
 
         #-------------------------#
