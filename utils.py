@@ -372,7 +372,7 @@ def append_bad_edges_values(new_pos, cube):
                 value = cube.cube[1][2][1]
     return value
 
-def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, bad_edges, bad_edges_value, next_pos, face, lst_moves):
+def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, bad_edges, bad_edges_value, next_pos, face, lst_moves, lst_good_order):
 	new_order_edge = []
 	new_value_edge = []
 	#print("------------------------------------------------------------|")
@@ -385,13 +385,17 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
 		for j in range(3):
 			for k in range(3):
 				if (j == 0 or j == 2 and k == 1) or (j == 1 and k != 1):
+                                        for h in range(len(lst_good_order)):
+                                            if cube.cube[i][j][k] in lst_good_order[h]:
+                                                pass
+                                            else:
 						if cube.cube[i][j][k] == lst_order_value[0]:
 							tmp_value = append_bad_edges_values([i, j, k], cube)
-							print("inside loop : ", lst_order_value, tmp_value)
+							print("inside loop : {} -> looking for {}".format([i, j, k], lst_order_value))
 							if tmp_value == lst_order_value[1]:
 								new_order_edge = [i, j, k]
 								new_value_edge = [cube.cube[i][j][k], tmp_value]
-								print(new_order_edge)
+								print("found for ", [i, j, k])
 	print("{} edge has the {} cubie values couple that we are looking for\n---> need to move it to {}".format(new_order_edge, new_value_edge, next_pos))
 	print("------------------------------------------------------------|")
 	if new_order_edge[0] == 0 and next_pos[0] == 2: # front
