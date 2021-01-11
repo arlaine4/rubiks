@@ -372,13 +372,9 @@ def append_bad_edges_values(new_pos, cube):
                 value = cube.cube[1][2][1]
     return value
 
-def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, bad_edges, bad_edges_value, index, next_pos, face, lst_moves):
+def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, bad_edges, bad_edges_value, next_pos, face, lst_moves):
 	new_order_edge = []
 	new_value_edge = []
-	t_p_u = [[2, 0, 1, 3, 0, 1], [2, 1, 2, 4, 0, 1], [2, 2, 1, 0, 0, 1], [2, 1, 0, 1, 0, 1]]
-	t_p_d = [[5, 0, 1, 0, 2, 1], [5, 1, 2, 4, 2, 1], [5, 2, 1, 3, 2, 1], [5, 1, 0, 1, 2, 1]]
-	values_up = [[2, 3], [2, 4], [2, 0], [2, 1]]
-	values_down = [[5, 0], [5, 4], [5, 3], [5, 1]]
 	print("------------------------------------------------------------|")
 	print("|        Print inside find_and_move_next_edge_placement     |\n")
 	print("bad_edges : ", bad_edges)

@@ -19,9 +19,14 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
 
         #--------------------------#
         # Selection starting point #
+        i = 0
         if len(good_edges_up) > 0:
-            lst_order_edges.append(good_edges_up[0])
-            lst_order_values.append([good_edges_up[0][0], cube.cube[good_edges_up[0][0]][good_edges_up[0][1]][good_edges_up[0][2]]])
+            if i < len(good_edges_up):
+                while i < len(good_edges_up) - 1:
+                    i += 1
+            lst_order_edges.append(good_edges_up[i])
+            lst_order_values.append([good_edges_up[i][0], cube.cube[good_edges_up[i][0]][good_edges_up[i][1]][good_edges_up[i][2]]])
+
         elif len(good_edges_up) == 0:
             lst_moves, cube, found = utils.check_and_get_ud_slice_edge(cube, "U", lst_moves) #call avec bad_edges ou avec good_edges_down ?
             if found is False:
@@ -40,8 +45,9 @@ def	edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_moves):
             bad_edges_values.append([cube.cube[new_pos[0]][new_pos[1]][new_pos[2]], bad_edges_value])
     
         #ajuster lst_order_values du nombre de case decalees
+        print("bonsoir ",lst_order_edges, next_pos)
         cube, lst_order_edges[1], lst_order_values[1] = utils.find_and_move_next_edge_placement(cube, lst_order_edges[0], lst_order_values[0],\
-                bad_edges, bad_edges_values, 1, next_pos, "U", lst_moves)
+                bad_edges, bad_edges_values, next_pos, "U", lst_moves)
 
         # OK || lst_order_edges bien replace, besoin de mettre a jour lst_order_values
         # OK || recuperer a quelle position on doit placer l'edge suivante et la value que il doit y avoir a cet endroit la pour que ca soit dans l'ordre
