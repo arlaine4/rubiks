@@ -37,6 +37,7 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
             bad_edges_value = utils.append_bad_edges_values(new_pos, cube)
             bad_edges_values.append([cube.cube[new_pos[0]][new_pos[1]][new_pos[2]], bad_edges_value])
 
+        print("bad_edges :::: ",bad_edges)
         i = len(lst_order_edges) - 1
         while i < 4:
             tmp_value = None

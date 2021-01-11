@@ -384,20 +384,13 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
 	for i in range(6):
 		for j in range(3):
 			for k in range(3):
-				if j == 0 or j == 2:
-					if k == 1:
-						if cube.cube[i][j][k] == lst_order_value[0]:
-							tmp_value = append_bad_edges_values([i, j, k], cube)
-							if tmp_value == lst_order_value[1]:
-								new_order_edge = [i, j, k]
-								new_value_edge = [cube.cube[i][j][k], tmp_value]
-				elif j == 1:
-					if k != 1:
-						if cube.cube[i][j][k] == lst_order_value[0]:
-							tmp_value = append_bad_edges_values([i, j, k], cube)
-							if tmp_value == lst_order_value[1]:
-								new_order_edge = [i, j, k]
-								new_value_edge = [cube.cube[i][j][k], tmp_value]
+				if (j == 0 or j == 2 and k == 1) or (j == 1 and k != 1):
+					    if cube.cube[i][j][k] == lst_order_value[0]:
+						    tmp_value = append_bad_edges_values([i, j, k], cube)
+						    if tmp_value == lst_order_value[1]:
+							new_order_edge = [i, j, k]
+							new_value_edge = [cube.cube[i][j][k], tmp_value]
+                                                        print("inside loop : ", new_order_edge, new_value_edge)
 	print("{} edge has the {} cubie values couple that we are looking for\n---> need to move it to {}".format(new_order_edge, new_value_edge, next_pos))
 	print("------------------------------------------------------------|")
 	if new_order_edge[0] == 0 and next_pos[0] == 2: # front
