@@ -29,16 +29,15 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
             if found is False:
                 lst_moves, cube = utils.check_and_get_edge_oppisite_face(cube, "U", lst_moves)
 
-        print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
+        #print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
         next_pos = utils.get_next_edge_placement_pos(lst_order_edges[len(lst_order_edges) - 1], cube, "U")
-        print("next_pos : {}".format(next_pos))
+        #print("next_pos : {}".format(next_pos))
 
         for edge in bad_edges:
             new_pos = edge
             bad_edges_value = utils.append_bad_edges_values(new_pos, cube)
             bad_edges_values.append([cube.cube[new_pos[0]][new_pos[1]][new_pos[2]], bad_edges_value])
 
-        print("bad_edges :::: ",bad_edges)
         i = len(lst_order_edges) - 1
         while i < 4:
             tmp_value = None
@@ -46,14 +45,12 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
             if i == 3:
                 break
             s = str(lst_order_edges[i][0]) + str(lst_order_edges[i][1]) + str(lst_order_edges[i][2])
-            cube, lst_moves, tmp_edge, tmp_value= utils.find_and_move_next_edge_placement(cube, lst_order_edges[i], dic_pos[s], \
+            cube, lst_moves, tmp_edge, tmp_value= utils.find_and_move_next_edge_placement(cube, lst_order_values[i], dic_pos[s], \
                 bad_edges, bad_edges_values, next_pos, "U", lst_moves, lst_order_edges)
             if tmp_edge in lst_order_edges and tmp_value in lst_order_values:
                 break
             lst_order_edges.append(tmp_edge) ; lst_order_values.append(tmp_value)
             next_pos = utils.get_next_edge_placement_pos(lst_order_edges[len(lst_order_edges) - 1], cube, "U")
-            print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
-            print("next_pos : {}".format(next_pos))
             c.print_cube(cube)
             i += 1
 
