@@ -683,6 +683,187 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                     move.move_B(cube, True)
                     move.move_B(cube, True)
                     lst_moves.append("B2")
+    if new_order_edge[0] == 0 and next_pos[0] == 5: # front
+        if new_order_edge[1] == 1:
+            if next_pos[1] == 0:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, False)
+                    move.move_L(cube, True)
+                    lst_moves.append("D'")
+                    lst_moves.append("L")
+                if new_order_edge[2] == 2:
+                    move.move_D(cube, True)
+                    move.move_R(cube, False)
+                    lst_moves.append("D")
+                    lst_moves.append("R'")
+            elif next_pos[1] == 2:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, True)
+                    move.move_L(cube, True)
+                    lst_moves.append("U")
+                    lst_moves.append("L")
+                if new_order_edge[2] == 2:
+                    move.move_D(cube, False)
+                    move.move_R(cube, False)
+                    lst_moves.append("D'")
+                    lst_moves.append("R'")
+            elif next_pos[1] == 1 and next_pos[2] == 0:
+                if new_order_edge[2] == 0:
+                    move.move_L(cube, True)
+                    lst_moves.append("L")
+                if new_order_edge[2] == 2:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_R(cube, False)
+                    lst_moves.append("D2")
+                    lst_moves.append("R'")
+            elif next_pos[1] == 1 and next_pos[2] == 2:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_L(cube, True)
+                    lst_moves.append("D2")
+                    lst_moves.append("L")
+                if new_order_edge[2] == 2:
+                    move.move_R(cube, False)
+                    lst_moves.append("R'")
+    if new_order_edge[0] == 3 and next_pos[0] == 5: # back
+        if new_order_edge[1] == 1:
+            if next_pos[1] == 0:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, True)
+                    move.move_R(cube, True)
+                    lst_moves.append("D")
+                    lst_moves.append("R")
+                elif new_order_edge[2] == 2:
+                    move.move_D(cube, False)
+                    move.move_L(cube, False)
+                    lst_moves.append("D'")
+                    lst_moves.append("L'")
+            elif next_pos[1] == 2:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, False)
+                    move.move_R(cube, True)
+                    lst_moves.append("D'")
+                    lst_moves.append("R")
+                elif new_order_edge[2] == 2:
+                    move.move_D(cube, True)
+                    move.move_L(cube, False)
+                    lst_moves.append("D")
+                    lst_moves.append("L'")
+            elif next_pos[1] == 1 and next_pos[2] == 0:
+                if new_order_edge[2] == 0:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_R(cube, True)
+                    lst_moves.append("U2")
+                    lst_moves.append("R")
+                elif new_order_edge[2] == 2:
+                    move.move_L(cube, False)
+                    lst_moves.append("L'")
+            elif next_pos[1] == 1 and next_pos[2] == 2:
+                if new_order_edge[2] == 0:
+                    move.move_R(cube, True)
+                    lst_moves.append("R")
+                elif new_order_edge[2] == 2:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_L(cube, False)
+                    lst_moves.append("U2")
+                    lst_moves.append("L'")
+    if new_order_edge[0] == 5 and next_pos[0] == 5: # down
+            if new_order_edge[1] == 0: # CAREFULL THIS CASE IS REALLY COMPLEXE AT FIRST
+                if next_pos[1] != 0:
+                    move.move_D(cube, True)
+                    lst_moves.append("D")
+                    if next_pos[1] == 2:
+                        move.move_R(cube, True)
+                        move.move_D(cube, True)
+                        move.move_D(cube, True)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D2")
+                        lst_moves.append("R'")
+                    elif next_pos[1] == 1 and next_pos[2] == 0:
+                        move.move_R(cube, True)
+                        move.move_D(cube, True)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D")
+                        lst_moves.append("R'")
+                    elif next_pos[1] == 1 and next_pos[2] == 2:
+                        move.move_R(cube, True)
+                        move.move_D(cube, False)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D'")
+                        lst_moves.append("R'")
+            elif new_order_edge[1] == 2:  # CAREFULL THIS CASE IS REALLY COMPLEXE AT FIRST
+                if next_pos[1] != 2:
+                    move.move_D(cube, False)
+                    lst_moves.append("D'")
+                    if next_pos[1] == 0:
+                        move.move_R(cube, True)
+                        move.move_D(cube, True)
+                        move.move_D(cube, True)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D2")
+                        lst_moves.append("R'")
+                    elif next_pos[1] == 1 and next_pos[2] == 0:
+                        move.move_R(cube, True)
+                        move.move_D(cube, False)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D'")
+                        lst_moves.append("R'")
+                    elif next_pos[1] == 1 and next_pos[2] == 2:
+                        move.move_R(cube, True)
+                        move.move_D(cube, True)
+                        move.move_R(cube, False)
+                        lst_moves.append("R")
+                        lst_moves.append("D")
+                        lst_moves.append("R'")
+            elif new_order_edge[1] == 1 and new_order_edge[2] == 0:
+                if next_pos[1] != 1 and next_pos[2] != 0:
+                    move.move_L(cube, True)
+                    lst_moves.append("L")
+                if next_pos[1] == 0:
+                    move.move_D(cube, False)
+                    move.move_L(cube, False)
+                    lst_moves.append("D'")
+                    lst_moves.append("L'")
+                elif next_pos[1] == 2:
+                    move.move_D(cube, True)
+                    move.move_L(cube, False)
+                    lst_moves.append("D")
+                    lst_moves.append("L'")
+                elif next_pos[1] == 1 and next_pos[2] == 2:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_L(cube, False)
+                    lst_moves.append("D2")
+                    lst_moves.append("L'")
+            elif new_order_edge[1] == 1 and new_order_edge[2] == 2:
+                if next_pos[1] != 1 and next_pos[2] != 2:
+                    move.move_R(cube, True)
+                    lst_moves.append("R")
+                if next_pos[1] == 0:
+                    move.move_D(cube, True)
+                    move.move_R(cube, False)
+                    lst_moves.append("D")
+                    lst_moves.append("R'")
+                elif next_pos[1] == 2:
+                    move.move_D(cube, False)
+                    move.move_R(cube, False)
+                    lst_moves.append("D'")
+                    lst_moves.append("R'")
+                elif next_pos[1] == 1 and next_pos[2] == 0:
+                    move.move_D(cube, True)
+                    move.move_D(cube, True)
+                    move.move_R(cube, False)
+                    lst_moves.append("D2")
+                    lst_moves.append("R'")
     new_order_edge = next_pos
     p = new_order_edge
     new_value_edge = [cube.cube[p[0]][p[1]][p[2]], append_bad_edges_values([p[0],p[1],p[2]], cube)]
