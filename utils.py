@@ -458,7 +458,7 @@ def order_things_back(cube, face, move2do, lst_moves):
             elif move2do == 'L' or move2do == "L'":
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("L" if move2do == 'L' else "L'")
-            else:
+            else: # debug
                 print("Aucun move fais dans order_things_back")
         if cube.cube[5][1][2] != 5:
             if move2do == 'R' or move2do == "R'":

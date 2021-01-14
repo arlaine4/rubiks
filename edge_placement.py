@@ -81,16 +81,33 @@ def     edges_placement(cube, bad_edges, good_edges_up, good_edges_down, lst_mov
             bad_edges_values.append([cube.cube[new_pos[0]][new_pos[1]][new_pos[2]], bad_edges_value])
 
         i = len(lst_order_edges) - 1
+        t = 0
         while i < 4:
             tmp_value = None
             tmp_edge = None
             s = str(lst_order_edges[i][0]) + str(lst_order_edges[i][1]) + str(lst_order_edges[i][2])
             cube, lst_moves, tmp_edge, tmp_value = utils.find_and_move_next_edge_placement(cube, lst_order_values[i], dic_pos_d[s], \
                     bad_edges, bad_edges_values, next_pos, "D", lst_moves, lst_order_edges)
-            if tmp_edge in lst_order_edges and tmp_value in lst_order_values:
+            # if tmp_edge in lst_order_edges and tmp_value in lst_order_values:
+            #     break
+            if t == 10 or down_is_valid(cube) == True:
+                c.print_cube(cube)
                 break
             lst_order_edges.append(tmp_edge) ; lst_order_values.append(tmp_value)
             next_pos = utils.get_next_edge_placement_pos(lst_order_edges[len(lst_order_edges) - 1], cube, "D")
             print("lst_order_edges : {}\nlst_order_values : {}".format(lst_order_edges, lst_order_values))
             print("next_pos : {}".format(next_pos))
+            t+=1
+            c.print_cube(cube)
         return cube, lst_moves
+
+def down_is_valid(c):
+    if c.cube[5][0][1] != 5:
+        return False
+    if c.cube[5][1][0] != 5:
+        return False
+    if c.cube[5][1][2] != 5:
+        return False
+    if c.cube[5][2][1] != 5:
+        return False
+    return True
