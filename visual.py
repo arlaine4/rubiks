@@ -403,6 +403,7 @@ def	main_visual(c, mix, lst_moves):
         j = 0
         speed = 2
         bool_shuffle = False
+        coups = 0
         while True:
                 for event in pygame.event.get():
                         if event.type == pygame.QUIT:
@@ -436,7 +437,7 @@ def	main_visual(c, mix, lst_moves):
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(c.cube)
                                                 pygame.display.flip()
-                                                pygame.time.wait(300)
+                                                pygame.time.wait(30)
                                                 clock.tick(120)
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(c.cube)
@@ -447,15 +448,17 @@ def	main_visual(c, mix, lst_moves):
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(c.cube)
                                                 pygame.display.flip()
-                                                pygame.time.wait(300)
+                                                pygame.time.wait(30)
                                                 clock.tick(120)
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(c.cube)
+                                                coups += 1
+                                                pygame.display.set_caption("Rubiks | {} fps | Number of moves : {}".format(int(clock.get_fps()), coups))
                 opaque_on_off(True if opaque > 0 else False)
                 if turn > 0:
                     glRotatef(speed, x, y, 1)
                 clock.tick(120)
-                pygame.display.set_caption("Rubiks | {} fps".format(int(clock.get_fps())))
+                pygame.display.set_caption("Rubiks | {} fps | Number of moves : {}".format(int(clock.get_fps()), coups))
                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                 Cube(c.cube)
                 #print_help()
