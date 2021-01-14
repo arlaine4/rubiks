@@ -259,29 +259,29 @@ def replace_tpu(lst_order, lst_value, face):
     new_lst_order = lst_order
     new_value = lst_value
     if face == "U":
-        if lst_order == [1, 0, 1]:
+        if lst_order == [1, 0, 1] or lst_order == [2, 1, 2]:
             new_lst_order = [2, 1, 2]
             new_value = [2, 1]
-        elif lst_order == [0, 0, 1]:
+        elif lst_order == [0, 0, 1] or lst_order == [2, 2, 1]:
             new_lst_order = [2, 2, 1]
             new_value = [2, 0]
-        elif lst_order == [4, 0, 1]:
+        elif lst_order == [4, 0, 1] or lst_order == [2, 1, 0]:
             new_lst_order = [2, 1, 0]
             new_value = [2, 4]
-        elif lst_order == [3, 0, 1]:
+        elif lst_order == [3, 0, 1] or lst_order == [3, 0, 1]:
             new_lst_order = [2, 0, 1]
             new_value = [2, 3]
     elif face == "D":
-        if lst_order == [1, 2, 1]:
+        if lst_order == [1, 2, 1] or lst_order == [5, 1, 2]:
             new_lst_order = [5, 1, 2]
             new_value = [5, 1]
-        elif lst_order == [3, 2, 1]:
+        elif lst_order == [3, 2, 1] or lst_order == [5, 2, 1]:
             new_lst_order = [5, 2, 1]
             new_value = [5, 3]
-        elif lst_order == [4, 2, 1]:
+        elif lst_order == [4, 2, 1] or lst_order == [5, 1, 0]:
             new_lst_order = [5, 1, 0]
             new_value = [5, 4]
-        elif lst_order == [0, 2, 1]:
+        elif lst_order == [0, 2, 1] or lst_order == [5, 0, 1]:
             new_lst_order = [5, 0, 1]
             new_value = [5, 0]
         else:
@@ -376,6 +376,7 @@ def append_bad_edges_values(new_pos, cube):
 
 def find_next_edge_value(edge_value, face):
     next_value = []
+    print(face)
     if face == "U":
         if edge_value == [2, 3]:
             next_value = [2, 1]
