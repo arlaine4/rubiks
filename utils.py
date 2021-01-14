@@ -376,7 +376,6 @@ def append_bad_edges_values(new_pos, cube):
 
 def find_next_edge_value(edge_value, face):
     next_value = []
-    print(face)
     if face == "U":
         if edge_value == [2, 3]:
             next_value = [2, 1]
@@ -395,7 +394,7 @@ def find_next_edge_value(edge_value, face):
 
 def order_things_back(cube, face, move2do):
     if face == 'F':
-        if cube[2][0][1] != 2:
+        if cube.cube[2][0][1] != 2:
             if move2do == 'R' or move2do == "R'":
                 move.move_U(cube, True)
                 move.move_R(cube, True if move2do == 'R' else False)
@@ -406,7 +405,7 @@ def order_things_back(cube, face, move2do):
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("U'")
                 lst_moves.append("L" if move2do == 'L' else "L'")
-        if cube[2][1][0] != 2:
+        if cube.cube[2][1][0] != 2:
             if move2do == 'R' or move2do == "R'":
                 move.move_U(cube, True)
                 move.move_U(cube, True)
@@ -416,7 +415,7 @@ def order_things_back(cube, face, move2do):
             elif move2do == 'L' or move2do == "L'":
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("L" if move2do == 'L' else "L'")
-        if cube[2][1][2] != 2:
+        if cube.cube[2][1][2] != 2:
             if move2do == 'R' or move2do == "R'":
                 move.move_R(cube, True if move2do == 'R' else False)
                 lst_moves.append("R" if move2do == 'R' else "R'")
@@ -426,7 +425,7 @@ def order_things_back(cube, face, move2do):
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("U2")
                 lst_moves.append("L" if move2do == 'L' else "L'")
-        if cube[2][2][1] != 2:
+        if cube.cube[2][2][1] != 2:
             if move2do == 'R' or move2do == "R'":
                 move.move_U(cube, False)
                 move.move_R(cube, True if move2do == 'R' else False)
@@ -438,7 +437,7 @@ def order_things_back(cube, face, move2do):
                 lst_moves.append("U")
                 lst_moves.append("L" if move2do == 'L' else "L'")
     if face == 'D':
-        if cube[5][0][1] != 5:
+        if cube.cube[5][0][1] != 5:
             if move2do == 'R' or move2do == "R'":
                 move.move_D(cube, True)
                 move.move_R(cube, True if move2do == 'R' else False)
@@ -449,7 +448,7 @@ def order_things_back(cube, face, move2do):
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("D'")
                 lst_moves.append("L" if move2do == 'L' else "L'")
-        if cube[5][1][0] != 5:
+        if cube.cube[5][1][0] != 5:
             if move2do == 'R' or move2do == "R'":
                 move.move_D(cube, True)
                 move.move_D(cube, True)
@@ -461,7 +460,7 @@ def order_things_back(cube, face, move2do):
                 lst_moves.append("L" if move2do == 'L' else "L'")
             else:
                 print("Aucun move fais dans order_things_back")
-        if cube[5][1][2] != 5:
+        if cube.cube[5][1][2] != 5:
             if move2do == 'R' or move2do == "R'":
                 move.move_R(cube, True if move2do == 'R' else False)
                 lst_moves.append("R" if move2do == 'R' else "R'")
@@ -471,7 +470,7 @@ def order_things_back(cube, face, move2do):
                 move.move_L(cube, True if move2do == 'L' else False)
                 lst_moves.append("D2")
                 lst_moves.append("L" if move2do == 'L' else "L'")
-        if cube[5][2][1] != 5:
+        if cube.cube[5][2][1] != 5:
             if move2do == 'R' or move2do == "R'":
                 move.move_D(cube, False)
                 move.move_R(cube, True if move2do == 'R' else False)
