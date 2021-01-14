@@ -392,7 +392,7 @@ def find_next_edge_value(edge_value, face):
             next_value = [5, 4]
     return next_value
 
-def order_things_back(cube, face, move2do):
+def order_things_back(cube, face, move2do, lst_moves):
     if face == 'F':
         if cube.cube[2][0][1] != 2:
             if move2do == 'R' or move2do == "R'":
@@ -787,38 +787,38 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                     move.move_L(cube, True)
                     lst_moves.append("D'")
                     lst_moves.append("L")
-                    cube, lst_moves = order_things_back(cube, 'D', "L'")
+                    cube, lst_moves = order_things_back(cube, 'D', "L'", lst_moves)
                 if new_order_edge[2] == 2:
                     move.move_D(cube, True)
                     move.move_R(cube, False)
                     lst_moves.append("D")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
             elif next_pos[1] == 2:
                 if new_order_edge[2] == 0:
                     move.move_D(cube, True)
                     move.move_L(cube, True)
                     lst_moves.append("D")
                     lst_moves.append("L")
-                    cube, lst_moves = order_things_back(cube, 'D', "L'")
+                    cube, lst_moves = order_things_back(cube, 'D', "L'", lst_moves)
                 if new_order_edge[2] == 2:
                     move.move_D(cube, False)
                     move.move_R(cube, False)
                     lst_moves.append("D'")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
             elif next_pos[1] == 1 and next_pos[2] == 0:
                 if new_order_edge[2] == 0:
                     move.move_L(cube, True)
                     lst_moves.append("L")
-                    cube, lst_moves = order_things_back(cube, 'D', "L'")
+                    cube, lst_moves = order_things_back(cube, 'D', "L'", lst_moves)
                 if new_order_edge[2] == 2:
                     move.move_D(cube, True)
                     move.move_D(cube, True)
                     move.move_R(cube, False)
                     lst_moves.append("D2")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
             elif next_pos[1] == 1 and next_pos[2] == 2:
                 if new_order_edge[2] == 0:
                     move.move_D(cube, True)
@@ -826,11 +826,11 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                     move.move_L(cube, True)
                     lst_moves.append("D2")
                     lst_moves.append("L")
-                    cube, lst_moves = order_things_back(cube, 'D', "L'")
+                    cube, lst_moves = order_things_back(cube, 'D', "L'", lst_moves)
                 if new_order_edge[2] == 2:
                     move.move_R(cube, False)
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
     if new_order_edge[0] == 3 and next_pos[0] == 5: # back
         if new_order_edge[1] == 1:
             if next_pos[1] == 0:
@@ -839,26 +839,26 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                     move.move_R(cube, True)
                     lst_moves.append("D")
                     lst_moves.append("R")
-                    cube, lst_moves = order_things_back(cube, 'D', "R'")
+                    cube, lst_moves = order_things_back(cube, 'D', "R'", lst_moves)
                 elif new_order_edge[2] == 2:
                     move.move_D(cube, False)
                     move.move_L(cube, False)
                     lst_moves.append("D'")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
             elif next_pos[1] == 2:
                 if new_order_edge[2] == 0:
                     move.move_D(cube, False)
                     move.move_R(cube, True)
                     lst_moves.append("D'")
                     lst_moves.append("R")
-                    cube, lst_moves = order_things_back(cube, 'D', "R'")
+                    cube, lst_moves = order_things_back(cube, 'D', "R'", lst_moves)
                 elif new_order_edge[2] == 2:
                     move.move_D(cube, True)
                     move.move_L(cube, False)
                     lst_moves.append("D")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
             elif next_pos[1] == 1 and next_pos[2] == 0:
                 if new_order_edge[2] == 0:
                     move.move_D(cube, True)
@@ -866,23 +866,23 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                     move.move_R(cube, True)
                     lst_moves.append("D2")
                     lst_moves.append("R")
-                    cube, lst_moves = order_things_back(cube, 'D', "R'")
+                    cube, lst_moves = order_things_back(cube, 'D', "R'", lst_moves)
                 elif new_order_edge[2] == 2:
                     move.move_L(cube, False)
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
             elif next_pos[1] == 1 and next_pos[2] == 2:
                 if new_order_edge[2] == 0:
                     move.move_R(cube, True)
                     lst_moves.append("R")
-                    cube, lst_moves = order_things_back(cube, 'D', "R'")
+                    cube, lst_moves = order_things_back(cube, 'D', "R'", lst_moves)
                 elif new_order_edge[2] == 2:
                     move.move_D(cube, True)
                     move.move_D(cube, True)
                     move.move_L(cube, False)
                     lst_moves.append("D2")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
     if new_order_edge[0] == 5 and next_pos[0] == 5: # down
             if new_order_edge[1] == 0: # CAREFULL THIS CASE IS REALLY COMPLEXE AT FIRST
                 if next_pos[1] != 0:
@@ -940,50 +940,50 @@ def find_and_move_next_edge_placement(cube, lst_order_edges, lst_order_value, ba
                 if next_pos[1] != 1 and next_pos[2] != 0:
                     move.move_L(cube, True)
                     lst_moves.append("L")
-                    cube, lst_moves = order_things_back(cube, 'D', "L'")
+                    cube, lst_moves = order_things_back(cube, 'D', "L'", lst_moves)
                 if next_pos[1] == 0:
                     move.move_D(cube, False)
                     move.move_L(cube, False)
                     lst_moves.append("D'")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
                 elif next_pos[1] == 2:
                     move.move_D(cube, True)
                     move.move_L(cube, False)
                     lst_moves.append("D")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
                 elif next_pos[1] == 1 and next_pos[2] == 2:
                     move.move_D(cube, True)
                     move.move_D(cube, True)
                     move.move_L(cube, False)
                     lst_moves.append("D2")
                     lst_moves.append("L'")
-                    cube, lst_moves = order_things_back(cube, 'D', "L")
+                    cube, lst_moves = order_things_back(cube, 'D', "L", lst_moves)
             elif new_order_edge[1] == 1 and new_order_edge[2] == 2:
                 if next_pos[1] != 1 and next_pos[2] != 2:
                     move.move_R(cube, True)
                     lst_moves.append("R")
-                    cube, lst_moves = order_things_back(cube, 'D', "R'")
+                    cube, lst_moves = order_things_back(cube, 'D', "R'", lst_moves)
                 if next_pos[1] == 0:
                     move.move_D(cube, True)
                     move.move_R(cube, False)
                     lst_moves.append("D")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
                 elif next_pos[1] == 2:
                     move.move_D(cube, False)
                     move.move_R(cube, False)
                     lst_moves.append("D'")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
                 elif next_pos[1] == 1 and next_pos[2] == 0:
                     move.move_D(cube, True)
                     move.move_D(cube, True)
                     move.move_R(cube, False)
                     lst_moves.append("D2")
                     lst_moves.append("R'")
-                    cube, lst_moves = order_things_back(cube, 'D', "R")
+                    cube, lst_moves = order_things_back(cube, 'D', "R", lst_moves)
     new_order_edge = next_pos
     p = new_order_edge
     new_value_edge = [cube.cube[p[0]][p[1]][p[2]], append_bad_edges_values([p[0],p[1],p[2]], cube)]
