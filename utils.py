@@ -255,9 +255,9 @@ def check_and_get_edge_opposite_face(cube, face, lst_moves):
 			lst_moves.append("L2")
 	return lst_moves, cube
 
-def replace_tpu(lst_order, face):
-    new_lst_order = []
-    new_value = []
+def replace_tpu(lst_order, lst_value, face):
+    new_lst_order = lst_order
+    new_value = lst_value
     if face == "U":
         if lst_order == [1, 0, 1]:
             new_lst_order = [2, 1, 2]
@@ -284,6 +284,8 @@ def replace_tpu(lst_order, face):
         elif lst_order == [0, 2, 1]:
             new_lst_order = [5, 0, 1]
             new_value = [5, 0]
+        else:
+            print("bonsoir")
     return new_lst_order, new_value
 
 def get_next_edge_placement_pos(order_edge, cube, face):
