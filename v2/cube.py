@@ -128,3 +128,89 @@ class Cube():
                 self.right[index - i][index] = tmp_row
             self.moveFrontCounter(self.back, 'b')
 
+    def moveFront(self, face, l):
+        nlist = [[x[i] for x in face] for i in range(len(face[0]))]
+        for row in range(self.size):
+            for col in range(self.size):
+                if col >= int((self.size) / 2):
+                    break
+                else:
+                    buffer_ = nlist[row][col]
+                    nlist[row][col] = nlist[row][self.size - 1 - col]
+                    nlist[row][self.size - 1 - col] = buffer_
+        if l == 'f':
+            self.front = nlist
+        elif l == 'u':
+            self.up = nlist
+        elif l == 'd':
+            self.down = nlist
+        elif l == 'l':
+            self.left = nlist
+        elif l == 'r':
+            self.right = nlist
+        elif l == 'b':
+            self.back = nlist
+
+    def moveFrontCounter(self, face, l):
+        self.moveFront(face, l)
+        if l == 'f':
+            self.moveFront(self.front, l)
+            self.moveFront(self.front, l)
+        elif l == 'u':
+            self.moveFront(self.up, l)
+            self.moveFront(self.up, l)
+        elif l == 'd':
+            self.moveFront(self.down, l)
+            self.moveFront(self.down, l)
+        elif l == 'l':
+            self.moveFront(self.left, l)
+            self.moveFront(self.left, l)
+        elif l == 'r':
+            self.moveFront(self.right, l)
+            self.moveFront(self.right, l)
+        elif l == 'b':
+            self.moveFront(self.back, l)
+            self.moveFront(self.back, l)
+
+    def move_f2(self);
+        self.move_front()
+        self.move_front()
+
+    def move_b2(self):
+        self.move_back()
+        self.move_back()
+
+    def move_d2(self):
+        self.move_down()
+        self.move_down()
+
+    def move_r2(self):
+        self.move_right()
+        self.move_right()
+
+    def move_l2(self):
+        self.move_left()
+        self.move_left()
+
+    def move_u2(self):
+        self.move_up()
+        self.move_up()
+
+    @staticmethod
+    def get_color(color):
+        if color == "green":
+            return "\033[92m"
+        elif color == "blue":
+            return "\033[34m"
+        elif color == "red":
+            return "\033[91m"
+        elif color == "orange":
+            return "\033[214m"
+        elif color == "yellow":
+            return "\033[93m"
+        elif color == "white":
+            return "\033[30m"
+
+    def print_cube(self):
+        print("print cube not done yet")
+        pass
