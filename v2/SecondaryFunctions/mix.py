@@ -1,6 +1,7 @@
 import random
 import sys
-from ... cubik import *
+sys.path.append("../")
+import cubik
 
 class Mix():
     def __init__(self):
