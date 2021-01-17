@@ -4,6 +4,7 @@ class Cube():
     def __init__(self, size):
         faces = ['front', 'back', 'right', 'left', 'up', 'down']
         colors = ['blue', 'green', 'red', 'orange', 'yellow', 'white']
+        self.size = size
         self.colors = colors
         self.front = self.fillColors(colors[0], self.size)
         self.back = self.fillColors(colors[1], self.size)
@@ -110,7 +111,7 @@ class Cube():
             self.moveFrontCounter(self.front, 'f')
 
     def move_back(self, counter_clockwise):
-        index = self.size - i
+        index = self.size - 1
         if not counter_clockwise:
             for i in range(self.size):
                 tmp_row = self.up[0][i]
@@ -172,7 +173,7 @@ class Cube():
             self.moveFront(self.back, l)
             self.moveFront(self.back, l)
 
-    def move_f2(self);
+    def move_f2(self):
         self.move_front()
         self.move_front()
 
@@ -212,5 +213,33 @@ class Cube():
             return "\033[30m"
 
     def print_cube(self):
-        print("print cube not done yet")
-        pass
+        default = "\033[0m"
+        for row in range(self.size):
+            print()
+            space = True
+            for col in range(self.size):
+                if space:
+                    for i in range(self.size):
+                        print('     ', end='')
+                    print("{} ### {}".format(self.get_color(self.up[row][col]), default), end='')
+                    space = False
+        for row in range(self.size):
+            print()
+            for col in range(self.size):
+                print("{} ### {}".format(self.get_color(self.left[row][col]), default), end='')
+            for col in range(self.size):
+                print("{} ### {}".format(self.get_color(self.front[row][col]), default), end='')
+            for col in range(self.size):
+                print("{} ### {}".format(self.get_color(self.right[row][col]), default), end='')
+            for col in range(self.size):
+                print("{} ### {}".format(self.get_color(self.back[row][col]), default), end='')
+        for row in range(self.size):
+            print()
+            space = True
+            for col in range(self.size):
+                if space:
+                    for i in range(self.size):
+                        print('     ', end='')
+                    print("{} ### {}".format(self.get_color(self.down[row][col]), default), end='')
+                    space = False
+        print()
