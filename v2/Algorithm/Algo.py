@@ -1,5 +1,5 @@
 import sys
-sys.path.inser(0, "../SecondaryFunctions")
+sys.path.insert(0, "../SecondaryFunctions")
 import check_colors as check_c
 import cubik
 
