@@ -1,4 +1,28 @@
-from SecondaryFunctions import utils
+from SecondaryFunctions import utils, check_colors
+
+def check_pos_color(cubeCurrent, cubeOrigin, color_one, color_two, color_three=None):
+    checker = check_colors.CheckColors()
+    if color_three is None:
+        lst_pos_curr = checker.two(cubeCurrent, color_one, color_two)
+        lst_pos_origin = checker.two(cubeCurrent, color_one, color_two)
+        i = 0
+        while i < len(lst_pos_origin):
+            if lst_pos_origin[i] != lst_pos_current[i]:
+                return False
+            i += 1
+        return True
+    else:
+        lst_pos_curr = checker.three(cubeCurrent, color_one, color_two, color_three)
+        lst_pos_origin = checker.three(cubeCurrent, color_one, color_two, color_three)
+        i = 0
+        while i < len(lst_pos_origin):
+            j = 0
+            while j < lst_pos_origin[0]:
+                if lst_pos_origin[i][j] != lst_pos_curr[i][j]:
+                    return False
+                j += 1
+            i += 1
+        return True
 
 class Cube():
     def __init__(self, size):

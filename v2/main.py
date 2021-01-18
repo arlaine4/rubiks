@@ -15,4 +15,4 @@ if __name__ == "__main__":
     lst_moves = lst_moves.split(' ')
     cube = mix_.runMix(lst_moves, cube)
     algo = a.Algo(cube)
-    algo.run()
+    solution = algo.run()

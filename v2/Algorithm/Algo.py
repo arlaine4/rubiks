@@ -1,5 +1,7 @@
 import sys
-from SecondaryFunctions import *
+sys.path.inser(0, "../SecondaryFunctions")
+import check_colors as check_c
+import cubik
 
 class   Algo():
     def __init__(self, cube_instance):
@@ -7,5 +9,7 @@ class   Algo():
         self.lst_moves = []
 
     def run_steps(self):
-        #run all 7 steps here
-        return self
+        cubeOrigin = cubik.Cube()
+        step_one = StepOne(cubeOrigin)
+        
+        step_one.run(self.cube, self.lst_moves)
