@@ -11,5 +11,5 @@ if __name__ == "__main__":
         print("Random moves generator not triggered, and hand written mix not valid, please try again with a valid mix.")
         sys.exit(0)
     lst_moves = args.mix
+    lst_moves = lst_moves.split(' ')
     cube = mix_.runMix(lst_moves, cube)
-    cube.print_cube()

@@ -12,6 +12,8 @@ class Mix():
 
     def runMix(self, lst_moves, cube):
         for move in lst_moves:
+            print(lst_moves)
+            print(move)
             if move == "F":
                 cube.move_front()
             elif move == "F'":
@@ -48,4 +50,5 @@ class Mix():
                 cube.move_up_counter()
             elif move == "U2":
                 cube.move_u2()
+        cube.print_cube()
         return cube

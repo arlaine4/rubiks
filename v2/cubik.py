@@ -3,7 +3,7 @@ from SecondaryFunctions import utils
 class Cube():
     def __init__(self, size):
         faces = ['front', 'back', 'right', 'left', 'up', 'down']
-        colors = ['blue', 'green', 'red', 'orange', 'yellow', 'white']
+        colors = ['green', 'blue', 'red', 'orange', 'white', 'yellow']
         self.size = size
         self.colors = colors
         self.front = self.fillColors(colors[0], self.size)
@@ -23,117 +23,108 @@ class Cube():
         return lst
 
     def move_up(self):
-        tmp = self.right[0]
+        buflst = self.right[0]
         self.right[0] = self.back[0]
         self.back[0] = self.left[0]
         self.left[0] = self.front[0]
-        self.front[0] = tmp
+        self.front[0] = buflst
         self.moveFront(self.up, 'u')
 
     def move_up_counter(self):
-        tmp = self.right[0]
+        buflst = self.right[0]
         self.right[0] = self.front[0]
         self.front[0] = self.left[0]
         self.left[0] = self.back[0]
-        self.back[0] = tmp
+        self.back[0] = buflst
         self.moveFrontCounter(self.up, 'u')
 
     def move_down(self):
-        index = self.size - 1
-        tmp = self.right[index]
-        self.right[index] = self.front[index]
-        self.front[index] = self.left[index]
-        self.left[index] = self.back[index]
-        self.back[index] = tmp
+        buflst = self.right[self.size - 1]
+        self.right[self.size - 1] = self.front[self.size - 1]
+        self.front[self.size - 1] = self.left[self.size - 1]
+        self.left[self.size - 1] = self.back[self.size - 1]
+        self.back[self.size - 1] = buflst
         self.moveFront(self.down, 'd')
 
     def move_down_counter(self):
-        index = self.size - 1
-        tmp = self.right[index]
-        self.right[index] = self.back[index]
-        self.back[index] = self.left[index]
-        self.left[index] = self.front[index]
-        self.front[index] = tmp
+        buflst = self.right[self.size - 1]
+        self.right[self.size - 1] = self.back[self.size - 1]
+        self.back[self.size - 1] = self.left[self.size - 1]
+        self.left[self.size - 1] = self.front[self.size - 1]
+        self.front[self.size - 1] = buflst
         self.moveFrontCounter(self.down, 'd')
 
     def move_right(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.down[i][index]
-            self.down[i][index] = self.back[index - i][0]
-            self.back[index - i][0] = self.up[i][index]
-            self.up[i][index] = self.front[i][index]
-            self.front[i][index] = tmp
+            buflst = self.down[i][self.size - 1]
+            self.down[i][self.size - 1] = self.back[self.size - 1 - i][0]
+            self.back[self.size - 1 - i][0] = self.up[i][self.size - 1]
+            self.up[i][self.size - 1] = self.front[i][self.size - 1]
+            self.front[i][self.size - 1] = buflst
         self.moveFront(self.right, 'r')
 
     def move_right_counter(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.down[i][index]
-            self.down[i][index] = self.front[i][index]
-            self.front[i][index] = self.up[i][index]
-            self.up[i][index] = self.back[index - i][0]
-            self.back[index - i][0] = tmp
+            print("bonsoir")
+            buflst = self.down[i][self.size - 1]
+            self.down[i][self.size - 1] = self.front[i][self.size - 1]
+            self.front[i][self.size - 1] = self.up[i][self.size - 1]
+            self.up[i][self.size - 1] = self.back[self.size - 1 - i][0]
+            self.back[self.size - 1 - i][0] = buflst
         self.moveFrontCounter(self.right, 'r')
 
     def move_left(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.down[i][0]
+            buflst = self.down[i][0]
             self.down[i][0] = self.front[i][0]
             self.front[i][0] = self.up[i][0]
-            self.up[i][0] = self.back[index - i][index]
-            self.back[index - i][index] = tmp
+            self.up[i][0] = self.back[self.size - 1 - i][self.size - 1]
+            self.back[self.size - 1 - i][self.size - 1] = buflst
         self.moveFront(self.left, 'l')
 
     def move_left_counter(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.down[i][0]
-            self.down[i][0] = self.back[index - i][index]
-            self.back[index - i][index] = self.up[i][0]
+            buflst = self.down[i][0]
+            self.down[i][0] = self.back[self.size - 1 - i][self.size - 1]
+            self.back[self.size - 1 - i][self.size - 1] = self.up[i][0]
             self.up[i][0] = self.front[i][0]
-            self.front[i][0] = tmp
+            self.front[i][0] = buflst
         self.moveFrontCounter(self.left, 'l')
 
     def move_front(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.up[index][index - i]
-            self.up[index][index - i] = self.left[i][index]
-            self.left[i][index] = self.down[0][i]
-            self.down[0][i] = self.right[index - i][0]
-            self.right[index - i][0] = tmp
+            buflst = self.up[self.size - 1][self.size - 1 - i]
+            self.up[self.size - 1][self.size - 1 - i] = self.left[i][self.size - 1]
+            self.left[i][self.size - 1] = self.down[0][i]
+            self.down[0][i] = self.right[self.size - 1 - i][0]
+            self.right[self.size - 1 - i][0] = buflst
         self.moveFront(self.front, 'f')
 
     def move_front_counter(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.up[index][i]
-            self.up[index][i] = self.right[i][0]
-            self.right[i][0] = self.down[0][index - i]
-            self.down[0][index - i] = self.left[index - i][index]
-            self.left[index - i][index] = tmp
+            buflst = self.up[self.size - 1][i]
+            self.up[self.size - 1][i] = self.right[i][0]
+            self.right[i][0] = self.down[0][self.size - 1 - i]
+            self.down[0][self.size - 1 - i] = self.left[self.size - 1 - i][self.size - 1]
+            self.left[self.size - 1 - i][self.size - 1] = buflst
         self.moveFrontCounter(self.front, 'f')
 
     def move_back(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.up[0][i]
-            self.up[0][i] = self.right[i][index]
-            self.right[i][index] = self.down[index][index - i]
-            self.down[index][index - i] = self.left[index - i][0]
-            self.left[index - i][0] = tmp
+            buflst = self.up[0][i]
+            self.up[0][i] = self.right[i][self.size - 1]
+            self.right[i][self.size - 1] = self.down[self.size - 1][self.size - 1 - i]
+            self.down[self.size - 1][self.size - 1 - i] = self.left[self.size - 1 - i][0]
+            self.left[self.size - 1 - i][0] = buflst
         self.moveFront(self.back, 'b')
 
     def move_back_counter(self):
-        index = self.size - 1
         for i in range(self.size):
-            tmp = self.up[0][index - i]
-            self.up[0][index - i] = self.left[i][0]
-            self.left[i][0] = self.down[index][i]
-            self.down[index][i] = self.right[index - i][index]
-            self.right[index - i][index] = tmp
+            buflst = self.up[0][self.size - 1 - i]
+            self.up[0][self.size - 1 - i] = self.left[i][0]
+            self.left[i][0] = self.down[self.size - 1][i]
+            self.down[self.size - 1][i] = self.right[self.size - 1 - i][self.size - 1]
+            self.right[self.size - 1 - i][self.size - 1] = buflst
         self.moveFrontCounter(self.back, 'b')
 
     def moveFront(self, face, l):
@@ -217,7 +208,7 @@ class Cube():
         elif color == "yellow":
             return "\033[33m"
         elif color == "white":
-            return "\033[49m"
+            return "\033[0m"
 
     def print_cube(self):
         default = "\033[0m"
