@@ -6,6 +6,7 @@ if __name__ == "__main__":
     args = utils.arg_parse()
     cube = c.Cube(3)
     mix_ = mix.Mix()
+    cube.print_cube()
     if len(args.mix) == 0:
         print("Random moves generator not triggered, and hand written mix not valid, please try again with a valid mix.")
         sys.exit(0)

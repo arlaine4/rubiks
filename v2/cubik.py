@@ -174,72 +174,68 @@ class Cube():
             self.moveFront(self.back, l)
 
     def move_f2(self):
-        self.move_front()
-        self.move_front()
+        self.move_front(False)
+        self.move_front(False)
 
     def move_b2(self):
-        self.move_back()
-        self.move_back()
+        self.move_back(False)
+        self.move_back(False)
 
     def move_d2(self):
-        self.move_down()
-        self.move_down()
+        self.move_down(False)
+        self.move_down(False)
 
     def move_r2(self):
-        self.move_right()
-        self.move_right()
+        self.move_right(False)
+        self.move_right(False)
 
     def move_l2(self):
-        self.move_left()
-        self.move_left()
+        self.move_left(False)
+        self.move_left(False)
 
     def move_u2(self):
-        self.move_up()
-        self.move_up()
+        self.move_up(False)
+        self.move_up(False)
 
     @staticmethod
     def get_color(color):
         if color == "green":
-            return "\033[92m"
+            return "\033[32m"
         elif color == "blue":
             return "\033[34m"
         elif color == "red":
-            return "\033[91m"
+            return "\033[31m"
         elif color == "orange":
-            return "\033[214m"
+            return "\033[38;5;208m"
         elif color == "yellow":
-            return "\033[93m"
+            return "\033[33m"
         elif color == "white":
-            return "\033[30m"
+            return "\033[49m"
 
     def print_cube(self):
         default = "\033[0m"
-        for row in range(self.size):
-            print()
-            space = True
-            for col in range(self.size):
-                if space:
-                    for i in range(self.size):
-                        print('     ', end='')
-                    print("{} ### {}".format(self.get_color(self.up[row][col]), default), end='')
-                    space = False
-        for row in range(self.size):
-            print()
-            for col in range(self.size):
-                print("{} ### {}".format(self.get_color(self.left[row][col]), default), end='')
-            for col in range(self.size):
-                print("{} ### {}".format(self.get_color(self.front[row][col]), default), end='')
-            for col in range(self.size):
-                print("{} ### {}".format(self.get_color(self.right[row][col]), default), end='')
-            for col in range(self.size):
-                print("{} ### {}".format(self.get_color(self.back[row][col]), default), end='')
-        for row in range(self.size):
-            print()
-            space = True
-            for col in range(self.size):
-                if space:
-                    for i in range(self.size):
-                        print('     ', end='')
-                    print("{} ### {}".format(self.get_color(self.down[row][col]), default), end='')
-                    space = False
-        print()
+        print("\t", end='')
+        print("{}# {}# {}#{}".format(self.get_color(self.up[0][0]), self.get_color(self.up[0][1]), self.get_color(self.up[0][2]), default))
+        print("\t{}# {}# {}#{}".format(self.get_color(self.up[1][0]), self.get_color(self.up[1][1]), self.get_color(self.up[1][2]), default))
+        print("\t{}# {}# {}#{}\n".format(self.get_color(self.up[2][0]), self.get_color(self.up[2][1]), self.get_color(self.up[2][2]), default))
+
+        print("{}# {}# {}# {}".format(self.get_color(self.left[0][0]), self.get_color(self.left[0][1]), self.get_color(self.left[0][2]), default), end = '  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.front[0][0]), self.get_color(self.front[0][1]), self.get_color(self.front[0][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.right[0][0]), self.get_color(self.right[0][1]), self.get_color(self.right[0][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.back[0][0]), self.get_color(self.back[0][1]), self.get_color(self.back[0][2]), default))
+
+        print("{}# {}# {}# {}".format(self.get_color(self.left[1][0]), self.get_color(self.left[1][1]), self.get_color(self.left[1][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.front[1][0]), self.get_color(self.front[1][1]), self.get_color(self.front[1][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.right[1][0]), self.get_color(self.right[1][1]), self.get_color(self.right[1][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.back[1][0]), self.get_color(self.back[1][1]), self.get_color(self.back[1][2]), default))
+
+        print("{}# {}# {}# {}".format(self.get_color(self.left[2][0]), self.get_color(self.left[2][1]), self.get_color(self.left[2][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.front[2][0]), self.get_color(self.front[2][1]), self.get_color(self.front[2][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.right[2][0]), self.get_color(self.right[2][1]), self.get_color(self.right[2][2]), default), end='  ')
+        print("{}# {}# {}# {}".format(self.get_color(self.back[2][0]), self.get_color(self.back[2][1]), self.get_color(self.back[2][2]), default))
+
+        print("\n\t", end='')
+        print("{}# {}# {}#{}".format(self.get_color(self.down[0][0]), self.get_color(self.down[0][1]), self.get_color(self.down[0][2]), default))
+        print("\t{}# {}# {}#{}".format(self.get_color(self.down[1][0]), self.get_color(self.down[1][1]), self.get_color(self.down[1][2]), default))
+        print("\t{}# {}# {}#{}\n".format(self.get_color(self.down[2][0]), self.get_color(self.down[2][1]), self.get_color(self.down[2][2]), default))
+
