@@ -1,4 +1,5 @@
 from SecondaryFunctions import utils, mix
+from Algorithm import Algo as a
 import sys
 import cubik as c
 
@@ -13,3 +14,5 @@ if __name__ == "__main__":
     lst_moves = args.mix
     lst_moves = lst_moves.split(' ')
     cube = mix_.runMix(lst_moves, cube)
+    algo = a.Algo(cube)
+    algo.run()
