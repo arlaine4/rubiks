@@ -17,7 +17,7 @@ def check_pos_color(cubeCurrent, cubeOrigin, color_one, color_two, color_three=N
         i = 0
         while i < len(lst_pos_origin):
             j = 0
-            while j < lst_pos_origin[0]:
+            while j < len(lst_pos_origin[0]):
                 if lst_pos_origin[i][j] != lst_pos_curr[i][j]:
                     return False
                 j += 1
