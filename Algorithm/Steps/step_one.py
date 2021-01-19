@@ -40,14 +40,13 @@ class   step_one():
         self.lst_pos_origin = self.checker.two(self.cubeOrigin, color_one, color_two)
         if face != self.lst_pos_curr[0][0] and face != self.lst_pos_curr[1][0]:
             self.move_down_two_color(cubeCurrent, self.lst_moves, color_one, color_two, face)
-        if face == self.lst_pos_current[0][0] or face == self.lst_pos_current[1][0]:
+        if face == self.lst_pos_curr[0][0] or face == self.lst_pos_curr[1][0]:
             self.move_center(cubeCurrent, face, color_one, color_two)
-            if self.lst_pos_current[0][1] != lst_pos_origin[0][1]:
+            if self.lst_pos_curr[0][1] != lst_pos_origin[0][1]:
                 self.change_side(cubeCurrent, self.lst_moves, face)
 
     def move_center(self, cubeCurrent, face, color_one, color_two):
         while self.lst_pos_curr[1][2] != self.lst_pos_origin[1][2]:
-            print("TEST", face)
             if face == "front":
                 cubeCurrent.move_back_counter()
                 self.lst_moves.append("F'")
