@@ -3,25 +3,25 @@ import sys
 class CheckerColors:
 
     def two(self, cub, colorOne, colorTwo):
-        if (cub.upper[0][1] == colorOne and cub.back[0][1] == colorTwo):
-            return ([['upper', colorOne, 0, 1],['back', colorTwo, 0, 1]])
-        elif (cub.upper[0][1] == colorTwo and cub.back[0][1] == colorOne):
-            return ([['upper', colorTwo, 0, 1],['back', colorOne, 0, 1]])
+        if (cub.up[0][1] == colorOne and cub.back[0][1] == colorTwo):
+            return ([['up', colorOne, 0, 1],['back', colorTwo, 0, 1]])
+        elif (cub.up[0][1] == colorTwo and cub.back[0][1] == colorOne):
+            return ([['up', colorTwo, 0, 1],['back', colorOne, 0, 1]])
 #
-        elif (cub.upper[1][2] == colorOne and cub.right[0][1] == colorTwo):
-            return ([['upper', colorOne, 1, 2],['right', colorTwo, 0, 1]])
-        elif (cub.upper[1][2] == colorTwo and cub.right[0][1] == colorOne):
-            return ([['upper', colorTwo, 1, 2],['right', colorOne, 0, 1]])
+        elif (cub.up[1][2] == colorOne and cub.right[0][1] == colorTwo):
+            return ([['up', colorOne, 1, 2],['right', colorTwo, 0, 1]])
+        elif (cub.up[1][2] == colorTwo and cub.right[0][1] == colorOne):
+            return ([['up', colorTwo, 1, 2],['right', colorOne, 0, 1]])
 #
-        elif (cub.upper[2][1] == colorOne and cub.front[0][1] == colorTwo):
-            return ([['upper', colorOne, 2, 1],['front', colorTwo, 0, 1]])
-        elif (cub.upper[2][1] == colorTwo and cub.front[0][1] == colorOne):
-            return ([['upper', colorTwo, 2, 1],['front', colorOne, 0, 1]])
+        elif (cub.up[2][1] == colorOne and cub.front[0][1] == colorTwo):
+            return ([['up', colorOne, 2, 1],['front', colorTwo, 0, 1]])
+        elif (cub.up[2][1] == colorTwo and cub.front[0][1] == colorOne):
+            return ([['up', colorTwo, 2, 1],['front', colorOne, 0, 1]])
 #
-        elif (cub.upper[1][0] == colorOne and cub.left[0][1] == colorTwo):
-            return ([['upper', colorOne, 1, 0],['left', colorTwo, 0, 1]])
-        elif (cub.upper[1][0] == colorTwo and cub.left[0][1] == colorOne):
-            return ([['upper', colorTwo, 1, 0],['left', colorOne, 0, 1]])
+        elif (cub.up[1][0] == colorOne and cub.left[0][1] == colorTwo):
+            return ([['up', colorOne, 1, 0],['left', colorTwo, 0, 1]])
+        elif (cub.up[1][0] == colorTwo and cub.left[0][1] == colorOne):
+            return ([['up', colorTwo, 1, 0],['left', colorOne, 0, 1]])
 #
         elif (cub.left[1][2] == colorOne and cub.front[1][0] == colorTwo):
             return ([['left', colorOne, 1, 2],['front', colorTwo, 1, 0]])
@@ -65,57 +65,57 @@ class CheckerColors:
         return (False)
 
     def three(self, cub, colorOne, colorTwo, colorThree):
-        if (cub.upper[0][0] == colorOne and cub.left[0][0] == colorTwo and cub.back[0][2] == colorThree):
-            return (['upper', colorOne, 0, 0],['left', colorTwo, 0, 0], ['back', colorThree, 0, 2])
-        elif (cub.upper[0][0] == colorOne and cub.left[0][0] == colorThree and cub.back[0][2] == colorTwo):
-            return (['upper', colorOne, 0, 0],['left', colorThree, 0, 0], ['back', colorTwo, 0, 2])
-        elif (cub.upper[0][0] == colorTwo and cub.left[0][0] == colorThree and cub.back[0][2] == colorOne):
-            return (['upper', colorTwo, 0, 0],['left', colorThree, 0, 0], ['back', colorOne, 0, 2])
-        elif (cub.upper[0][0] == colorTwo and cub.left[0][0] == colorOne and cub.back[0][2] == colorThree):
-            return (['upper', colorTwo, 0, 0],['left', colorOne, 0, 0], ['back', colorThree, 0, 2])
-        elif (cub.upper[0][0] == colorThree and cub.left[0][0] == colorOne and cub.back[0][2] == colorTwo):
-            return (['upper', colorThree, 0, 0],['left', colorOne, 0, 0], ['back', colorTwo, 0, 2])
-        elif (cub.upper[0][0] == colorThree and cub.left[0][0] == colorTwo and cub.back[0][2] == colorOne):
-            return (['upper', colorThree, 0, 0],['left', colorTwo, 0, 0], ['back', colorOne, 0, 2])
+        if (cub.up[0][0] == colorOne and cub.left[0][0] == colorTwo and cub.back[0][2] == colorThree):
+            return (['up', colorOne, 0, 0],['left', colorTwo, 0, 0], ['back', colorThree, 0, 2])
+        elif (cub.up[0][0] == colorOne and cub.left[0][0] == colorThree and cub.back[0][2] == colorTwo):
+            return (['up', colorOne, 0, 0],['left', colorThree, 0, 0], ['back', colorTwo, 0, 2])
+        elif (cub.up[0][0] == colorTwo and cub.left[0][0] == colorThree and cub.back[0][2] == colorOne):
+            return (['up', colorTwo, 0, 0],['left', colorThree, 0, 0], ['back', colorOne, 0, 2])
+        elif (cub.up[0][0] == colorTwo and cub.left[0][0] == colorOne and cub.back[0][2] == colorThree):
+            return (['up', colorTwo, 0, 0],['left', colorOne, 0, 0], ['back', colorThree, 0, 2])
+        elif (cub.up[0][0] == colorThree and cub.left[0][0] == colorOne and cub.back[0][2] == colorTwo):
+            return (['up', colorThree, 0, 0],['left', colorOne, 0, 0], ['back', colorTwo, 0, 2])
+        elif (cub.up[0][0] == colorThree and cub.left[0][0] == colorTwo and cub.back[0][2] == colorOne):
+            return (['up', colorThree, 0, 0],['left', colorTwo, 0, 0], ['back', colorOne, 0, 2])
 #f
-        elif (cub.upper[0][2] == colorOne and cub.right[0][2] == colorTwo and cub.back[0][0] == colorThree):
-            return (['upper', colorOne, 0, 2],['right', colorTwo, 0, 2], ['back', colorThree, 0, 0])
-        elif (cub.upper[0][2] == colorOne and cub.right[0][2] == colorThree and cub.back[0][0] == colorTwo):
-            return (['upper', colorOne, 0, 2],['right', colorThree, 0, 2], ['back', colorTwo, 0, 0])
-        elif (cub.upper[0][2] == colorTwo and cub.right[0][2] == colorThree and cub.back[0][0] == colorOne):
-            return (['upper', colorTwo, 0, 2],['right', colorThree, 0, 2], ['back', colorOne, 0, 0])
-        elif (cub.upper[0][2] == colorTwo and cub.right[0][2] == colorOne and cub.back[0][0] == colorThree):
-            return (['upper', colorTwo, 0, 2],['right', colorOne, 0, 2], ['back', colorThree, 0, 0])
-        elif (cub.upper[0][2] == colorThree and cub.right[0][2] == colorOne and cub.back[0][0] == colorTwo):
-            return (['upper', colorThree, 0, 2],['right', colorOne, 0, 2], ['back', colorTwo, 0, 0])
-        elif (cub.upper[0][2] == colorThree and cub.right[0][2] == colorTwo and cub.back[0][0] == colorOne):
-            return (['upper', colorThree, 0, 2],['right', colorTwo, 0, 2], ['back', colorOne, 0, 0])
+        elif (cub.up[0][2] == colorOne and cub.right[0][2] == colorTwo and cub.back[0][0] == colorThree):
+            return (['up', colorOne, 0, 2],['right', colorTwo, 0, 2], ['back', colorThree, 0, 0])
+        elif (cub.up[0][2] == colorOne and cub.right[0][2] == colorThree and cub.back[0][0] == colorTwo):
+            return (['up', colorOne, 0, 2],['right', colorThree, 0, 2], ['back', colorTwo, 0, 0])
+        elif (cub.up[0][2] == colorTwo and cub.right[0][2] == colorThree and cub.back[0][0] == colorOne):
+            return (['up', colorTwo, 0, 2],['right', colorThree, 0, 2], ['back', colorOne, 0, 0])
+        elif (cub.up[0][2] == colorTwo and cub.right[0][2] == colorOne and cub.back[0][0] == colorThree):
+            return (['up', colorTwo, 0, 2],['right', colorOne, 0, 2], ['back', colorThree, 0, 0])
+        elif (cub.up[0][2] == colorThree and cub.right[0][2] == colorOne and cub.back[0][0] == colorTwo):
+            return (['up', colorThree, 0, 2],['right', colorOne, 0, 2], ['back', colorTwo, 0, 0])
+        elif (cub.up[0][2] == colorThree and cub.right[0][2] == colorTwo and cub.back[0][0] == colorOne):
+            return (['up', colorThree, 0, 2],['right', colorTwo, 0, 2], ['back', colorOne, 0, 0])
 #f
-        elif (cub.upper[2][2] == colorOne and cub.right[0][0] == colorTwo and cub.front[0][2] == colorThree):
-            return (['upper', colorOne, 2, 2],['right', colorTwo, 0, 0], ['front', colorThree, 0, 2])
-        elif (cub.upper[2][2] == colorOne and cub.right[0][0] == colorThree and cub.front[0][2] == colorTwo):
-            return (['upper', colorOne, 2, 2],['right', colorThree, 0, 0], ['front', colorTwo, 0, 2])
-        elif (cub.upper[2][2] == colorTwo and cub.right[0][0] == colorThree and cub.front[0][2] == colorOne):
-            return (['upper', colorTwo, 2, 2],['right', colorThree, 0, 0], ['front', colorOne, 0, 2])
-        elif (cub.upper[2][2] == colorTwo and cub.right[0][0] == colorOne and cub.front[0][2] == colorThree):
-            return (['upper', colorTwo, 2, 2],['right', colorOne, 0, 0], ['front', colorThree, 0, 2])
-        elif (cub.upper[2][2] == colorThree and cub.right[0][0] == colorOne and cub.front[0][2] == colorTwo):
-            return (['upper', colorThree, 2, 2],['right', colorOne, 0, 0], ['front', colorTwo, 0, 2])
-        elif (cub.upper[2][2] == colorThree and cub.right[0][0] == colorTwo and cub.front[0][2] == colorOne):
-            return (['upper', colorThree, 2, 2],['right', colorTwo, 0, 0], ['front', colorOne, 0, 2])
+        elif (cub.up[2][2] == colorOne and cub.right[0][0] == colorTwo and cub.front[0][2] == colorThree):
+            return (['up', colorOne, 2, 2],['right', colorTwo, 0, 0], ['front', colorThree, 0, 2])
+        elif (cub.up[2][2] == colorOne and cub.right[0][0] == colorThree and cub.front[0][2] == colorTwo):
+            return (['up', colorOne, 2, 2],['right', colorThree, 0, 0], ['front', colorTwo, 0, 2])
+        elif (cub.up[2][2] == colorTwo and cub.right[0][0] == colorThree and cub.front[0][2] == colorOne):
+            return (['up', colorTwo, 2, 2],['right', colorThree, 0, 0], ['front', colorOne, 0, 2])
+        elif (cub.up[2][2] == colorTwo and cub.right[0][0] == colorOne and cub.front[0][2] == colorThree):
+            return (['up', colorTwo, 2, 2],['right', colorOne, 0, 0], ['front', colorThree, 0, 2])
+        elif (cub.up[2][2] == colorThree and cub.right[0][0] == colorOne and cub.front[0][2] == colorTwo):
+            return (['up', colorThree, 2, 2],['right', colorOne, 0, 0], ['front', colorTwo, 0, 2])
+        elif (cub.up[2][2] == colorThree and cub.right[0][0] == colorTwo and cub.front[0][2] == colorOne):
+            return (['up', colorThree, 2, 2],['right', colorTwo, 0, 0], ['front', colorOne, 0, 2])
 #f
-        elif (cub.upper[2][0] == colorOne and cub.left[0][2] == colorTwo and cub.front[0][0] == colorThree):
-            return (['upper', colorOne, 2, 0],['left', colorTwo, 0, 2], ['front', colorThree, 0, 0])
-        elif (cub.upper[2][0] == colorOne and cub.left[0][2] == colorThree and cub.front[0][0] == colorTwo):
-            return (['upper', colorOne, 2, 0],['left', colorThree, 0, 2], ['front', colorTwo, 0, 0])
-        elif (cub.upper[2][0] == colorTwo and cub.left[0][2] == colorThree and cub.front[0][0] == colorOne):
-            return (['upper', colorTwo, 2, 0],['left', colorThree, 0, 2], ['front', colorOne, 0, 0])
-        elif (cub.upper[2][0] == colorTwo and cub.left[0][2] == colorOne and cub.front[0][0] == colorThree):
-            return (['upper', colorTwo, 2, 0],['left', colorOne, 0, 2], ['front', colorThree, 0, 0])
-        elif (cub.upper[2][0] == colorThree and cub.left[0][2] == colorOne and cub.front[0][0] == colorTwo):
-            return (['upper', colorThree, 2, 0],['left', colorOne, 0, 2], ['front', colorTwo, 0, 0])
-        elif (cub.upper[2][0] == colorThree and cub.left[0][2] == colorTwo and cub.front[0][0] == colorOne):
-            return (['upper', colorThree, 2, 0],['left', colorTwo, 0, 2], ['front', colorOne, 0, 0])
+        elif (cub.up[2][0] == colorOne and cub.left[0][2] == colorTwo and cub.front[0][0] == colorThree):
+            return (['up', colorOne, 2, 0],['left', colorTwo, 0, 2], ['front', colorThree, 0, 0])
+        elif (cub.up[2][0] == colorOne and cub.left[0][2] == colorThree and cub.front[0][0] == colorTwo):
+            return (['up', colorOne, 2, 0],['left', colorThree, 0, 2], ['front', colorTwo, 0, 0])
+        elif (cub.up[2][0] == colorTwo and cub.left[0][2] == colorThree and cub.front[0][0] == colorOne):
+            return (['up', colorTwo, 2, 0],['left', colorThree, 0, 2], ['front', colorOne, 0, 0])
+        elif (cub.up[2][0] == colorTwo and cub.left[0][2] == colorOne and cub.front[0][0] == colorThree):
+            return (['up', colorTwo, 2, 0],['left', colorOne, 0, 2], ['front', colorThree, 0, 0])
+        elif (cub.up[2][0] == colorThree and cub.left[0][2] == colorOne and cub.front[0][0] == colorTwo):
+            return (['up', colorThree, 2, 0],['left', colorOne, 0, 2], ['front', colorTwo, 0, 0])
+        elif (cub.up[2][0] == colorThree and cub.left[0][2] == colorTwo and cub.front[0][0] == colorOne):
+            return (['up', colorThree, 2, 0],['left', colorTwo, 0, 2], ['front', colorOne, 0, 0])
 #f
         elif (cub.down[0][0] == colorOne and cub.left[2][2] == colorTwo and cub.front[2][0] == colorThree):
             return (['down', colorOne, 0, 0],['left', colorTwo, 2, 2], ['front', colorThree, 2, 0])

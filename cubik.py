@@ -1,13 +1,13 @@
 from SecondaryFunctions import utils, check_colors
 
 def check_pos_color(cubeCurrent, cubeOrigin, color_one, color_two, color_three=None):
-    checker = check_colors.CheckColors()
+    checker = check_colors.CheckerColors()
     if color_three is None:
         lst_pos_curr = checker.two(cubeCurrent, color_one, color_two)
         lst_pos_origin = checker.two(cubeCurrent, color_one, color_two)
         i = 0
         while i < len(lst_pos_origin):
-            if lst_pos_origin[i] != lst_pos_current[i]:
+            if lst_pos_origin[i] != lst_pos_curr[i]:
                 return False
             i += 1
         return True
