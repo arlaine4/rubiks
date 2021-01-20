@@ -14,33 +14,35 @@ class step_seven:
         self.fourth_corner = ["yellow", "red", "green"]
         self.first_corner = ["yellow", "green", "orange"]
         self.second_corner = ["yellow", "blue", "orange"]
+        self.lst_moves = []
+
+    def set_lst_moves(self, lst_moves):
+        self.lst_moves = lst_moves
 
     def run(self, cubeCurrent, lst_moves):
-        cubeCurrent.mathHash()
-        if (self.cubeOrigin.hash == cubeCurrent.hash):
-            return True
-        self.move_side(cubeCurrent, lst_moves, self.first_corner)
-        self.move_down(cubeCurrent, lst_moves)	
-        self.move_side(cubeCurrent, lst_moves, self.second_corner)
-        self.move_down(cubeCurrent, lst_moves)
-        self.move_side(cubeCurrent, lst_moves, self.third_corner)
-        self.move_down(cubeCurrent, lst_moves)
-        self.move_side(cubeCurrent, lst_moves, self.fourth_corner)
-        self.move_down(cubeCurrent, lst_moves)
+        self.set_lst_moves(lst_moves)
+        self.move_side(cubeCurrent, self.first_corner)
+        self.move_down(cubeCurrent)	
+        self.move_side(cubeCurrent,self.second_corner)
+        self.move_down(cubeCurrent)
+        self.move_side(cubeCurrent, self.third_corner)
+        self.move_down(cubeCurrent)
+        self.move_side(cubeCurrent, self.fourth_corner)
+        self.move_down(cubeCurrent)
+        return self.lst_moves
 
-    def move_down(self, cubeCurrent, lst_moves):
+    def move_down(self, cubeCurrent):
         cubeCurrent.move_down()
-        lst_moves.append("D")
+        self.lst_moves.append("D")
 
-    def     move_side(self, cubeCurrent, lst_moves, lst_colors):
-        mixManager = MixManager()
-        while (self.finished_three_color_pos(cubeCurrent, lst_colors)) == False:
-            mixManager.mixRun(["L'", "U'", "L", "U"], cubeCurrent)
-            appendListInList(lst_moves, ["L'", "U'", "L", "U"])
+    def move_side(self, cubeCurrent, lst_colors):
+        mixManager = mix.Mix()
+        while self.finished_three_color_pos(cubeCurrent, lst_colors) == False:
+            mixManager.runMix(["L'", "U'", "L", "U"], cubeCurrent)
+            self.lst_moves = utils.append_list(self.lst_moves, ["L'", "U'", "L", "U"])
 
     def finished_three_color_pos(self, cubeCurrent, lst_colors):
-        lst_pos = self.checkerManager.three(cubeCurrent, lst_colors[0], lst_colors[1], lst_colors[2])
-        # lst_pos_origin = self.checkerManager.three(self.cubeOrigin, lst_colors[0], lst_colors[1], lst_colors[2])
-        if (lst_pos[0][0] == "down" and lst_pos[0][1] == "yellow"):
+        lst_pos = self.checker.three(cubeCurrent, lst_colors[0], lst_colors[1], lst_colors[2])
+        if lst_pos[0][0] == "down" and lst_pos[0][1] == "yellow":
             return True
         return False

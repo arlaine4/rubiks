@@ -117,7 +117,7 @@ class   step_one():
             while (count != 0):
                 count -= 1
                 if (flag == 0):
-                    cubeCurrent.moveBackL()
+                    cubeCurrent.move_left_counter()
                     self.lst_moves.append("L'")
                 else:
                     cubeCurrent.move_left()

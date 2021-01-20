@@ -13,66 +13,71 @@ class step_six:
         self.checker = check_c.CheckerColors()
         self.lst_moves = []
 
+    def set_lst_moves(self, lst_moves):
+        self.lst_moves = lst_moves
+
     def run(self, cubeCurrent, lst_moves):
+        self.set_lst_moves(lst_moves)
         res = self.check_corner(cubeCurrent)
         if res == 4:
-            return True
+            return self.lst_moves
         else:
             res = self.check_next_pos(cubeCurrent)
             if (res[0] == 4):
-                return True
+                return self.lst_moves
             else:
                 if res[0] == 0:
-                    self.move_to_next_pos(cubeCurrent, lst_moves, ["D", "L", "D'", "R'", "D", "L'", "D'", "R"])
+                    self.move_to_next_pos(cubeCurrent, ["D", "L", "D'", "R'", "D", "L'", "D'", "R"])
                 res = self.check_next_pos(cubeCurrent)
-                colorsList = res[1]
-                lst_pattern = self.get_pattern(cubeCurrent, colorsList)
-                self.move_fown_face(cubeCurrent, lst_moves, lst_pattern)
+                lst_colors = res[1]
+                lst_pattern = self.get_pattern(cubeCurrent, lst_colors)
+                self.move_fown_face(cubeCurrent, lst_pattern)
+        return self.lst_moves
 
-    def move_fown_face(self, cubeCurrent, lst_moves, lst_pattern):
+    def move_fown_face(self, cubeCurrent, lst_pattern):
         face = lst_pattern[1]
         if face == "frontFace":
             if lst_pattern[0] == "right":
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D", "L", "D'", "R'", "D", "L'", "D'", "R"])
+                self.move_to_next_pos(cubeCurrent, ["D", "L", "D'", "R'", "D", "L'", "D'", "R"])
             else:
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D'", "R'", "D", "L", "D'", "R", "D", "L'"])
+                self.move_to_next_pos(cubeCurrent, ["D'", "R'", "D", "L", "D'", "R", "D", "L'"])
         elif face == "backFace":
             if lst_pattern[0] == "right":
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D", "R", "D'", "L'", "D", "R'", "D'", "L"])
+                self.move_to_next_pos(cubeCurrent, ["D", "R", "D'", "L'", "D", "R'", "D'", "L"])
             else:
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D'", "L'", "D", "R", "D'", "L", "D", "R'"])
+                self.move_to_next_pos(cubeCurrent, ["D'", "L'", "D", "R", "D'", "L", "D", "R'"])
         elif face == "rightFace":
             if lst_pattern[0] == "right":
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D", "F", "D'", "B'", "D", "F'", "D'", "B"])
+                self.move_to_next_pos(cubeCurrent, ["D", "F", "D'", "B'", "D", "F'", "D'", "B"])
             else:
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D'", "B'", "D", "F", "D'", "B", "D", "F'"])
+                self.move_to_next_pos(cubeCurrent, ["D'", "B'", "D", "F", "D'", "B", "D", "F'"])
         elif face == "leftFace":
             if lst_pattern[0] == "right":
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D", "B", "D'", "F'", "D", "B'", "D'", "F"])
+                self.move_to_next_pos(cubeCurrent, ["D", "B", "D'", "F'", "D", "B'", "D'", "F"])
             else:
-                self.move_to_next_pos(cubeCurrent, lst_moves, ["D'", "F'", "D", "B", "D'", "F", "D", "B'"])
+                self.move_to_next_pos(cubeCurrent, ["D'", "F'", "D", "B", "D'", "F", "D", "B'"])
 
-    def get_pattern(self, cubeCurrent, colorsList):
+    def get_pattern(self, cubeCurrent, lst_colors):
         lst_pattern = []
-        if ["yellow", "green", "red"] == colorsList:
+        if ["yellow", "green", "red"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
             if (lst_pattern[0] == "left"):
                 lst_pattern.append("frontFace")
             else:
                 lst_pattern.append("rightFace")
-        elif (["yellow", "blue", "orange"] == colorsList):
+        elif ["yellow", "blue", "orange"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
             if (lst_pattern[0] == "left"):
                 lst_pattern.append("backFace")
             else:
                 lst_pattern.append("leftFace")
-        elif (["yellow", "blue", "red"] == colorsList):
+        elif ["yellow", "blue", "red"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
             if (lst_pattern[0] == "left"):
                 lst_pattern.append("rightFace")
             else:
                 lst_pattern.append("backFace")
-        elif (["yellow", "green", "orange"] == colorsList):
+        elif ["yellow", "green", "orange"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
             if (lst_pattern[0] == "left"):
                 lst_pattern.append("leftFace")
@@ -84,10 +89,10 @@ class step_six:
         cubeCurrent.move_down()
         res = self.check_next_pos(cubeCurrent)
         direction = "left"
-        if (res[0] == 0):
+        if res[0] == 0:
             direction = "right"
-        cubeCurrent.move_back_counter()
-        return (direction)
+        cubeCurrent.move_down_counter()
+        return direction
 
     def check_corner(self, cubeCurrent):
         count = 0
@@ -99,10 +104,10 @@ class step_six:
             count += 1
         if self.finishedThreeColorPosition(cubeCurrent, ["yellow", "orange", "green"]) is True:
             count += 1
-        return (count)
+        return count
 
     def updatePositionList(self, cub, colors):
-        return (self.checkerManager.three(cub, colors[0], colors[1], colors[2]))
+        return self.checker.three(cub, colors[0], colors[1], colors[2])
 
     def check_next_pos(self, cubeCurrent):
         count = 0
@@ -123,32 +128,32 @@ class step_six:
         if self.check_side(cubeCurrent, "left") is True:
             count += 1
             correct_corner = ["yellow", "green", "orange"]
-        return (count, correct_corner)
+        return count, correct_corner
 
-    def finishedThreeColorPosition(self, cubeCurrent, colorsList):
-        return checkPositionColor(self.cubeOrigin, cubeCurrent, colorsList[0], colorsList[1], colorsList[2])
+    def finishedThreeColorPosition(self, cubeCurrent, lst_colors):
+        return cubik.check_pos_color(self.cubeOrigin, cubeCurrent, lst_colors[0], lst_colors[1], lst_colors[2])
 
     def check_side(self, cubeCurrent, face):
         if face == "front":
-            return (self.checkDoubleSide(face, "right"))
+            return self.checkDoubleSide(face, "right")
         elif face == "right":
-            return (self.checkDoubleSide(face, "back"))
+            return self.checkDoubleSide(face, "back")
         elif face == "back":
-            return (self.checkDoubleSide(face, "left"))
+            return self.checkDoubleSide(face, "left")
         elif face == "left":
-            return (self.checkDoubleSide(face, "front"))
+            return self.checkDoubleSide(face, "front")
         return False
 
     def checkDoubleSide(self, face, subFace):
         count = 0
         i = 0
         while i < len(self.lst_pos_curr):
-            if ((self.lst_pos_curr[i][0]) == face) or ((self.lst_pos_curr[i][0]) == subFace):
+            if (self.lst_pos_curr[i][0] == face) or (self.lst_pos_curr[i][0] == subFace):
                 count += 1
             i += 1
-        return (count == 2)
+        return True if count == 2 else False
 
-    def move_to_next_pos(self, cubeCurrent, lst_moves, listMix):
+    def move_to_next_pos(self, cubeCurrent, list_mix):
         mixManager = mix.Mix()
-        mixManager.runMix(listMix, cubeCurrent)
-        self.lst_moves = utils.append_list(lst_moves, listMix)
+        mixManager.runMix(list_mix, cubeCurrent)
+        self.lst_moves = utils.append_list(self.lst_moves, list_mix)
