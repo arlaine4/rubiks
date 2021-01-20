@@ -10,8 +10,8 @@ from SecondaryFunctions import utils
 class step_three:
 	def __init__(self, cubeOrigin):
 		self.cubeOrigin = cubeOrigin
-		self.listPositioncubeCurrent = []
-		self.listPositioncubeOrigin = []
+		self.lst_pos_curr = []
+		self.lst_pos_origin = []
 		self.checkerManager = check_c.CheckerColors()
         self.lst_moves = []
 
@@ -35,22 +35,22 @@ class step_three:
 		return self.checkerManager.two(cub, colors_list[0], colors_list[1])
 
 	def moving(self, cubeCurrent, lst_moves, colors_list, face):
-		self.listPositioncubeOrigin = self.update_pos_lst(self.cubeOrigin, colors_list)
-		self.listPositioncubeCurrent = self.update_pos_lst(cubeCurrent, colors_list)
+		self.lst_pos_origin = self.update_pos_lst(self.cubeOrigin, colors_list)
+		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
 		check_side_lst = self.check_side(cubeCurrent, colors_list)
 		if check_side_lst[0] is True:
 			self.wich_sequences(cubeCurrent, lst_moves, colors_list)
 		else:
-			if self.listPositioncubeCurrent[0][0] != "down":
+			if self.lst_pos_curr[0][0] != "down":
 				self.push_down(cubeCurrent, lst_moves, colors_list)
-				self.listPositioncubeCurrent = self.update_pos_lst(cubeCurrent, colors_list)
-			if self.listPositioncubeCurrent[0][0] != "down":
+				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+			if self.lst_pos_curr[0][0] != "down":
 				print ("ERROR DOWN IS NOT")
 				sys.exit(-1)
-			self.listPositioncubeCurrent = self.update_pos_lst(cubeCurrent, colors_list)
-			if self.listPositioncubeCurrent[0][0] == "down":
+			self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+			if self.lst_pos_curr[0][0] == "down":
 				self.move_to_center(cubeCurrent, lst_moves, colors_list, face)
-				self.listPositioncubeCurrent = self.update_pos_lst(cubeCurrent, colors_list)
+				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
 				self.wich_sequences(cubeCurrent, lst_moves, colors_list)
 	def move_to_center(self, cubeCurrent, lst_moves, colors_list, face):
 		check_side_lst = self.check_side(cubeCurrent, colors_list)
@@ -79,11 +79,11 @@ class step_three:
 			return ("rightPattern")
 
 	def get_side_params(self, cubeCurrent, colors_list):
-		self.listPositioncubeCurrent = self.update_pos_lst(cubeCurrent, colors_list)
-		down = self.listPositioncubeCurrent[0][0]
-		colorDown = self.listPositioncubeCurrent[0][1]
-		colorFace = self.listPositioncubeCurrent[1][1]
-		face = self.listPositioncubeCurrent[1][0]
+		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+		down = self.lst_pos_curr[0][0]
+		colorDown = self.lst_pos_curr[0][1]
+		colorFace = self.lst_pos_curr[1][1]
+		face = self.lst_pos_curr[1][0]
 		return down, face, colorDown, colorFace
 
 	def check_side(self, cubeCurrent, colors_list):
