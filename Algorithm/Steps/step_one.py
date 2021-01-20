@@ -20,17 +20,12 @@ class   step_one():
     def run(self, cubeCurrent, lst_moves):
         self.set_lst_moves(lst_moves)
         if self.finished_two_color_pos(cubeCurrent, "white", "green") is False:
-            print("1")
             self.edge_move_two_color(cubeCurrent, "white", "green", "front")
-            print("1.5")
         if self.finished_two_color_pos(cubeCurrent, "white", "blue") is False:
-            print("2")
             self.edge_move_two_color(cubeCurrent, "white", "blue", "back")
         if self.finished_two_color_pos(cubeCurrent, "white", "red") is False:
-            print("3")
             self.edge_move_two_color(cubeCurrent, "white", "red", "right")
         if self.finished_two_color_pos(cubeCurrent, "white", "orange") is False:
-            print("4")
             self.edge_move_two_color(cubeCurrent, "white", "orange", "left")
         return self.lst_moves
 
@@ -41,17 +36,13 @@ class   step_one():
         self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
         self.lst_pos_origin = self.checker.two(self.cubeOrigin, color_one, color_two)
         if ((face != self.lst_pos_curr[0][0]) and (face != self.lst_pos_curr[1][0])):
-            print("AH1")
             self.move_down_two_color(cubeCurrent, color_one, color_two, face)
         if (face == self.lst_pos_curr[0][0]) or (face == self.lst_pos_curr[1][0]):
-            print("AH2")
             self.move_center(cubeCurrent, face, color_one, color_two)
             if self.lst_pos_curr[0][1] != self.lst_pos_origin[0][1]:
-                print("AH3")
                 self.change_side(cubeCurrent, face)
 
     def move_center(self, cubeCurrent, face, color_one, color_two):
-        print(face, self.lst_pos_curr, self.lst_pos_origin)
         while self.lst_pos_curr[1][2] != self.lst_pos_origin[1][2]:
             if face == "front":
                 cubeCurrent.move_front_counter()
@@ -77,7 +68,6 @@ class   step_one():
 
         def move_down_center(cubeCurrent, color_one, color_two, face):
             face_one, face_two = self.update_face_color(cubeCurrent, color_one, color_two)
-            print(face_one, face_two, face)
             while 1:
                 if face_one == face or face_two == face:
                     break

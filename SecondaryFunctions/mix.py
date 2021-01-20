@@ -48,5 +48,4 @@ class Mix():
                 cube.move_up_counter()
             elif move == "U2":
                 cube.move_u2()
-        cube.print_cube()
         return cube

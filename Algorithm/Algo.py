@@ -16,4 +16,4 @@ class   Algo():
         step_two = s2.step_two(cubeOrigin)
         self.lst_moves = step_one.run(self.cube, self.lst_moves)
         self.lst_moves = step_two.run(self.cube, self.lst_moves)
-        print(self.lst_moves)
+        self.cube.print_cube()

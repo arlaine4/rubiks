@@ -13,7 +13,7 @@ def check_pos_color(cubeCurrent, cubeOrigin, color_one, color_two, color_three=N
         return True
     else:
         lst_pos_curr = checker.three(cubeCurrent, color_one, color_two, color_three)
-        lst_pos_origin = checker.three(cubeCurrent, color_one, color_two, color_three)
+        lst_pos_origin = checker.three(cubeOrigin, color_one, color_two, color_three)
         i = 0
         while i < len(lst_pos_origin):
             j = 0
@@ -89,7 +89,6 @@ class Cube():
 
     def move_right_counter(self):
         for i in range(self.size):
-            print("bonsoir")
             buflst = self.down[i][self.size - 1]
             self.down[i][self.size - 1] = self.front[i][self.size - 1]
             self.front[i][self.size - 1] = self.up[i][self.size - 1]
