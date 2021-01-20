@@ -12,7 +12,7 @@ class step_three:
 		self.cubeOrigin = cubeOrigin
 		self.lst_pos_curr = []
 		self.lst_pos_origin = []
-		self.checkerManager = check_c.CheckerColors()
+		self.checker = check_c.CheckerColors()
         self.lst_moves = []
 
     def set_lst_moves(self, lst_moves):
@@ -28,39 +28,39 @@ class step_three:
 		if (self.finished_three_color_pos(cubeCurrent, ["red", "green"])) is False:
 			self.moving(cubeCurrent, lst_moves, ["red", "green"], "right")
 
-	def finished_three_color_pos(self, cubeCurrent, colors_list):
-		return cubik.check_pos_color(self.cubeOrigin, cubeCurrent, colors_list[0], colors_list[1])
+	def finished_three_color_pos(self, cubeCurrent, lst_colors):
+		return cubik.check_pos_color(self.cubeOrigin, cubeCurrent, lst_colors[0], lst_colors[1])
 
-	def update_pos_lst(self, cub, colors_list):
-		return self.checkerManager.two(cub, colors_list[0], colors_list[1])
+	def update_pos_lst(self, cub, lst_colors):
+		return self.checkerManager.two(cub, lst_colors[0], lst_colors[1])
 
-	def moving(self, cubeCurrent, lst_moves, colors_list, face):
-		self.lst_pos_origin = self.update_pos_lst(self.cubeOrigin, colors_list)
-		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
-		check_side_lst = self.check_side(cubeCurrent, colors_list)
+	def moving(self, cubeCurrent, lst_moves, lst_colors, face):
+		self.lst_pos_origin = self.update_pos_lst(self.cubeOrigin, lst_colors)
+		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
+		check_side_lst = self.check_side(cubeCurrent, lst_colors)
 		if check_side_lst[0] is True:
-			self.wich_sequences(cubeCurrent, lst_moves, colors_list)
+			self.wich_sequences(cubeCurrent, lst_moves, lst_colors)
 		else:
 			if self.lst_pos_curr[0][0] != "down":
-				self.push_down(cubeCurrent, lst_moves, colors_list)
-				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+				self.push_down(cubeCurrent, lst_moves, lst_colors)
+				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
 			if self.lst_pos_curr[0][0] != "down":
 				print ("ERROR DOWN IS NOT")
 				sys.exit(-1)
-			self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+			self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
 			if self.lst_pos_curr[0][0] == "down":
-				self.move_to_center(cubeCurrent, lst_moves, colors_list, face)
-				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
-				self.wich_sequences(cubeCurrent, lst_moves, colors_list)
-	def move_to_center(self, cubeCurrent, lst_moves, colors_list, face):
-		check_side_lst = self.check_side(cubeCurrent, colors_list)
+				self.move_to_center(cubeCurrent, lst_moves, lst_colors, face)
+				self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
+				self.wich_sequences(cubeCurrent, lst_moves, lst_colors)
+	def move_to_center(self, cubeCurrent, lst_moves, lst_colors, face):
+		check_side_lst = self.check_side(cubeCurrent, lst_colors)
 		while check_side_lst[0] is False:
 			cubeCurrent.move_down()
 			lst_moves.append("D")
-			check_side_lst = self.check_side(cubeCurrent, colors_list)
+			check_side_lst = self.check_side(cubeCurrent, lst_colors)
 
-	def push_down(self, cubeCurrent, lst_moves, colors_list):
-		face_one, face_two, colorOne, colorTwo = self.get_side_params(cubeCurrent, colors_list)
+	def push_down(self, cubeCurrent, lst_moves, lst_colors):
+		face_one, face_two, colorOne, colorTwo = self.get_side_params(cubeCurrent, lst_colors)
 		pattern = self.get_pattern_push_down(face_one, face_two)
 		if pattern == "rightPattern":
 			self.right_sequence(cubeCurrent, lst_moves, face_one)
@@ -78,16 +78,16 @@ class step_three:
 		elif face_one == "right" and face_two == "back":
 			return ("rightPattern")
 
-	def get_side_params(self, cubeCurrent, colors_list):
-		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, colors_list)
+	def get_side_params(self, cubeCurrent, lst_colors):
+		self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
 		down = self.lst_pos_curr[0][0]
 		colorDown = self.lst_pos_curr[0][1]
 		colorFace = self.lst_pos_curr[1][1]
 		face = self.lst_pos_curr[1][0]
 		return down, face, colorDown, colorFace
 
-	def check_side(self, cubeCurrent, colors_list):
-		down, face, colorDown, colorFace = self.get_side_params(cubeCurrent, colors_list)
+	def check_side(self, cubeCurrent, lst_colors):
+		down, face, colorDown, colorFace = self.get_side_params(cubeCurrent, lst_colors)
 		if down != "down":
 			return [False, "null"]
 		if face == "front":
@@ -112,9 +112,9 @@ class step_three:
 				return [True, "leftPattern"]
 		return [False, "null"]
 
-	def wich_sequences(self, cubeCurrent, lst_moves, colors_list):
-		down, face, colorDown, colorFace = self.get_side_params(cubeCurrent, colors_list)
-		check_side_lst = self.check_side(cubeCurrent, colors_list)
+	def wich_sequences(self, cubeCurrent, lst_moves, lst_colors):
+		down, face, colorDown, colorFace = self.get_side_params(cubeCurrent, lst_colors)
+		check_side_lst = self.check_side(cubeCurrent, lst_colors)
 		if check_side_lst[1] == "rightPattern":
 			self.right_sequence(cubeCurrent, lst_moves, face)
 		elif check_side_lst[1] == "leftPattern":

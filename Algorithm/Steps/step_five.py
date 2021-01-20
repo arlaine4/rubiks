@@ -9,7 +9,7 @@ from SecondaryFunctions import utils
 class step_five:
     def __init__(self, cubeOrigin):
         self.cubeOrigin = cubeOrigin
-        self.checkerManager = check_c.CheckerColors()
+        self.checker = check_c.CheckerColors()
 
     def run(self, cubeCurrent, lst_moves):
         res = self.go_down(cubeCurrent, lst_moves)
