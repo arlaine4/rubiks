@@ -4,6 +4,7 @@ sys.path.insert(0, "../../../rubiks")
 import SecondaryFunctions.check_colors as check_c
 import cubik
 from SecondaryFunctions import mix
+from SecondaryFunctions import utils
 
 class   step_one():
     def __init__(self, cubeOrigin):
@@ -21,6 +22,7 @@ class   step_one():
         if self.finished_two_color_pos(cubeCurrent, "white", "green") is False:
             print("1")
             self.edge_move_two_color(cubeCurrent, "white", "green", "front")
+            print("1.5")
         if self.finished_two_color_pos(cubeCurrent, "white", "blue") is False:
             print("2")
             self.edge_move_two_color(cubeCurrent, "white", "blue", "back")
@@ -38,17 +40,21 @@ class   step_one():
     def edge_move_two_color(self, cubeCurrent, color_one, color_two, face):
         self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
         self.lst_pos_origin = self.checker.two(self.cubeOrigin, color_one, color_two)
-        if face != self.lst_pos_curr[0][0] and face != self.lst_pos_curr[1][0]:
-            self.move_down_two_color(cubeCurrent, self.lst_moves, color_one, color_two, face)
-        if face == self.lst_pos_curr[0][0] or face == self.lst_pos_curr[1][0]:
+        if ((face != self.lst_pos_curr[0][0]) and (face != self.lst_pos_curr[1][0])):
+            print("AH1")
+            self.move_down_two_color(cubeCurrent, color_one, color_two, face)
+        if (face == self.lst_pos_curr[0][0]) or (face == self.lst_pos_curr[1][0]):
+            print("AH2")
             self.move_center(cubeCurrent, face, color_one, color_two)
-            if self.lst_pos_curr[0][1] != lst_pos_origin[0][1]:
-                self.change_side(cubeCurrent, self.lst_moves, face)
+            if self.lst_pos_curr[0][1] != self.lst_pos_origin[0][1]:
+                print("AH3")
+                self.change_side(cubeCurrent, face)
 
     def move_center(self, cubeCurrent, face, color_one, color_two):
+        print(face, self.lst_pos_curr, self.lst_pos_origin)
         while self.lst_pos_curr[1][2] != self.lst_pos_origin[1][2]:
             if face == "front":
-                cubeCurrent.move_back_counter()
+                cubeCurrent.move_front_counter()
                 self.lst_moves.append("F'")
             if face == "right":
                 cubeCurrent.move_right_counter()
@@ -60,6 +66,7 @@ class   step_one():
                 cubeCurrent.move_back_counter()
                 self.lst_moves.append("B'")
             self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
+        cubeCurrent.print_cube()
 
     def update_face_color(self, cubeCurrent, color_one, color_two):
         self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
@@ -70,11 +77,13 @@ class   step_one():
 
         def move_down_center(cubeCurrent, color_one, color_two, face):
             face_one, face_two = self.update_face_color(cubeCurrent, color_one, color_two)
+            print(face_one, face_two, face)
             while 1:
                 if face_one == face or face_two == face:
-                    cubeCurrent.move_down()
-                    self.lst_moves.append("D")
-                    face_one, face_two = self.update_face_color(cubeCurrent, color_one, color_two)
+                    break
+                cubeCurrent.move_down()
+                self.lst_moves.append("D")
+                face_one, face_two = self.update_face_color(cubeCurrent, color_one, color_two)
         
         def optimization_step(count, move):
             if count == 3:
@@ -95,7 +104,7 @@ class   step_one():
                     break
                 count += 1
                 cubeCurrent.move_front()
-                face_one,face_two = self.updateFaceColor(cubeCurrent, color_one, color_two)
+                face_one,face_two = self.update_face_color(cubeCurrent, color_one, color_two)
             count, flag = optimization_step(count, "F")
             move_down_center(cubeCurrent, color_one, color_two, face)
             while (count != 0):
@@ -112,7 +121,7 @@ class   step_one():
                     break
                 count += 1
                 cubeCurrent.move_left()
-                face_one,face_two = self.updateFaceColor(cubeCurrent, color_one, color_two)
+                face_one,face_two = self.update_face_color(cubeCurrent, color_one, color_two)
             count,flag = optimization_step(count, "L")
             move_down_center(cubeCurrent, color_one, color_two, face)
             while (count != 0):
@@ -129,7 +138,7 @@ class   step_one():
                     break
                 count += 1
                 cubeCurrent.move_right()
-                face_one,face_two = self.updateFaceColor(cubeCurrent, color_one, color_two)
+                face_one,face_two = self.update_face_color(cubeCurrent, color_one, color_two)
             count,flag = optimization_step(count, "R")
             move_down_center(cubeCurrent, color_one, color_two, face)
             while (count != 0):
@@ -158,17 +167,17 @@ class   step_one():
                     cubeCurrent.move_back()
                     self.lst_moves.append("B")
 
-    def    changeSide(cubeCurrent, lst_moves, face):
+    def    change_side(self, cubeCurrent, face):
         mixManager = mix.Mix()
         if (face == "front"):
-            mixManager.mixRun(["F", "U'", "R", "U"], cubeCurrent)
+            mixManager.runMix(["F", "U'", "R", "U"], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, ["F", "U'", "R", "U"])
         elif (face == "right"):
-            mixManager.mixRun(["R", "U'", "B", "U"], cubeCurrent)
+            mixManager.runMix(["R", "U'", "B", "U"], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, ["R", "U'", "B", "U"])
         elif (face == "left"):
-            mixManager.mixRun(["L", "U'", "F", "U"], cubeCurrent)
+            mixManager.runMix(["L", "U'", "F", "U"], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, ["L", "U'", "F", "U"])
         elif (face == "back"):
-            mixManager.mixRun(["B", "U'", "L", "U"], cubeCurrent)
+            mixManager.runMix(["B", "U'", "L", "U"], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, ["B", "U'", "L", "U"])

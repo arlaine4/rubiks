@@ -10,7 +10,7 @@ class CheckerColors:
 #
         elif (cub.up[1][2] is colorOne) and (cub.right[0][1] is colorTwo):
             return ([['up', colorOne, 1, 2],['right', colorTwo, 0, 1]])
-        elif (cub.up[1][2] is colorTwo) and (cub.right[0][1] == colorOne):
+        elif (cub.up[1][2] is colorTwo) and (cub.right[0][1] is colorOne):
             return ([['up', colorTwo, 1, 2],['right', colorOne, 0, 1]])
 #
         elif (cub.up[2][1] is colorOne) and (cub.front[0][1] is colorTwo):
@@ -62,7 +62,8 @@ class CheckerColors:
             return ([['down', colorOne, 1, 0],['left', colorTwo, 2, 1]])
         elif (cub.down[1][0] is colorTwo) and (cub.left[2][1] is colorOne):
             return ([['down', colorTwo, 1, 0],['left', colorOne, 2, 1]])
-        return (False)
+        else:
+            return False
 
     def three(self, cub, colorOne, colorTwo, colorThree):
         if (cub.up[0][0] == colorOne and cub.left[0][0] == colorTwo and cub.back[0][2] == colorThree):
