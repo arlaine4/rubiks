@@ -32,4 +32,4 @@ class   Algo():
         self.lst_moves = step_five.run(self.cube, self.lst_moves)
         self.lst_moves = step_six.run(self.cube, self.lst_moves)
         self.lst_moves = step_seven.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
+        return self.lst_moves

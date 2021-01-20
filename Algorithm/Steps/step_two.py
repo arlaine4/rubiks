@@ -18,21 +18,13 @@ class   step_two:
     def run(self, cubeCurrent, lst_moves):
         self.set_lst_moves(lst_moves)
         if self.finished_three_color_pos(cubeCurrent, "white", "green", "red") is False:
-            cubeCurrent.print_cube()
             self.move_three_color(cubeCurrent, "white", "green", "red", "front")
-            cubeCurrent.print_cube()
         if self.finished_three_color_pos(cubeCurrent, "white", "red", "blue") is False:
-            cubeCurrent.print_cube()
             self.move_three_color(cubeCurrent, "white", "red", "blue", "right")
-            cubeCurrent.print_cube()
         if self.finished_three_color_pos(cubeCurrent, "white", "blue", "orange") is False:
-            cubeCurrent.print_cube()
             self.move_three_color(cubeCurrent, "white", "blue", "orange", "back")
-            cubeCurrent.print_cube()
         if self.finished_three_color_pos(cubeCurrent, "white", "orange", "green") is False:
-            cubeCurrent.print_cube()
             self.move_three_color(cubeCurrent, "white", "orange", "green", "left")
-            cubeCurrent.print_cube()
         return self.lst_moves
 
     def finished_three_color_pos(self, cubeCurrent, color_one, color_two, color_three):

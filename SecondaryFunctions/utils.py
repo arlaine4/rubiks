@@ -3,6 +3,7 @@ import argparse
 def arg_parse():
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mix", required=True, help="cube shuffle")
+    parser.add_argument("-v", "--visual", action="store_true", help="Show visual")
     options = parser.parse_args()
     return options
 
