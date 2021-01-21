@@ -57,7 +57,6 @@ class   step_one():
                 cubeCurrent.move_back_counter()
                 self.lst_moves.append("B'")
             self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
-        cubeCurrent.print_cube()
 
     def update_face_color(self, cubeCurrent, color_one, color_two):
         self.lst_pos_curr = self.checker.two(cubeCurrent, color_one, color_two)
