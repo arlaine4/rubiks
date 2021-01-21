@@ -4,6 +4,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from SecondaryFunctions import utils
 import numpy as np
+from copy import deepcopy
 import time
 #from cube import print_cube
 
@@ -274,6 +275,16 @@ surfaces = (
 	(25, 26, 29, 28),
 	(17, 25, 28, 4),
 	(23, 24, 27, 26),
+	#Up #DOWN
+	(2, 31, 48, 40),
+	(31, 30, 49, 48),
+	(30, 1, 21, 49),
+	(40, 48, 50, 41),
+	(48, 49, 51, 50),
+	(49, 21, 20, 51),
+	(41, 50, 8, 7),
+	(50, 51, 9, 8),
+	(51, 20, 5, 9),
 	#Back UP
 	(2, 31, 33, 34),
 	(31, 30, 32, 33),
@@ -304,40 +315,51 @@ surfaces = (
 	(47, 54, 18, 6),
 	(54, 55, 19, 18),
 	(55, 28, 4, 19),
-	#Up #DOWN
-	(2, 31, 48, 40),
-	(31, 30, 49, 48),
-	(30, 1, 21, 49),
-	(40, 48, 50, 41),
-	(48, 49, 51, 50),
-	(49, 21, 20, 51),
-	(41, 50, 8, 7),
-	(50, 51, 9, 8),
-	(51, 20, 5, 9),
 	)
 
 colors = (
-	(0, 0, 1), #blue
-	(1, 0, 0), #red
 	(0, 1, 0), #green
-	(1, 0.5, 0), #orange
+	(1, 0, 0), #red
 	(1, 1, 1), #white
+	(0, 0, 1), #blue
+	(1, 0.5, 0), #orange
 	(1, 1, 0), #yellow
 	)
 
 black = (0, 0, 0)
 
-def	get_color_index(cube, index_surface):
-	i = 0
-	j = 0
-	k = 0
-	while (i + 1) * 9 <= index_surface:
-		i += 1
-	while (i * 9) + ((j + 1) * 3) <= index_surface:
-		j += 1
-	while (i * 9) + (j * 3) + (k + 1) <= index_surface:
-			k += 1
-	return cube[i][j][k]
+def get_color_index(cube, index_surface):
+    if index_surface >= 0 and index_surface < 9: #front
+        line = int(round(index_surface / 3))
+        rest = index_surface % 3
+        line = 2 if line == 3 else line
+        return cube[0][line][rest]
+    elif index_surface >= 9 and index_surface < 18: #right
+        line = int(round((index_surface - 9) / 3))
+        rest = (index_surface - 9) % 3
+        line = 2 if line == 3 else line
+        return cube[1][line][rest]
+    elif index_surface >= 18 and index_surface < 27: #back
+        line = int(round((index_surface - 18) / 3))
+        rest = (index_surface - 18) % 3
+        line = 2 if line == 3 else line
+        return cube[3][line][rest]
+    elif index_surface >= 27 and index_surface < 36:#left
+        line = int(round((index_surface - 27) / 3))
+        rest = (index_surface - 27) % 3
+        line = 2 if line == 3 else line
+        return cube[4][line][rest]
+    elif index_surface >= 36 and index_surface < 45:#down
+        line = int(round((index_surface - 36) / 3))
+        rest = (index_surface - 36) % 3
+        line = 2 if line == 3 else line
+        return cube[5][line][rest]
+    elif index_surface >= 45 and index_surface < 54:#up
+        line = int(round((index_surface - 45) / 3))
+        rest = (index_surface - 45) % 3
+        line = 2 if line == 3 else line
+        return cube[2][line][rest]
+
 
 def Cube(cube):
         #----------------------------------------
@@ -366,10 +388,18 @@ def Cube(cube):
         #----------------------------------------
         glEnd()
 
+def     fill_cube_colors(cube):
+        cube[0] = 2
+        cube[1] = 1
+        cube[2] = 4
+        cube[3] = 0
+        cube[4] = 3
+        cube[5] = 5
+        return cube
+
 def	main_visual(mix, lst_moves):
         cube = np.zeros((6, 3, 3,), dtype=np.int)
-        for i in range(6):
-            cube[i] = i
+        cube = fill_cube_colors(cube)
         pygame.init()
         display = (1200, 1000)
         pygame.time.Clock()
@@ -420,7 +450,7 @@ def	main_visual(mix, lst_moves):
                                 if event.key == pygame.K_s and i < len(moves):
                                         while i < len(moves):
                                                 bool_shuffle = True
-                                                cube = utils.select_move_function_to_call(moves[i], cube)
+                                                new_cube = utils.select_move_function_to_call(moves[i], cube)
                                                 i += 1
                                                 glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
                                                 Cube(cube)
@@ -442,6 +472,15 @@ def	main_visual(mix, lst_moves):
                                                 Cube(cube)
                                                 coups += 1
                                                 pygame.display.set_caption("Rubiks | {} fps | Number of moves : {}".format(int(clock.get_fps()), coups))
+                                        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                        Cube(cube)
+                                        pygame.display.flip()
+                                        pygame.time.wait(30)
+                                        clock.tick(120)
+                                        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+                                        Cube(cube)
+                                        coups += 1
+                                        pygame.display.set_caption("Rubiks | {} fps | Number of moves : {}".format(int(clock.get_fps()), coups))
                 opaque_on_off(True if opaque > 0 else False)
                 if turn > 0:
                     glRotatef(speed, x, y, 1)

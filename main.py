@@ -23,10 +23,12 @@ if __name__ == "__main__":
     scramble = args.mix
     scramble = scramble.split(' ')
     cube = mix_.runMix(scramble, cube)
+    cube.print_cube()
     if args.visual is False:
         cube.print_cube()
     algo = a.Algo(cube)
     solution = algo.run()
+    print(solution)
     if args.visual is False:
         cube.print_cube()
         print("Solution found in {} moves".format(len(solution)))

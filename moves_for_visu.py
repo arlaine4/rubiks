@@ -9,8 +9,8 @@ from copy import deepcopy
 
 # cube array lors reprensentation :
 # Fas :	0		1		2		3		4		5
-#		Blue		red             yellow          green           orange           white
-#		front	        right           up              ba            left            down
+#	Blue		red             yellow          green           orange           white
+#	front	        right           up              ba            left            down
 
 ###
 ### Need to verify ta everthing work perfely but it seems to cube ean
