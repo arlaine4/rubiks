@@ -11,6 +11,7 @@ class Mix():
                 "L2", "U2", "F'", "B'", "R'", "L'", "U'", "D'"]
 
     def runMix(self, lst_moves, cube):
+        """Run mix move by move"""
         for move in lst_moves:
             if move == "F":
                 cube.move_front()

@@ -5,6 +5,7 @@ import cubik
 from SecondaryFunctions import mix, utils
 
 class   step_two:
+    """Step two do the white corners"""
     def __init__(self, cubOrigin):
         self.cubOrigin = cubOrigin
         self.lst_pos_cur = []
@@ -28,12 +29,15 @@ class   step_two:
         return self.lst_moves
 
     def finished_three_color_pos(self, cubeCurrent, color_one, color_two, color_three):
+        """check correct position for corner"""
         return cubik.check_pos_color(self.cubOrigin, cubeCurrent, color_one, color_two, color_three)
 
     def update_pos_lst(self, cub, color_one, color_two, color_three):
+        """update pos for corner"""
         return self.checker.three(cub, color_one, color_two, color_three)
 
     def move_three_color(self, cubeCurrent, color_one, color_two, color_three, face):
+        """move a corner"""
         self.lst_pos_cur = self.update_pos_lst(cubeCurrent, color_one, color_two, color_three)
         self.lst_pos_origin = self.update_pos_lst(self.cubOrigin, color_one, color_two, color_three)
         if self.check_side(cubeCurrent, face) is False:
@@ -46,6 +50,7 @@ class   step_two:
             self.move_side(cubeCurrent, color_one, color_two, color_three, face)
 
     def move_edge_down(self, cubeCurrent, color_one, color_two, color_three):
+        """move an edge on the down face"""
         self.lst_pos_cur = self.update_pos_lst(cubeCurrent, color_one, color_two, color_three)
         mixManager = mix.Mix()
         if self.lst_pos_cur[1][0] == "right" and self.lst_pos_cur[2][0] == "front":

@@ -11,26 +11,21 @@ if __name__ == "__main__":
     if len(args.mix) == 0:
         print("Random moves generator not triggered, and hand written mix not valid, please try again with a valid mix.")
         sys.exit(0)
+    #-----------------------------------------#
+    #           Cube Shuffle                  #
     lst_moves = args.mix
     lst_moves = lst_moves.split(' ')
     cube = mix_.runMix(lst_moves, cube)
+    #                                         #
+    #-----------------------------------------#
+
+    #-----------------------------------------#
+    #           Cube Solve                    #
     cube.print_cube()
     algo = a.Algo(cube)
     solution = algo.run()
-    if args.visual:
-        visu.main_visual(args.mix, solution)
+    #                                         #
+    #-----------------------------------------#
+
     cube.print_cube()
-    scramble = args.mix
-    scramble = scramble.split(' ')
-    cube = mix_.runMix(scramble, cube)
-    cube.print_cube()
-    if args.visual is False:
-        cube.print_cube()
-    algo = a.Algo(cube)
-    solution = algo.run()
-    print(solution)
-    if args.visual is False:
-        cube.print_cube()
-        print("Solution found in {} moves".format(len(solution)))
-    else:
-        visu.main_visual(scramble, solution)
+    print("Solution found in {} moves".format(len(solution)))

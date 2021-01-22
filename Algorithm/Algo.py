@@ -16,7 +16,7 @@ class   Algo():
         self.lst_moves = []
 
     def run(self):
-        cubeOrigin = cubik.Cube(3)
+        cubeOrigin = cubik.Cube(3) #CubeOrigin is the final solved cube != self.cube wich is the current cube state
         step_one = s1.step_one(cubeOrigin)
         step_two = s2.step_two(cubeOrigin)
         step_three = s3.step_three(cubeOrigin)
@@ -25,11 +25,24 @@ class   Algo():
         step_six = s6.step_six(cubeOrigin)
         step_seven = s7.step_seven(cubeOrigin)
 
+        #Running all seven steps one by one, append each move made to self.lst_moves and refreshing self.cube state
         self.lst_moves = step_one.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step one")
         self.lst_moves = step_two.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step 2")
         self.lst_moves = step_three.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step 3")
         self.lst_moves = step_four.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step 4")
         self.lst_moves = step_five.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step 5")
         self.lst_moves = step_six.run(self.cube, self.lst_moves)
+        self.cube.print_cube()
+        print("step 6")
         self.lst_moves = step_seven.run(self.cube, self.lst_moves)
         return self.lst_moves
