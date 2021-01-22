@@ -38,6 +38,9 @@ class Cube():
         self.down = self.fillColors(colors[5], self.size)
 
     def fillColors(self, color, size):
+        """filling every face with the correspoding color,
+        calling this function inside Cube builder, so only
+        when you declare a new instance of Cube()"""
         lst = []
         for row in range(size):
             s = []
@@ -45,6 +48,9 @@ class Cube():
                 s.append(color)
             lst.append(s)
         return lst
+
+#--------------------------------------------------------------------------#
+#                       Classic Cube moves                                 #
 
     def move_up(self):
         buflst = self.right[0]
@@ -150,7 +156,11 @@ class Cube():
             self.right[self.size - 1 - i][self.size - 1] = buflst
         self.moveFrontCounter(self.back, 'b')
 
+#                                                                          #
+#--------------------------------------------------------------------------#
+
     def moveFront(self, face, l):
+        """Do a 90 degrees face rotation"""
         nlist = [[x[i] for x in face] for i in range(len(face[0]))]
         for row in range(self.size):
             for col in range(self.size):
@@ -174,6 +184,7 @@ class Cube():
             self.back = nlist
 
     def moveFrontCounter(self, face, l):
+        """Do a -90 degrees face rotation"""
         self.moveFront(face, l)
         if l == 'f':
             self.moveFront(self.front, l)

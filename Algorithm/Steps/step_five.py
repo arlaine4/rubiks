@@ -7,6 +7,7 @@ from SecondaryFunctions import mix
 from SecondaryFunctions import utils
 
 class step_five:
+    """step five : placing down edges on L R F B"""
     def __init__(self, cubeOrigin):
         self.cubeOrigin = cubeOrigin
         self.checker = check_c.CheckerColors()

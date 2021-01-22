@@ -7,6 +7,7 @@ from SecondaryFunctions import mix
 from SecondaryFunctions import utils
 
 class step_six:
+    """step six : yellow corners orientation"""
     def __init__(self, cubeOrigin):
         self.cubeOrigin = cubeOrigin
         self.lst_pos_curr = []

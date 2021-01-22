@@ -3,6 +3,7 @@ import sys
 class CheckerColors:
 
     def two(self, cub, colorOne, colorTwo):
+        """Check correct cubie colors for every edge"""
         if (cub.up[0][1] is colorOne) and (cub.back[0][1] is colorTwo):
             return ([['up', colorOne, 0, 1],['back', colorTwo, 0, 1]])
         elif (cub.up[0][1] is colorTwo) and (cub.back[0][1] is colorOne):
@@ -66,6 +67,7 @@ class CheckerColors:
             return False
 
     def three(self, cub, colorOne, colorTwo, colorThree):
+        """check correct cubies colors for every corner"""
         if cub.up[0][0] == colorOne and cub.left[0][0] == colorTwo and cub.back[0][2] == colorThree:
             return (['up', colorOne, 0, 0],['left', colorTwo, 0, 0], ['back', colorThree, 0, 2])
         elif cub.up[0][0] == colorOne and cub.left[0][0] == colorThree and cub.back[0][2] == colorTwo:

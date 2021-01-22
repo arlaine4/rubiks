@@ -68,12 +68,14 @@ class   step_two:
         self.lst_pos_cur = self.update_pos_lst(cubeCurrent, color_one, color_two, color_three)
 
     def move_edge_down_loop(self, cubeCurrent, color_one, color_two, color_three, face):
+        """Orienting edges on down face"""
         while self.check_side(cubeCurrent, face) is False:
             cubeCurrent.move_down()
             self.lst_moves.append("D")
             self.lst_pos_cur = self.update_pos_lst(cubeCurrent, color_one, color_two, color_three)
 
     def check_side(self, cubeCurrent, face):
+        """check if edge is correctly placed before making a move"""
         if face == "front":
             return self.check_both_side(face, "right")
         elif face == "right":
@@ -86,6 +88,7 @@ class   step_two:
             return False
 
     def check_both_side(self, face, adj_face):
+        """check if the edge and the adjacent edge are correctly placed"""
         count = 0
         i = 0
         while i < len(self.lst_pos_cur):

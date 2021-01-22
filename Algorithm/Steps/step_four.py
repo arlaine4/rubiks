@@ -7,6 +7,7 @@ from SecondaryFunctions import mix
 from SecondaryFunctions import utils
 
 class step_four:
+    """step four : do the yellow cross"""
     def __init__(self):
         self.lst_moves = []
 

@@ -2,7 +2,6 @@ from SecondaryFunctions import utils, mix
 from Algorithm import Algo as a
 import sys
 import cubik as c
-import visual as visu
 
 if __name__ == "__main__":
     args = utils.arg_parse()

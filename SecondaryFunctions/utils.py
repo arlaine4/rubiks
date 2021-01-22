@@ -1,6 +1,5 @@
 import argparse
 import sys
-import moves_for_visu as move
 
 def arg_parse():
     """Parsing arguments for mix"""

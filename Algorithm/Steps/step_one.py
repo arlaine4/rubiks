@@ -97,6 +97,7 @@ class   step_one():
                     self.lst_moves.append(move)
                 return count, 0
 
+        """Finishing step one"""
         count = 0
         if face_one == "front" or face_two == "front":
             while 1:
@@ -168,6 +169,7 @@ class   step_one():
                     self.lst_moves.append("B")
 
     def    change_side(self, cubeCurrent, face):
+        """Re positionning edges"""
         mixManager = mix.Mix()
         if face == "front":
             mixManager.runMix(["F", "U'", "R", "U"], cubeCurrent)

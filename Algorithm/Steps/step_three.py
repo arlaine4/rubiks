@@ -8,6 +8,7 @@ from SecondaryFunctions import utils
 
 
 class step_three:
+    """second layer placement (Up and middle layers for F L R B)"""
     def __init__(self, cubeOrigin):
         self.cubeOrigin = cubeOrigin
         self.lst_pos_curr = []
@@ -46,7 +47,7 @@ class step_three:
                 self.push_down(cubeCurrent, lst_colors)
                 self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
             if self.lst_pos_curr[0][0] != "down":
-                print ("ERROR DOWN IS NOT")
+                print ("An error has occured, sorry guys")
                 sys.exit(-1)
             self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
             if self.lst_pos_curr[0][0] == "down":
@@ -55,6 +56,7 @@ class step_three:
                 self.wich_sequences(cubeCurrent, lst_colors)
 
     def move_to_center(self, cubeCurrent, lst_colors, face):
+        """Orienting edge on down face"""
         check_side_lst = self.check_side(cubeCurrent, lst_colors)
         while check_side_lst[0] is False:
             cubeCurrent.move_down()

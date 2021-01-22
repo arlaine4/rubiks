@@ -7,6 +7,7 @@ from SecondaryFunctions import mix
 from SecondaryFunctions import utils
 
 class step_seven:
+    """step seven : place yellow corners and finish the cube"""
     def __init__(self, cubeOrigin):
         self.cubeOrigin = cubeOrigin
         self.checker = check_c.CheckerColors()
