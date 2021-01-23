@@ -25,7 +25,7 @@ if __name__ == "__main__":
     #-----------------------------------------#
     #           Cube Solve                    #
     algo = a.Algo(cube)
-    solution = algo.run()
+    solution = algo.run(args.explain)
     #                                         #
     #-----------------------------------------#
 

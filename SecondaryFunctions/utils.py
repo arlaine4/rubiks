@@ -5,6 +5,7 @@ def arg_parse():
     """Parsing arguments for mix"""
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mix", required=False, help="cube shuffle")
+    parser.add_argument("-e", "--explain", action="store_true", help="Get more explanation about steps")
     options = parser.parse_args()
     return options
 
