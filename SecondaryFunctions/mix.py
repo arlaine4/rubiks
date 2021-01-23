@@ -3,6 +3,7 @@ import os
 import sys
 sys.path.insert(0, "../cubik")
 from cubik import *
+import re
 
 class Mix():
     def runMix(self, lst_moves, cube):
@@ -45,3 +46,15 @@ class Mix():
             elif move == "U2":
                 cube.move_u2()
         return cube
+
+    def valid(self, lst):
+        for move in lst:
+            if len(move) > 2:
+                return False
+            tmp = re.sub(r"[FRLUBD'2]", "", move)
+            if len(tmp) > 0:
+                return False
+            check = re.compile(r"(F|R|L|U|B|D)('|2)") if len(move) == 2 else re.compile(r"(F|R|L|U|B|D)")
+            if check.search(move) is None:
+                return False
+        return True

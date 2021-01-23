@@ -27,22 +27,10 @@ class   Algo():
 
         #Running all seven steps one by one, append each move made to self.lst_moves and refreshing self.cube state
         self.lst_moves = step_one.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step one")
         self.lst_moves = step_two.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step 2")
         self.lst_moves = step_three.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step 3")
         self.lst_moves = step_four.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step 4")
         self.lst_moves = step_five.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step 5")
         self.lst_moves = step_six.run(self.cube, self.lst_moves)
-        self.cube.print_cube()
-        print("step 6")
         self.lst_moves = step_seven.run(self.cube, self.lst_moves)
         return self.lst_moves

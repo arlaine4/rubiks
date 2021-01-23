@@ -14,17 +14,28 @@ if __name__ == "__main__":
     #           Cube Shuffle                  #
     lst_moves = args.mix
     lst_moves = lst_moves.split(' ')
+    if mix_.valid(lst_moves) is False:
+        print("The hand written mix seems to be weird, please try again with a valid mix.")
+        sys.exit(0)
     cube = mix_.runMix(lst_moves, cube)
+    cube.print_cube()
     #                                         #
     #-----------------------------------------#
 
     #-----------------------------------------#
     #           Cube Solve                    #
-    cube.print_cube()
     algo = a.Algo(cube)
     solution = algo.run()
     #                                         #
     #-----------------------------------------#
 
+    #-----------------------------------------#
+    #                                         #
     cube.print_cube()
     print("Solution found in {} moves".format(len(solution)))
+    print("The list of moves :")
+    for move in solution:
+        print(move, end=' ')
+    print()
+    #                                         #
+    #-----------------------------------------#
