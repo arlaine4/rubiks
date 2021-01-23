@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, "../cubik")
 from cubik import *
 import re
+from random import randint
 
 class Mix():
     def runMix(self, lst_moves, cube):
@@ -58,3 +59,17 @@ class Mix():
             if check.search(move) is None:
                 return False
         return True
+
+    def create(self):
+        moves = ["F", "R", "L", "U", "B", "D", "F'", "R'", "L'", "U'", "B'", "D'", "F2", "R2", "L2", "U2", "B2", "D2"]
+        lst = []
+        i = 0
+        scramble_len = randint(15,35)
+        while i <= scramble_len:
+            lst.append(moves[randint(0,17)])
+            i += 1
+        print("A random scramble of {} moves is generated, here it is:".format(len(lst)))
+        for move in lst:
+            print(move, end=' ')
+        print()
+        return lst

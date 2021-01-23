@@ -4,7 +4,7 @@ import sys
 def arg_parse():
     """Parsing arguments for mix"""
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--mix", required=True, help="cube shuffle")
+    parser.add_argument("-m", "--mix", required=False, help="cube shuffle")
     options = parser.parse_args()
     return options
 
