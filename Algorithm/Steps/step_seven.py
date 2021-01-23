@@ -22,6 +22,8 @@ class step_seven:
 
     def run(self, cubeCurrent, lst_moves):
         self.set_lst_moves(lst_moves)
+        if cubeCurrent.is_solved():
+            return self.lst_moves
         self.move_side(cubeCurrent, self.first_corner)
         self.move_down(cubeCurrent)	
         self.move_side(cubeCurrent,self.second_corner)

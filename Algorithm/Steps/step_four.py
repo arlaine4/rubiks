@@ -11,8 +11,11 @@ class step_four:
     def __init__(self):
         self.lst_moves = []
 
+    def set_lst_moves(self, lst_moves):
+        self.lst_moves = lst_moves
+
     def run(self, cubeCurrent, lst_moves):
-        self.set_lst_moves = lst_moves
+        self.set_lst_moves(lst_moves)
         mixManager = mix.Mix()
         to_move = ["F", "L", "D", "L'", "D'", "F'"]
         one, two = utils.check_back_state(cubeCurrent.down, "yellow")
@@ -46,3 +49,4 @@ class step_four:
         one,two = utils.check_back_state(cubeCurrent.down, "yellow")
         if one == 4:
                 return self.lst_moves
+        return self.lst_moves

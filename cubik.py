@@ -49,6 +49,35 @@ class Cube():
             lst.append(s)
         return lst
 
+    def is_solved(self):
+        """checking if the cube is solved"""
+        colors = ['green', 'blue', 'red', 'orange', 'white', 'yellow']
+        for row in range(3):
+            for column in range(3):
+                if self.front[row][column] != colors[0]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.back[row][column] != colors[1]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.right[row][column] != colors[2]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.left[row][column] != colors[3]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.up[row][column] != colors[4]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.down[row][column] != colors[5]:
+                    return False
+        return True
+
 #--------------------------------------------------------------------------#
 #                       Classic Cube moves                                 #
 

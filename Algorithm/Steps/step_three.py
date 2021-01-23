@@ -29,6 +29,7 @@ class step_three:
                 self.moving(cubeCurrent, ["blue", "red"], "back")
         if self.finished_three_color_pos(cubeCurrent, ["red", "green"]) is False:
                 self.moving(cubeCurrent, ["red", "green"], "right")
+        return self.lst_moves
 
     def finished_three_color_pos(self, cubeCurrent, lst_colors):
         return cubik.check_pos_color(self.cubeOrigin, cubeCurrent, lst_colors[0], lst_colors[1])
