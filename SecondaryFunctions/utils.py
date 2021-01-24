@@ -33,3 +33,23 @@ def append_list(lst_moves, to_add):
     for elem in to_add:
         lst_moves.append(elem)
     return(lst_moves)
+
+from copy import deepcopy
+
+def optimize_solution(lst_moves):
+    index = 0
+    while index < len(lst_moves):
+        if lst_moves[index:index+4] == ["D","D","D","D"]:
+            lst_moves.pop(index)
+            lst_moves.pop(index)
+            lst_moves.pop(index)
+            lst_moves.pop(index)
+        elif lst_moves[index:index+3] == ["D","D","D"]:
+            lst_moves[index] = "D'"
+            lst_moves.pop(index + 1)
+            lst_moves.pop(index + 1)
+        elif lst_moves[index:index+2] == ["D","D"]:
+            lst_moves[index] = "D2"
+            lst_moves.pop(index + 1)
+        index += 1
+    return lst_moves

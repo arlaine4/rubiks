@@ -32,6 +32,7 @@ if __name__ == "__main__":
     #-----------------------------------------#
     #           Printing solution             #
     cube.print_cube()
+    solution = utils.optimize_solution(solution)
     print("Solution found in {} moves".format(len(solution)))
     print("The list of moves :")
     for move in solution:

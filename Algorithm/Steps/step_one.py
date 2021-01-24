@@ -156,7 +156,7 @@ class   step_one():
                     break
                 count += 1
                 cubeCurrent.move_back_counter()
-                face_one,face_two = self.updateFaceColor(cubeCurrent, color_one, color_two)
+                face_one,face_two = self.update_face_color(cubeCurrent, color_one, color_two)
             count,flag = optimization_step(count, "B")
             move_down_center(cubeCurrent, color_one, color_two, face)
             while count != 0:
