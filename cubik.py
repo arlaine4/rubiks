@@ -1,23 +1,23 @@
 from SecondaryFunctions import utils, check_colors
 
 def check_pos_color(cubeCurrent, cubeOrigin, color_one, color_two, color_three=None):
-    checker = check_colors.CheckColors()
+    checker = check_colors.CheckerColors()
     if color_three is None:
         lst_pos_curr = checker.two(cubeCurrent, color_one, color_two)
-        lst_pos_origin = checker.two(cubeCurrent, color_one, color_two)
+        lst_pos_origin = checker.two(cubeOrigin, color_one, color_two)
         i = 0
         while i < len(lst_pos_origin):
-            if lst_pos_origin[i] != lst_pos_current[i]:
+            if lst_pos_origin[i] != lst_pos_curr[i]:
                 return False
             i += 1
         return True
     else:
         lst_pos_curr = checker.three(cubeCurrent, color_one, color_two, color_three)
-        lst_pos_origin = checker.three(cubeCurrent, color_one, color_two, color_three)
+        lst_pos_origin = checker.three(cubeOrigin, color_one, color_two, color_three)
         i = 0
         while i < len(lst_pos_origin):
             j = 0
-            while j < lst_pos_origin[0]:
+            while j < len(lst_pos_origin[0]):
                 if lst_pos_origin[i][j] != lst_pos_curr[i][j]:
                     return False
                 j += 1
@@ -38,6 +38,9 @@ class Cube():
         self.down = self.fillColors(colors[5], self.size)
 
     def fillColors(self, color, size):
+        """filling every face with the correspoding color,
+        calling this function inside Cube builder, so only
+        when you declare a new instance of Cube()"""
         lst = []
         for row in range(size):
             s = []
@@ -45,6 +48,38 @@ class Cube():
                 s.append(color)
             lst.append(s)
         return lst
+
+    def is_solved(self):
+        """checking if the cube is solved"""
+        colors = ['green', 'blue', 'red', 'orange', 'white', 'yellow']
+        for row in range(3):
+            for column in range(3):
+                if self.front[row][column] != colors[0]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.back[row][column] != colors[1]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.right[row][column] != colors[2]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.left[row][column] != colors[3]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.up[row][column] != colors[4]:
+                    return False
+        for row in range(3):
+            for column in range(3):
+                if self.down[row][column] != colors[5]:
+                    return False
+        return True
+
+#--------------------------------------------------------------------------#
+#                       Classic Cube moves                                 #
 
     def move_up(self):
         buflst = self.right[0]
@@ -89,7 +124,6 @@ class Cube():
 
     def move_right_counter(self):
         for i in range(self.size):
-            print("bonsoir")
             buflst = self.down[i][self.size - 1]
             self.down[i][self.size - 1] = self.front[i][self.size - 1]
             self.front[i][self.size - 1] = self.up[i][self.size - 1]
@@ -151,7 +185,11 @@ class Cube():
             self.right[self.size - 1 - i][self.size - 1] = buflst
         self.moveFrontCounter(self.back, 'b')
 
+#                                                                          #
+#--------------------------------------------------------------------------#
+
     def moveFront(self, face, l):
+        """Do a 90 degrees face rotation"""
         nlist = [[x[i] for x in face] for i in range(len(face[0]))]
         for row in range(self.size):
             for col in range(self.size):
@@ -175,6 +213,7 @@ class Cube():
             self.back = nlist
 
     def moveFrontCounter(self, face, l):
+        """Do a -90 degrees face rotation"""
         self.moveFront(face, l)
         if l == 'f':
             self.moveFront(self.front, l)
@@ -260,4 +299,3 @@ class Cube():
         print("{}# {}# {}#{}".format(self.get_color(self.down[0][0]), self.get_color(self.down[0][1]), self.get_color(self.down[0][2]), default))
         print("\t{}# {}# {}#{}".format(self.get_color(self.down[1][0]), self.get_color(self.down[1][1]), self.get_color(self.down[1][2]), default))
         print("\t{}# {}# {}#{}\n".format(self.get_color(self.down[2][0]), self.get_color(self.down[2][1]), self.get_color(self.down[2][2]), default))
-

@@ -3,17 +3,13 @@ import os
 import sys
 sys.path.insert(0, "../cubik")
 from cubik import *
+import re
+from random import randint
 
 class Mix():
-    def __init__(self):
-        self.max_iteration = 200
-        self.available_moves = ["F", "D", "B", "R", "L", "U", "F2", "D2", "B2", "R2", \
-                "L2", "U2", "F'", "B'", "R'", "L'", "U'", "D'"]
-
     def runMix(self, lst_moves, cube):
+        """Run mix move by move"""
         for move in lst_moves:
-            print(lst_moves)
-            print(move)
             if move == "F":
                 cube.move_front()
             elif move == "F'":
@@ -50,5 +46,30 @@ class Mix():
                 cube.move_up_counter()
             elif move == "U2":
                 cube.move_u2()
-        cube.print_cube()
         return cube
+
+    def valid(self, lst):
+        for move in lst:
+            if len(move) > 2:
+                return False
+            tmp = re.sub(r"[FRLUBD'2]", "", move)
+            if len(tmp) > 0:
+                return False
+            check = re.compile(r"(F|R|L|U|B|D)('|2)") if len(move) == 2 else re.compile(r"(F|R|L|U|B|D)")
+            if check.search(move) is None:
+                return False
+        return True
+
+    def create(self):
+        moves = ["F", "R", "L", "U", "B", "D", "F'", "R'", "L'", "U'", "B'", "D'", "F2", "R2", "L2", "U2", "B2", "D2"]
+        lst = []
+        i = 0
+        scramble_len = randint(15,35)
+        while i <= scramble_len:
+            lst.append(moves[randint(0,17)])
+            i += 1
+        print("A random scramble of {} moves is generated, here it is:".format(len(lst)))
+        for move in lst:
+            print(move, end=' ')
+        print()
+        return lst
