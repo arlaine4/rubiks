@@ -1,4 +1,5 @@
 import argparse
+from copy import deepcopy
 import sys
 
 def arg_parse():
@@ -32,18 +33,18 @@ def append_list(lst_moves, to_add):
     """Append a list after a first one"""
     for elem in to_add:
         lst_moves.append(elem)
-    return(lst_moves)
-
-from copy import deepcopy
+    return lst_moves
 
 def optimize_solution(lst_moves):
     index = 0
     while index < len(lst_moves):
         if lst_moves[index:index+4] == ["D","D","D","D"]:
-            lst_moves.pop(index)
-            lst_moves.pop(index)
-            lst_moves.pop(index)
-            lst_moves.pop(index)
+            for i in range(4):
+                lst_moves.pop(index)
+            #lst_moves.pop(index)
+            #lst_moves.pop(index)
+            #lst_moves.pop(index)
+            #lst_moves.pop(index)
         elif lst_moves[index:index+3] == ["D","D","D"]:
             lst_moves[index] = "D'"
             lst_moves.pop(index + 1)

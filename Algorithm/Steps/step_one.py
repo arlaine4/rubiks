@@ -161,7 +161,7 @@ class   step_one():
             move_down_center(cubeCurrent, color_one, color_two, face)
             while count != 0:
                 count -= 1
-                if (flag == 0):
+                if flag == 0:
                     cubeCurrent.move_back_counter()
                     self.lst_moves.append("B'")
                 else:

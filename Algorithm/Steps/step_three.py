@@ -75,13 +75,13 @@ class step_three:
     def get_pattern_push_down(self, face_one, face_two):
         if face_one == "left":
             if face_two == "front":
-                return ("rightPattern")
+                return "rightPattern"
             elif face_two == "back":
-                return ("leftPattern")
+                return "leftPattern"
         elif face_one == "front" and face_two == "right":
-            return ("rightPattern")
+            return "rightPattern"
         elif face_one == "right" and face_two == "back":
-            return ("rightPattern")
+            return "rightPattern"
 
     def get_side_params(self, cubeCurrent, lst_colors):
         self.lst_pos_curr = self.update_pos_lst(cubeCurrent, lst_colors)
@@ -127,7 +127,6 @@ class step_three:
 
     def left_sequence(self, cubeCurrent, face):
         mixManager = mix.Mix()
-
         if face == "front":
             mixManager.runMix([ "D", "L", "D'", "L'", "D'", "F'", "D", "F" ], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, [ "D", "L", "D'", "L'", "D'", "F'", "D", "F" ])

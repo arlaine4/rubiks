@@ -24,7 +24,7 @@ class step_six:
             return self.lst_moves
         else:
             res = self.check_next_pos(cubeCurrent)
-            if (res[0] == 4):
+            if res[0] == 4:
                 return self.lst_moves
             else:
                 if res[0] == 0:
@@ -62,25 +62,25 @@ class step_six:
         lst_pattern = []
         if ["yellow", "green", "red"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
-            if (lst_pattern[0] == "left"):
+            if lst_pattern[0] == "left":
                 lst_pattern.append("frontFace")
             else:
                 lst_pattern.append("rightFace")
         elif ["yellow", "blue", "orange"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
-            if (lst_pattern[0] == "left"):
+            if lst_pattern[0] == "left":
                 lst_pattern.append("backFace")
             else:
                 lst_pattern.append("leftFace")
         elif ["yellow", "blue", "red"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
-            if (lst_pattern[0] == "left"):
+            if lst_pattern[0] == "left":
                 lst_pattern.append("rightFace")
             else:
                 lst_pattern.append("backFace")
         elif ["yellow", "green", "orange"] == lst_colors:
             lst_pattern.append(self.get_direction(cubeCurrent))
-            if (lst_pattern[0] == "left"):
+            if lst_pattern[0] == "left":
                 lst_pattern.append("leftFace")
             else:
                 lst_pattern.append("frontFace")

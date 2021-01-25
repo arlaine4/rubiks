@@ -40,12 +40,10 @@ class step_seven:
 
     def move_side(self, cubeCurrent, lst_colors):
         mixManager = mix.Mix()
-        while self.finished_three_color_pos(cubeCurrent, lst_colors) == False:
+        while self.finished_three_color_pos(cubeCurrent, lst_colors) is False:
             mixManager.runMix(["L'", "U'", "L", "U"], cubeCurrent)
             self.lst_moves = utils.append_list(self.lst_moves, ["L'", "U'", "L", "U"])
 
     def finished_three_color_pos(self, cubeCurrent, lst_colors):
         lst_pos = self.checker.three(cubeCurrent, lst_colors[0], lst_colors[1], lst_colors[2])
-        if lst_pos[0][0] == "down" and lst_pos[0][1] == "yellow":
-            return True
-        return False
+        return True if (lst_pos[0][0] == "down" and lst_pos[0][1] == "yellow") else False

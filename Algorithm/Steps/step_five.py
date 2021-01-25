@@ -26,7 +26,7 @@ class step_five:
 
     def go_down(self, cubeCurrent):
         count = 0
-        while (count < 2):
+        while count < 2:
             if self.finished_two_color_pos(cubeCurrent, ["yellow", "green"]) is True:
                 count += 1
             if self.finished_two_color_pos(cubeCurrent, ["yellow", "blue"]) is True:
@@ -72,14 +72,14 @@ class step_five:
         isFalseGreen = self.finished_two_color_pos(cubeCurrent, ["yellow", "green"])
         isFalseRed = self.finished_two_color_pos(cubeCurrent, ["yellow", "red"])
         isFalseOrange = self.finished_two_color_pos(cubeCurrent, ["yellow", "orange"])
-        if isFalseBlue == True and isFalseOrange == True:
-            return ("front")
-        elif isFalseGreen == True and isFalseOrange == True:
-            return ("right")
-        elif isFalseGreen == True and isFalseRed == True:
-            return ("back")
-        elif isFalseRed  == True and isFalseBlue == True:
-            return ("left")
+        if isFalseBlue is True and isFalseOrange is True:
+            return "front"
+        elif isFalseGreen is True and isFalseOrange is True:
+            return "right"
+        elif isFalseGreen is True and isFalseRed is True:
+            return "back"
+        elif isFalseRed  is True and isFalseBlue is True:
+            return "left"
 
     def corner_change(self, cubeCurrent, face):
         mixManager = mix.Mix()

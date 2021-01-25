@@ -299,4 +299,3 @@ class Cube():
         print("{}# {}# {}#{}".format(self.get_color(self.down[0][0]), self.get_color(self.down[0][1]), self.get_color(self.down[0][2]), default))
         print("\t{}# {}# {}#{}".format(self.get_color(self.down[1][0]), self.get_color(self.down[1][1]), self.get_color(self.down[1][2]), default))
         print("\t{}# {}# {}#{}\n".format(self.get_color(self.down[2][0]), self.get_color(self.down[2][1]), self.get_color(self.down[2][2]), default))
-
